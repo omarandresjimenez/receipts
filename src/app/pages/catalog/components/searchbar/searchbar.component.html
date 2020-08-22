@@ -1,0 +1,13 @@
+<div class="container h-100" >
+  <form name="form" (submit)="onSearch(txtSearch.value)" class="form">
+   
+   
+    <div class="d-flex justify-content-left h-100">
+      <div class="searchbar">
+        <input class="search_input" type="text" name="txtSearch" #txtSearch placeholder="Search...">
+        <span   (click)="onSearch(txtSearch.value)" class="search_icon"><i class="fas fa-search"></i></span>
+
+      </div>
+    </div>
+  </form>
+  </div>

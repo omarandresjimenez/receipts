@@ -1,0 +1,17 @@
+
+<section class="details-card"  *ngIf="catalogView">
+    <div class="container">
+        <app-searchbar></app-searchbar>
+        <div class="row" >
+            <div class="col-md-3" [style.paddingBottom.px]="20" *ngFor="let recipe of recipeCatalog$">
+            
+            <app-recipe [card]="recipe" (selectedCard)="onSelectCard($event)"></app-recipe>
+           
+            </div>
+        </div>
+    </div>
+</section>
+<app-modal [card]="cardInfo" (backCatalog)="onBack()" *ngIf="!catalogView && cardInfo"></app-modal>
+
+  
+  
