@@ -20,7 +20,7 @@ export class RecipeApiService {
     return this.http.get<any[]>(this.BASEURL + 'recipe/search/' + (!search ? 'ajiaco' : search))
             .pipe(map((res) => res.map((item) => {
                  const obj: Recipe = {
-                     id: '0', // item.id,
+                     id:  item.id,
                      name: item.name,
                      image: item.image ? item.image : null,
                      summary: '',
