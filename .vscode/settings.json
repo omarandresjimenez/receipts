@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/1b2d58b2-2421-4e39-bcf7-79fb6e8485f2/resourceGroups/GastroHerenciaRG/providers/Microsoft.Web/sites/GastroHerenciaColombia",
+    "appService.deploySubpath": "."
+}
