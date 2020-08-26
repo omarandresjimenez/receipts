@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { RecipeCatalogService } from './services/recipe-catalog.service';
 import { Observable, Subscription, combineLatest } from 'rxjs';
-import { Recipe, Preparation } from 'src/app/models/models';
+import { Recipe, Preparation } from 'src/app/core/models/models';
 import { map } from 'rxjs/operators';
 
 

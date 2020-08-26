@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../user/services/user.service';
-import { UserSession } from 'src/app/models/userSession';
+import { UserSession } from 'src/app/core/models/userSession';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('');
   }
 
-   onGoUsers() {
-   // this.router.navigateByUrl('container/users');
+   onGoAdmin() {
+    this.router.navigateByUrl('container/admin');
    }
 
 

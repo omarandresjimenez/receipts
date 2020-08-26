@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Recipe, Preparation } from 'src/app/models/models';
+import { Recipe, Preparation } from 'src/app/core/models/models';
 
 @Component({
   selector: 'app-modal',

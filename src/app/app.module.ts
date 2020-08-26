@@ -10,12 +10,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { AppRoutingModule } from './app.routing.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { TruncatePipe } from './share/pipes/limitTo.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-
+    // TruncatePipe,
   ],
   imports: [
     BrowserModule,

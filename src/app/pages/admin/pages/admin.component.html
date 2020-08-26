@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+<div class="jumbtron" [style.marginTop.px]="60">
+    <h1 class="display-4 text-center">Administracion de recetas</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md-5" [style.marginLeft.px]="50">
+        <app-admin-recipe-form [recipeToEdit]="recipe" ></app-admin-recipe-form>
+      </div>
+      <div class="col-md-5" [style.marginLeft.px]="50">
+        <app-recipe-list (editRecipe)="onRecipeSelected($event)"></app-recipe-list>
+      </div>
+    </div>
+  </div>

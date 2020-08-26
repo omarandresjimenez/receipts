@@ -8,9 +8,9 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           
-            <a class="nav-link" [class.dropdown-toggle]="(sessionUser$  | async)?.userRole === 'admin'" data-toggle="dropdown" href="#" id="navbardrop" > <i class="fas fa-user-circle green-icon" ></i> {{ (sessionUser$  | async)?.userName || "Guest User"}}</a>
-            <div class="dropdown-menu" *ngIf="(sessionUser$  | async)?.userRole === 'admin'">
-                <a class="dropdown-item" style="cursor:pointer" (click)="onGoUsers()">User Management</a>
+            <a class="nav-link" [class.dropdown-toggle]="(sessionUser$  | async)?.userRole === 'admin'" data-toggle="dropdown" href="#" id="navbardrop" > <i class="fas fa-user-circle green-icon" ></i> {{ (sessionUser$  | async)?.userName || "Invitado"}}</a>
+              <div class="dropdown-menu"> <!-- *ngIf="true || (sessionUser$  | async)?.userRole === 'admin'">  -->
+                <a class="dropdown-item" style="cursor:pointer" (click)="onGoAdmin()">Administracion</a>
               </div>
         </li>
         <li class="nav-item">

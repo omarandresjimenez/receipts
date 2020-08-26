@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
-import { UserSession } from 'src/app/models/userSession';
+import { UserSession } from 'src/app/core/models/userSession';
 import { ToastrService } from 'ngx-toastr';
 
 

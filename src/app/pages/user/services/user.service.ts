@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
 
-import { UserSession } from 'src/app/models/userSession';
-import { UserLogin, UserModel } from 'src/app/models/userLogin';
+import { UserSession } from 'src/app/core/models/userSession';
+import { UserLogin, UserModel } from 'src/app/core/models/userLogin';
 import { ApiService } from '../api/api.service';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { UserModel } from 'src/app/models/userLogin';
+import { UserModel } from 'src/app/core/models/userLogin';
 import { UserService } from '../../services/user.service';
 
 @Component({

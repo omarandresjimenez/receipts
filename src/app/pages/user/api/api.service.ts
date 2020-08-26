@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { UserLogin, UserModel } from '../../../models/userLogin';
+import { UserLogin, UserModel } from '../../../core/models/userLogin';
 import { Observable, throwError, of } from 'rxjs';
-import { UserSession } from '../../../models/userSession';
+import { UserSession } from '../../../core/models/userSession';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

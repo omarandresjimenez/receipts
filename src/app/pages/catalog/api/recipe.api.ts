@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable, forkJoin } from 'rxjs';
 import { map, toArray, tap, take } from 'rxjs/operators';
-import { Recipe, Preparation } from '../../../models/models';
+import { Recipe, Preparation } from '../../../core/models/models';
 
 
 @Injectable({

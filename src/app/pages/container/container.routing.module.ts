@@ -14,6 +14,10 @@ const routes: Routes = [{
       component: UserContainerComponent,
     },
     {
+      path: 'admin',
+      loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
+    },
+    {
       path: 'catalog',
       component: CatalogComponent,
     },

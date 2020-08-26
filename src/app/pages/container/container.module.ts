@@ -14,8 +14,8 @@ import { SearchbarComponent } from '../catalog/components/searchbar/searchbar.co
 import { ContainerComponent } from './container.component';
 import { UserContainerComponent } from '../user/user.container.component';
 import { CatalogComponent } from '../catalog/catalog.component';
-import { TruncatePipe } from 'src/app/share/pipes/limitTo.pipe';
 import { ModalComponent } from '../catalog/components/modal/modal.component';
+import { ShareModule } from '../../share/share.module';
 
 
 
@@ -30,12 +30,13 @@ import { ModalComponent } from '../catalog/components/modal/modal.component';
     RecipeComponent,
     SearchbarComponent,
     ModalComponent,
-    TruncatePipe,
+
   ],
   imports: [
     CommonModule,
     ContainerRoutingModule,
     FormsModule,
+    ShareModule,
   ],
   providers: [],
   bootstrap: []

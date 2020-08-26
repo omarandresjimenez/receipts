@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, pipe } from 'rxjs';
+import { shareReplay, map, tap } from 'rxjs/operators';
 
 import { RecipeApiService } from '../api/recipe.api';
-import { Recipe, Preparation } from '../../../models/models';
-import { shareReplay, map, tap } from 'rxjs/operators';
+import { Recipe, Preparation } from '../../../core/models/models';
+
 
 @Injectable({
   providedIn: 'root',

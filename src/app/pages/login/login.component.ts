@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserLogin } from 'src/app/models/userLogin';
+import { UserLogin } from 'src/app/core/models/userLogin';
 import { UserService } from '../user/services/user.service';
-import { UserSession } from 'src/app/models/userSession';
+import { UserSession } from 'src/app/core/models/userSession';
 import { Observable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 

@@ -1,0 +1,47 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-utensils" [class.green-icon]="name.valid" [class.red-icon]="name.invalid && name.touched"></i>
+          </div>
+        </div>
+        <input name="name" #name="ngModel" [(ngModel)]="recipeData.name" class="form-control" 
+          placeholder="Nombre Receta" required maxlength="100">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-font" [class.green-icon]="summary.valid" [class.red-icon]="summary.invalid && summary.touched"></i>
+          </div>
+        </div>
+        <textarea name="summary" #summary="ngModel" [(ngModel)]="recipeData.summary" class="form-control"
+          placeholder="Descripcion" required maxlength="500"  rows="5"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="user-avatar">
+      <div class="form-group photo-upload">
+        <div class="photo-upload-preview" [style.background-size]="avatarBgSize" [style.background-image]="imageAvatar">
+        </div>
+        <label class="photo-upload-label">
+          <span
+            class="btn btn-primary btn-sm">Cargar Imagen</span>
+          <input type="file"  accept="image/gif, image/jpeg, image/png" name="avatar" (change)="showAvatarPreview($event)">
+        </label>
+      </div>
+    </div>
+    </div>
+
+      <BR>
+      <BR>
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="recipeData.id" >
+    <div class="form-group" style="display: flex;">
+      <button type="button" class="btn btn-success btn-lg btn-block col-md-5" (click)="resetForm(form)"><i class="fas fa-plus"></i> Nueva Receta</button>
+      <div class="col-md-2"></div>
+     
+     <button class="btn btn-success btn-lg btn-block col-md-5" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Guardar</button>
+    </div>
+  </form>
