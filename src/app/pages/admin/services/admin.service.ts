@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
-import { shareReplay, tap, catchError } from 'rxjs/operators';
+import { shareReplay, tap, catchError, map, toArray } from 'rxjs/operators';
 
 import { Recipe } from 'src/app/core/models/models';
 import { AdminApiService } from '../api/admin-api.service';
@@ -16,8 +16,10 @@ export class AdminService {
     this.newRecipeAdded$ = this.newRecipeAdded.asObservable();
   }
 
-  public getRecipes(): Observable<[ Recipe ]> {
-    return this.service.getRecipes();
+  public getRecipes(): Observable<Recipe[]> {
+    return this.service.getRecipes().pipe(
+     map((val: Recipe[]) => val.slice(0, 100)),
+    );
   }
 
   public notifyNewRecipe(): void {

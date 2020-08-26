@@ -7,7 +7,9 @@ export class TruncatePipe implements PipeTransform {
   transform(value: string, args: string): string {
     const limit = args ? parseInt(args, 10) : 10;
     const trail = '...';
-
+    if (!value) {
+      return '';
+    }
     return value.length > limit ? value.substring(0, limit) + trail : value;
   }
 }

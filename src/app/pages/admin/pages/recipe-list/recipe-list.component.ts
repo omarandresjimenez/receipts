@@ -13,7 +13,7 @@ import { AdminService } from '../../services/admin.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecipeListComponent implements OnInit {
-  public recipes$: Observable<[Recipe]>;
+  public recipes$: Observable<Recipe[]>;
 
   constructor(private service: AdminService,
               private toast: ToastrService,

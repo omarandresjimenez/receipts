@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppHttpErrorHandler } from '../../../core/utils/errorHandler';
 import {  Recipe } from '../../../core/models/models';
 import { environment } from '../../../../environments/environment';
+import { take } from 'rxjs/operators';
 
 
 @Injectable({
@@ -48,8 +49,8 @@ export class AdminApiService extends AppHttpErrorHandler  {
     return this.http.delete<boolean>(this.BASEURL + 'recipe/' + id);
   }
 
-  public getRecipes(): Observable<[Recipe]> {
-    return this.http.get<any>(this.BASEURL + 'recipes');
+  public getRecipes(): Observable<Recipe[]> {
+    return this.http.get<any>(this.BASEURL + 'recipe');
   }
 
 }
