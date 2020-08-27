@@ -1,3 +1,9 @@
+.section-container{
+  background: url('/assets/bg-catalog.jpg') top center repeat-y;
+  background-size: 100% auto;
+  min-height: 100vh;
+}
+
 .blog .card {
   
     border-radius: 0;
@@ -56,4 +62,8 @@
   top: 3px;
   right: 20px;
   cursor: pointer;
+}
+
+.details{
+  padding: 40px;
 }

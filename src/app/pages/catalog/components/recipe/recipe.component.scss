@@ -20,9 +20,11 @@ section{
 }
 
 .card-content {
-	background: #ffffff;
-	border: 4px;
-    box-shadow: 0 46px 58px -45px rgba(0,0,0,.16);
+	background: #fff;
+    border: 4px;
+    box-shadow: 0 46px 48px -35px rgb(0 0 0 / 97%);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .card-img {
