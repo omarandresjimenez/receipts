@@ -37,6 +37,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     if (this.recipeToEdit) {
       this.newRecipe = false;
       this.recipeData = { ...this.recipeToEdit };
+      this.imageAvatar = this.recipeData.image;
     }
   }
 
