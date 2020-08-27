@@ -1,6 +1,6 @@
 /* Made with love by Mutiullah Samim*/
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
 
 .back {
@@ -9,15 +9,16 @@
     background-size: cover;
     background-repeat: no-repeat;
     height: calc(100vh);
-    font-family: 'Numans', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     overflow: hidden;
 }
 
 .logo-gastro{
     background-image: url('/assets/logo-gastro.png');
-    background-size: contain;
+    background-size: 90% auto;
+    background-position: center center;
     background-repeat: no-repeat;
-    width: 424px;
+    width: 100%;
     height: 220px;
     margin: 20px auto;
 }
@@ -34,6 +35,7 @@ padding-bottom: 400px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
+padding: 30px;
 background-color: rgba(0,0,0,0.5) !important;
 }
 
@@ -50,6 +52,9 @@ cursor: pointer;
 
 .card-header h3{
 color: white;
+font-weight: 800;
+text-align: center;
+font-size: 2rem;
 }
 
 .social_icon{
@@ -60,9 +65,11 @@ top: -45px;
 
 .input-group-prepend span{
 width: 50px;
-background-color: #FFC312;
+background-color: white;
 color: black;
 border:0 !important;
+border-radius: 40px 0px 0px 40px;
+padding: .7rem 1.5rem;
 }
 
 input:focus{
@@ -84,9 +91,13 @@ margin-right: 5px;
 }
 
 .login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
+    color: #000;
+    background-color: #ffdf00;
+    width: 120px;
+    padding: 10px 15px;
+    box-shadow: 0px 10px 30px -10px rgb(255 223 0 / 61%);
+    margin: 10px;
+    border-radius: 30px;
 }
 
 .login_btn:hover{

@@ -4,7 +4,9 @@ input.ng-touched.ng-invalid{
 }
 
 input.ng-valid{
-    border-color: #28a745;
+    border-color: white;
+    border-radius: 0px 40px 40px 0px;
+    padding: .7rem;
 }
 
 .green-icon{
