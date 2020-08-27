@@ -3,11 +3,19 @@ section{
 }
 
 .title-section{
-    max-width: 500px;
+    max-width: 540px;
     text-align: center;
-    font-size: 3rem;
-    margin: 40px auto 30px;
-    color: white;
+    font-size: 3.4rem;
+    line-height: 3.6rem;
+    margin: 40px auto 50px;
+    color: #fff;
+}
+
+.title-section span{
+    font-size: 5rem;
+    font-family: 'Caveat Brush', cursive;
+    transform: rotate(-1deg);
+    display: block;
 }
 
 .details-card {

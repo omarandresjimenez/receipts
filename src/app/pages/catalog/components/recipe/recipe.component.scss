@@ -85,20 +85,15 @@ section{
 	font-family: 'Raleway', sans-serif;
 }
 .btn-card{
-	background-color: #1ABC9C;
-	color: #fff;
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-    padding: .14rem .14rem;
+	background-color: #1abc9c;
+    box-shadow: 0px 6px 17px -10px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    letter-spacing: 2px;
     font-size: .81rem;
-    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-    -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     margin: 0;
     border: 0;
-    -webkit-border-radius: .125rem;
-    border-radius: .125rem;
+    border-radius: 40px;
     cursor: pointer;
     text-transform: uppercase;
     white-space: normal;
