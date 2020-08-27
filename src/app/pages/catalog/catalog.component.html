@@ -1,7 +1,14 @@
 
 <section class="details-card"  *ngIf="catalogView">
     <div class="container">
-        <app-searchbar></app-searchbar>
+        <div class="row">
+            <div class="col">
+                <h3>Se parte de la Herencia Gastronómica de nuestro pais</h3>
+            </div>
+            <div class="col">
+                <app-searchbar></app-searchbar>
+            </div>
+        </div>
         <div class="row" >
             <div class="col-md-3" [style.paddingBottom.px]="20" *ngFor="let recipe of recipeCatalog$">
             
