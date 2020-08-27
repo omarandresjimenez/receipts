@@ -5,12 +5,21 @@
 
 .back {
 
-    background-image: url('/assets/background.jpg');
+    background-image: url('/assets/background-gastro.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: calc(100vh);
     font-family: 'Numans', sans-serif;
     overflow: hidden;
+}
+
+.logo-gastro{
+    background-image: url('/assets/logo-gastro.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 424px;
+    height: 220px;
+    margin: 20px auto;
 }
 
 .container{
