@@ -29,6 +29,9 @@ export class RecipeApiService {
                        return {
                          name : x.name,
                          image: x.image ? x.image : null,
+                         rating: this.getRandomInt(0, 10),
+                         region: this.getRandomRegion(),
+                         author: this.getRandomAuthor(),
                        };
                      }),
                  };
@@ -49,6 +52,16 @@ export class RecipeApiService {
 
   private getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  private getRandomAuthor() {
+    const AUTHORS = ['Pedro Lopez', 'Carmen Gomez', 'Maria Perez', 'Juliana Olarte'];
+    return AUTHORS[this.getRandomInt(0, 3)];
+  }
+
+  private getRandomRegion() {
+    const AUTHORS = ['Atlantica', 'Pacifica', 'Oriental', 'Cundiboyacense'];
+    return AUTHORS[this.getRandomInt(0, 3)];
   }
 
 }
