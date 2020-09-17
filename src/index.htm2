@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gastro Herencia - Colombia</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/main-ghco.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+	<div class="top-bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<nav class="navbar sticky-top navbar-expand-lg d-flex">
+						<a href="#" class="navbar-brand">
+							<h1 class="logo">
+								Gastro Herencia
+							</h1>
+						</a>
+					
+						<div class="collapse navbar-collapse" id="navbarText" style="display: table !important;">
+							<ul class="navbar-nav mr-auto" style="float: right;">
+								<li class="nav-item">
+									<a href="index.html" class="nav-link">Iniciar Sesión</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link btn-gastro">Registrarse</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<a href="/container">
+						<div class="card bg-dark text-white">
+							<div class="hover-card"></div>
+							<img class="card-img" src="assets/imgs/card-item-2.jpg" alt="Card image">
+							<div class="card-img-overlay">
+								<h5 class="card-title"></h5>
+								<p class="card-text"></p>
+								<p class="card-text"></p>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4">
+					<div class="card bg-dark text-white">
+						<img class="card-img" src="assets/imgs/card-item.jpg" alt="Card image">
+						<div class="card-img-overlay">
+							<h5 class="card-title"></h5>
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+						</div>
+					</div>
+					<div class="card bg-dark text-white">
+						<img class="card-img" src="assets/imgs/card-item-1.jpg" alt="Card image">
+						<div class="card-img-overlay">
+							<h5 class="card-title"></h5>
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="card bg-dark text-white">
+						<img class="card-img" src="assets/imgs/card-item-3.jpg" alt="Card image">
+						<div class="card-img-overlay">
+							<h5 class="card-title"></h5>
+							<p class="card-text"></p>
+							<p class="card-text"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="stories">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 class="title-stories">
+						Nuevas historias
+					</h2>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="stories-content">
+						<img src="assets/imgs/content.png" width="100%" height="auto" alt="">
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="text-center">
+						<img src="assets/imgs/nav-slider.png" width="150" height="auto" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<figure class="logo-footer"><img src="assets/imgs/logo-fullcolor-vrt.png" width="150" height="auto" alt=""></figure>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col d-flex align-items-center">
+					<div style="margin: auto;">
+						<a class="btn-floating btn-lg" type="button" role="button"><i class="fab fa-facebook"></i></a>
+						<a class="btn-floating btn-lg" type="button" role="button"><i class="fab fa-instagram"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="text-center">Todos los derechos reservados. Imágenes usadas como prototipo pero no representan el producto final.</p>
+				</div>
+			</div>
+		</div>
+	</footer>	
+</body>
+</html>
