@@ -17,7 +17,8 @@ export class ModalComponent implements OnInit {
    modAuthor: string;
    modImage: string;
    modRating: string;
-   modIngredients: any[];
+   modIngredients: string[];
+   modTools: string[];
 
    @Input()
    public card: Recipe;
@@ -39,6 +40,7 @@ export class ModalComponent implements OnInit {
      this.modImage = prep.image;
      this.modRating = prep.rating;
      this.modIngredients =  prep.ingredients;
+     this.modTools =  prep.tools;
      this.modalservice.open('custom-modal-1');
    }
 

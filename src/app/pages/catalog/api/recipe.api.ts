@@ -32,7 +32,8 @@ export class RecipeApiService {
                          rating: this.getRandomInt(0, 10),
                          region: this.getRandomRegion(),
                          author: this.getRandomAuthor(),
-                         ingredients: x.preparationIngredients?.map( y => y.name),
+                         ingredients: x.preparationIngredients?.map( y => y.ingredient?.name),
+                         tools: x.preparationTools?.map( y => y.tool?.name),
                        };
                      }),
                  };
