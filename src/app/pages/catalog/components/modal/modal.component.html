@@ -36,7 +36,8 @@
 
 
 
-                                <div class="card-content" *ngFor="let prep of card.preparations">
+                                <div class="card-content" *ngFor="let prep of card.preparations"
+                                     (click)="onModalOpen(prep)" [style.cursor]="'pointer'">
                                     <div class="card-img">
                                         <img [src]="prep.image" alt="">
                                         
@@ -46,13 +47,7 @@
                                         <h5>Autor: {{ prep.author }}</h5>
                                         <h5>Región: {{ prep.region }}</h5>
 
-                                        <div class="rating">
-                                            <div class="stars">
-                                                <span class="fa fa-star checked fa-color"></span>
-                                                <span class="review-no" [style.padding.px]="10">{{ prep.rating }}</span>                                               
-                                            </div>
-                            
-                                        </div>
+                              
                                        
                                            
                                     </div>
@@ -69,3 +64,77 @@
         </div>
     </div>
 </div>
+<app-jwmodal id="custom-modal-1">
+    <div class="container" [style.marginTop.px]="100">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+    
+                        <div class="preview-pic tab-content">
+                           
+                            <div class="tab-pane active" id="pic-{{card.id}}"><img [src]="modImage" class="mainimg"/></div>
+    
+                        </div>
+    
+    
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{ modName }}</h3> 
+                        <br>
+                        <h5>Autor: {{ modAuthor }}</h5>
+                        <h5>Región: {{ modRegion }}</h5>
+                        <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
+     
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="review-no">{{modRating }} rating</span>
+                            </div>
+    
+                        </div>
+                        <br>
+                        <div class="container" *ngIf="modIngredients">
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <h3 class="heading-6  text-left">Ingredientes</h3>
+                                    <hr class="mx-auto">
+                               
+
+
+
+                                <div class="card-content" *ngFor="let ing of modIngredients">
+                                   
+                                    <div class="card-desc">
+                                        <h3>{{ ing }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            </div>
+                        </div>
+                        <fieldset class="star-rating">
+                            <legend class="star-rating__title">Valoración:</legend>
+                            <div class="star-rating__stars">
+                              <input class="star-rating__input" type="radio" name="rating" value="1" id="rating-1" />
+                              <label class="star-rating__label" for="rating-1" aria-label="One"></label>
+                              <input class="star-rating__input" type="radio" name="rating" value="2" id="rating-2" />
+                              <label class="star-rating__label" for="rating-2" aria-label="Two"></label>
+                              <input class="star-rating__input" type="radio" name="rating" value="3" id="rating-3" />
+                              <label class="star-rating__label" for="rating-3" aria-label="Three"></label>
+                              <input class="star-rating__input" type="radio" name="rating" value="4" id="rating-4" />
+                              <label class="star-rating__label" for="rating-4" aria-label="Four"></label>
+                              <input class="star-rating__input" type="radio" name="rating" value="5" id="rating-5" />
+                              <label class="star-rating__label" for="rating-5" aria-label="Five"></label>
+                              <div class="star-rating__focus"></div>
+                            </div>
+                          </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</app-jwmodal>
