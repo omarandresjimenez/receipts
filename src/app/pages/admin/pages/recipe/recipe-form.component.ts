@@ -15,7 +15,7 @@ import { Recipe } from '../../../../core/models/models';
 })
 export class AdminRecipeFormComponent implements OnInit, OnChanges {
   public newRecipe = true;
-  public recipeData: Recipe = { id: '0', name: '', summary: '', image: ''};
+  public recipeData: Recipe = { id: '0', name: '', summary: '', imageURL: ''};
 
   public avatarBgSize: any = '80%';
   public imageAvatarFile: any = '';
@@ -37,7 +37,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     if (this.recipeToEdit) {
       this.newRecipe = false;
       this.recipeData = { ...this.recipeToEdit };
-      this.imageAvatar = this.recipeData.image;
+      this.imageAvatar = this.recipeData.imageURL;
     }
   }
 
@@ -78,7 +78,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     reader.onload = () => {
       this.renderAvatar(reader.result);
       this.imageAvatarFile = reader.result;
-      this.recipeData.image = this.imageAvatarFile;
+      this.recipeData.imageURL = this.imageAvatarFile;
      // this.saveProfilePhoto(this.imageAvatarFile);
     };
     reader.readAsDataURL($event.target.files[0]);
@@ -97,7 +97,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
       id: '0',
       name: '',
       summary: '',
-      image: '',
+      imageURL: '',
     };
     if (form != null) {
       form.form.reset();

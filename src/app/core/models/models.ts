@@ -2,7 +2,7 @@ export interface Recipe {
   id: string;
   name: string;
   summary: string;
-  image: string;
+  imageURL: string;
   city?: City;
   rating?: number;
   preparations?: Preparation[];

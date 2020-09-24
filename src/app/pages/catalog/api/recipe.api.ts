@@ -22,13 +22,13 @@ export class RecipeApiService {
                  const obj: Recipe = {
                      id:  item.id,
                      name: item.name,
-                     image: item.image ? item.image : null,
+                     imageURL: item.imageURL ? item.imageURL : null,
                      summary: '',
                      rating: this.getRandomInt(0, 10),
                      preparations: item.preparations.map((x: any) => {
                        return {
                          name : x.name,
-                         image: x.image ? x.image : null,
+                         imageURL: x.imageURL ? x.imageURL : null,
                          rating: this.getRandomInt(0, 10),
                          region: this.getRandomRegion(),
                          author: this.getRandomAuthor(),

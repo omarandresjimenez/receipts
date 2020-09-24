@@ -18,7 +18,7 @@ export class AdminService {
 
   public getRecipes(): Observable<Recipe[]> {
     return this.service.getRecipes().pipe(
-     map((val: Recipe[]) => val.slice(0, 100)),
+     map((val: Recipe[]) => val.slice(0, 10)),
     );
   }
 

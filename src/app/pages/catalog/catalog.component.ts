@@ -32,7 +32,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.catalogView = true;
         this.recipeCatalog$ = [];
         res.map((x: Recipe) => {
-         x.image = x.image ? x.image : images[ Math.floor(Math.random() * 10) ];
+         x.imageURL = x.imageURL ? x.imageURL : images[ Math.floor(Math.random() * 10) ];
          x.preparations.map((prep) => prep.image = prep.image ? prep.image : images[ Math.floor(Math.random() * 10) ]);
          this.recipeCatalog$.push(x);
         });
