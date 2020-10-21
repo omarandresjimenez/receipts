@@ -5,7 +5,7 @@ body{
 	background-size: cover;
 }
 
-*{ font-family: 'Ubuntu', sans-serif; }
+
 
 a{ color: inherit !important; }
 
@@ -18,22 +18,7 @@ a{ color: inherit !important; }
 	padding: 10px 10px;
 }
 
-.btn-gastro{
-	background-color: rgba(255, 193, 7, 1);
-	border-radius: 100px;
-	color: black !important;
-	padding: 10px 20px !important;
-	display: block;
-}
 
-.logo{
-	width: 228px;
-	height: 44px;
-	background: url('/assets/imgs/logo-fullcolor-hrz.png') center center no-repeat;
-	background-size: contain;
-	text-indent: -9999px;
-	display: block;
-}
 
 .card{ margin-bottom: 24px; border:none !important; position: relative; }
 

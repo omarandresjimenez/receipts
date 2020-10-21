@@ -1,0 +1,36 @@
+
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.back {
+
+    background-image: url('/assets/background-gastro.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vh);
+    font-family: 'Ubuntu', sans-serif;
+    overflow: auto;
+}
+
+
+.container{
+height: 100%;
+align-content: center;
+
+}
+
+.logo{
+	width: 228px;
+	height: 44px;
+	background: url('/assets/imgs/logo-fullcolor-hrz.png') center center no-repeat;
+	background-size: contain;
+	text-indent: -9999px;
+	display: block;
+}
+
+.bg{
+	background: url('/assets/imgs/bg-landing.jpg') top center no-repeat;
+	background-size: cover;
+}

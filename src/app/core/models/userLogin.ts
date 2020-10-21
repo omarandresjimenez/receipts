@@ -1,10 +1,4 @@
 export interface UserLogin {
-    userName: string;
+    userEmail: string;
     userPassword: string;
-}
-
-export interface UserModel {
-    userName: string;
-    userPassword: string;
-    userAdmin: boolean;
 }

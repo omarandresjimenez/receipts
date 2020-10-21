@@ -1,0 +1,155 @@
+
+
+.container{
+height: 100%;
+align-content: center;
+
+}
+.card{
+    // height: 370px;
+    margin-top: 30px;
+    margin-bottom: auto;
+    width: 800px;
+    background-color: rgba(0,0,0,0.5) !important;
+    }
+
+    .card-body{
+        padding: 30px;  
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .card-body > div {
+        padding: 0px 10px;  
+        flex: 50%;
+        max-width: 50%;
+     }
+    
+    .social_icon span{
+    font-size: 60px;
+    margin-left: 10px;
+    color: #FFC312;
+    }
+    
+    .social_icon span:hover{
+    color: white;
+    cursor: pointer;
+    }
+    
+    .card-header{
+       align-items: center;
+       width: 100%;
+        }
+
+    .date {
+        display: inline-block;
+        width: 100px !important;
+        margin-right: 15px;
+    }
+
+    label {
+        display: block;
+        color: #e3e3e3;
+    }
+
+    .card-header h3{
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    font-size: 2rem;
+    }
+
+    input {
+        height: 38px;
+    }
+    
+    .social_icon{
+    position: absolute;
+    right: 20px;
+    top: -45px;
+    }
+    
+    .input-group-prepend span{
+    width: 50px;
+    background-color: white;
+    color: black;
+    border:0 !important;
+    border-radius: 40px 0px 0px 40px;
+    padding: .7rem 1.5rem;
+    }
+    
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+    
+    }
+    
+ 
+
+    
+    .links a{
+    margin-left: 4px;
+    }
+    
+    .form-error{
+        color: red;
+        font-size: .8em;
+      }
+
+      .form-control{
+        width: 80%;
+      }
+
+    .input-group-text {
+      height: 38px;
+    }
+      
+      @media only screen and (max-width: 600px) {
+        .card-body {
+         // min-width: 600px;
+          flex-direction: column;
+        }
+        .card-body > div {
+            padding: 10px;  
+            flex: 100%;
+            max-width: 100%;
+         }
+      }
+
+      .photo-upload {
+        max-width: 80px;
+      
+        @media screen and (max-width: 640px){
+          margin-right: 10px;
+        }
+      
+        @media screen and (max-width: 460px){
+          margin-left: auto;
+          margin-right: auto;
+        }
+      
+        .photo-upload-preview {
+          width: 80px;
+          height: 80px;
+          background-color: #e3e3e3;
+          border: 1px solid #9ba2ac;
+          margin-bottom: 10px;
+          background-image: url('/assets/img/defaultuser.png');
+          background-repeat: no-repeat;
+          background-position: center;
+          border-radius: 50%;
+        }
+      
+
+      
+        label {
+          display: block;
+          width: 100%;
+          cursor: pointer;
+        }
+      
+        input[type="file"] {
+          display: none;
+        }
+    }

@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Ubuntu:wght@300;400;500;700&display=swap');
+/* Made with love by Mutiullah Samim*/
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 *{
     font-family: 'Ubuntu', sans-serif;
@@ -31,4 +36,31 @@ input.ng-valid{
 table tr:hover{
     cursor: pointer;
     background-color: lightgreen;
+}
+
+.display-4 {
+    color: white;
+}
+
+.login_btn{
+    color: #000;
+    background-color: #ffdf00;
+    width: 120px;
+    padding: 10px 15px;
+    box-shadow: 0px 10px 30px -10px rgb(255 223 0 / 61%);
+    margin: 10px;
+    border-radius: 30px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.btn {
+   //  width: 100%;
+  }
+
+.links{
+color: white;
 }

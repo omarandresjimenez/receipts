@@ -19,5 +19,10 @@ export interface Preparation {
 export interface City {
   id: string;
   name: string;
+  idState: string;
 }
 
+export interface State {
+  id: string;
+  name: string;
+}

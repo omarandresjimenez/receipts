@@ -1,0 +1,23 @@
+.profile--card-avatar,
+.account-avatar {
+  display: inline-block;
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #789CB4;
+  background-color: #e3e3e3;
+  background-image: url('/assets/img/defaultuser.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  &.is--have-avatar {
+    background-size: cover;
+  }
+  @media screen and (max-width: 350px) {
+    display: none;
+  }
+}
+span {
+  color: white;
+}
