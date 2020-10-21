@@ -1,1 +1,36 @@
- <app-signup-form (formSubmit)="onSubmit($event)" [title]="buttonText" [signUp]="userData"></app-signup-form>
+<div id="login-container" *ngIf="user">
+    <div class="profile-img">
+        <app-avatar  [avatarSizePixels]="100" [avatarImage]="user?.imageUrl" ></app-avatar>
+    </div>
+    <h2>
+      {{ user.name }} {{ user.lastName }}
+    </h2>
+    <div class="description">
+       <b>Email: </b> {{ user.email }}<br>
+       <b>Telefono: </b> {{ user.phone }}<br>
+       <b>Ciudad: </b> {{ user.cityName }}<br><br>
+       <label class="c_checkbox by-store-checkbox" >
+        <div class="c_checkbox-label">Activo: </div>
+        <div class="c_checkbox-toggle">
+            <input type="checkbox" [checked]="user.active" [(ngModel)]="user.active" />
+            <div class="c_checkbox-toggle-view"></div>
+        </div>
+    </label>
+    <br>
+    <br>
+    <label class="c_checkbox by-store-checkbox" style="display: inline-flex;">
+        <div class="c_checkbox-label" style="width: 100px;">Role: </div>
+        <select class="form-control"  [(ngModel)]="user.role" >
+            <option *ngFor="let rol of ['user', 'admin']" [value]="rol">
+                {{ rol  }}
+              </option>
+        </select>  
+    </label>
+
+
+
+    </div>
+ 
+    <button (click)="onUpdateUser()">Actualizar</button>  
+    <button class="remove"  (click)="onDeleteUser()">Eliminar</button>  
+  </div>

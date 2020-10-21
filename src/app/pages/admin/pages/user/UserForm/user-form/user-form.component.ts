@@ -1,66 +1,42 @@
-import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { newArray } from '@angular/compiler/src/util';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { disableDebugTools } from '@angular/platform-browser';
 import { UserModel } from 'src/app/core/models/userModel';
-import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-user-form',
+  selector: 'app-user-card',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit, OnChanges {
-  public newUser = true;
-  public buttonText: string;
-  public userData: UserModel = { name: '', lastName: '', password: '',
-                                 confirmPassword: '', email: '', state: '', city: '' , role: '', active: false };
-  constructor(private service: UserService,  private toast: ToastrService, private cdr: ChangeDetectorRef) { }
+
+  constructor() { }
 
   @Input()
-  public userToEdit: UserModel;
+  public user: UserModel;
+
+  @Output()
+  public updateUser = new EventEmitter<UserModel>();
+
+  @Output()
+  public deleteUser = new EventEmitter<string>();
 
   ngOnInit(): void {
   }
 
   ngOnChanges() {
-    if (this.userToEdit) {
-      this.newUser = false;
-      this.userData = { ...this.userToEdit };
+
+  }
+
+  onUpdateUser() {
+    this.updateUser.emit(this.user);
+  }
+
+  onDeleteUser() {
+    if (confirm('Esta seguro que desea eliminar este usuario?')){
+      this.deleteUser.emit(this.user.email);
     }
   }
 
-  public onSubmit($event: UserModel) {
-    if (this.newUser) {
-      this.service.createUser(this.userData).subscribe((res: boolean) => {
-        this.toast.success('Usuario Creado');
-        this.service.notifyNewUser();
-        this.resetForm();
-    },
-      (err) => {
-        console.log(err);
-        this.toast.error('Error');
-       });
-      } else {
-        this.service.updateUser(this.userData).subscribe((res: boolean) => {
-          this.toast.success('Usuario actualizado');
-          this.service.notifyNewUser();
-          this.resetForm();
-      },
-        (err) => {
-          this.toast.error('Error');
-          console.log(err);
-         });
-      }
-  }
-
-  public resetForm(form?: NgForm) {
-    this.newUser = true;
-    this.userData = { name: '', lastName: '', password: '',
-                      confirmPassword: '', email: '', state: '', city: '' , role: '', active: false };
-    if (form != null) {
-      form.form.reset();
-    }
-    this.cdr.markForCheck();
-  }
 }

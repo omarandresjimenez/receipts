@@ -3,5 +3,8 @@ export interface ColumnsGrid {
     headerName?: string;
     sortable?: boolean;
     filter?: string;
+    cellRenderer?: any;
+    width?: string;
+    floatingFilter?: boolean;
 }
 

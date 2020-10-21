@@ -64,3 +64,60 @@ background-color: white;
 .links{
 color: white;
 }
+
+
+.c_checkbox {
+    display: inline-block;
+    align-items: center;
+    padding: 3px 0;
+    margin: 0 10px;
+    cursor: pointer;
+    input[type="checkbox"] {
+        display: none;
+        &:checked {
+            &+.c_checkbox-toggle-view {
+                left: calc(100% - 15px);
+                background-color: green;
+            }
+        }
+    }
+
+    .c_checkbox-label {
+        display: inline-block;
+        font-weight: bolder;;
+        vertical-align: middle;
+        &__link {
+            text-decoration: underline;
+        }
+        &__link:hover {
+            text-decoration: none;
+        }
+    }
+    .c_checkbox-toggle + .c_checkbox-label { margin-left: 5px; }
+    .c_checkbox-label + .c_checkbox-toggle { margin-left: 5px; }
+
+    .c_checkbox-toggle {
+        position: relative;
+        height: 7px;
+        width: 35px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #fff;
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 2px;
+        &__disabled {
+            opacity: 0.5;
+        }
+    }
+    .c_checkbox-toggle-view {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: red;
+        border-radius: 50%;
+        top: -5px;
+        left: 0;
+        transition: left 0.15s ease-in-out;
+    }
+}

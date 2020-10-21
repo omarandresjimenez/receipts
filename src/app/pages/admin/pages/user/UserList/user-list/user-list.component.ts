@@ -1,9 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, Inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Observable, Subscription } from 'rxjs';
 import { UserModel } from 'src/app/core/models/userModel';
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { ToastrService } from 'ngx-toastr';
+import { DOCUMENT } from '@angular/common';
+import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 
 
 @Component({
@@ -23,13 +25,16 @@ export class UserListComponent implements OnInit, OnDestroy {
   public columnDefs: ColumnsGrid[];
   public rowData: UserModel[];
 
+  public selectedUser: UserModel;
+
   private subs: Subscription;
-  constructor(private service: UserService,
+  constructor(@Inject(DOCUMENT)
+              private document: Document,
+              private service: UserService,
               private toast: ToastrService,
+              private modal: ModalService,
               private cdr: ChangeDetectorRef ) { }
 
-  @Output()
-  public editUser = new EventEmitter<{}>();
 
   ngOnInit(): void {
     this.initGridOptions();
@@ -57,6 +62,20 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
   private prepareGridColumns(): ColumnsGrid[] {
     return [
+      { field: '', headerName: '',
+        cellRenderer: (params) => {
+          const span = this.document.createElement('span');
+          span.innerHTML = '<i class="fas fa-edit" alt="Edit User"></i>';
+          span.className = 'link';
+          span.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.onEditUser(params?.data);
+          });
+          return span;
+       },
+       width: '50px', filter: '', floatingFilter: false
+      },
       { field: 'name', headerName: 'Nombres' },
       { field: 'lastName', headerName: 'Apellidos' },
       { field: 'identification', headerName: 'Identificacion' },
@@ -73,21 +92,48 @@ export class UserListComponent implements OnInit, OnDestroy {
     ];
   }
 
+  onSelectRow($event) {
+      const selectedRows = this.gridApi?.getSelectedRows();
+      // console.log(selectedRows);
+  }
 
-
-  onDelete($event: MouseEvent, userName: string) {
-    $event.stopPropagation();
-    if (confirm('Are you sure?')) {
-      this.service.deleteUser(userName).subscribe((res) => {
-        this.toast.success('User removed successfuly');
-
+  onDeleteUser(userEmail: string) {
+    this.service.deleteUser(userEmail).subscribe((res) => {
+        this.toast.success('Usuario eliminado');
+        this.rowData = this.rowData.filter((user) => user.email !== userEmail);
+        this.closeModal('usercard');
         this.cdr.markForCheck();
       });
-    }
   }
 
-  onEditUser(user: UserModel) {
-      this.editUser.emit({user});
+  onEditUser($event) {
+    this.selectedUser = $event;
+    this.openModal('usercard');
+    this.cdr.markForCheck();
   }
+
+  onSaveUser(user: UserModel) {
+    this.service.updateUserAdmin(user.email, user.role, user.active).subscribe((res) => {
+      this.toast.success('Usuario actualizado');
+      this.rowData = this.rowData.filter((usr) => usr.email !== user.email);
+      this.rowData.push(user);
+      this.closeModal('usercard');
+      this.cdr.markForCheck();
+    });
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+
+  openModal(id: string) {
+    this.modal.open(id);
+}
+
+  closeModal(id: string) {
+    this.modal.close(id);
+}
 
 }

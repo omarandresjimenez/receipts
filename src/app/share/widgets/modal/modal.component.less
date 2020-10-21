@@ -19,13 +19,18 @@ app-jwmodal  {
         /* enables scrolling for tall modals */
         overflow: auto;
 
-        .jw-modal-body {
-            padding: 20px;
-           // background: #fff;
+        
+    }
 
-            /* margin exposes part of the modal background */
-            margin: 40px;
-        }
+    .jw-modal-body {
+  
+        position: absolute;
+        width: fit-content;
+        top: 40%;
+        left: 50%;
+        background-color: aliceblue;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
     }
 
     .jw-modal-background {

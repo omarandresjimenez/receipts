@@ -34,7 +34,13 @@ export class UserService {
     return of(true); // this.service.updateUser(userInfo);
   }
 
+  public updateUserAdmin(userEmail: string, userRole: string, userActive: boolean): Observable<boolean> {
+    console.log(userEmail);
+    return of(true); // this.service.updateUserAdmin(userEmail, userRole, userActive);
+  }
+
   public deleteUser(userEmail: string): Observable<boolean> {
+    return of(true);
     return this.service.deleteUser(userEmail);
   }
 

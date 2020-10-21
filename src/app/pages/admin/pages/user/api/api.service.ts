@@ -69,6 +69,17 @@ export class ApiService extends AppHttpErrorHandler  {
     return this.http.put<boolean>(this.BASEURL + 'users/' + userModel.email, params);
   }
 
+
+
+  updateUserAdmin(userEmail: string, userRole: string, userActive: boolean): Observable<boolean> {
+    const params = {
+      userEmail,
+      userActive,
+      userRole,
+    };
+    return this.http.put<boolean>(this.BASEURL + 'users/' + userEmail, params);
+  }
+
   public deleteUser(userEmail: string): Observable<boolean> {
     return this.http.delete<boolean>(this.BASEURL + 'users/' + userEmail);
   }

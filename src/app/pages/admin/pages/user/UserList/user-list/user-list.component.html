@@ -7,5 +7,13 @@
     [defaultColDef]="defaultColDef"
     [columnDefs]="columnDefs"
     [rowData]="rowData"
+    [rowSelection]="'single'"
+    [pagination]="true"
+    (selectionChanged)="onSelectRow($event)"
+    (gridReady)="onGridReady($event)"
   ></ag-grid-angular>
 </div>`
+
+<app-jwmodal id="usercard">
+    <app-user-card [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
+</app-jwmodal>
