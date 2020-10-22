@@ -3,8 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../../../../environments/environment';
 import { UserLogin } from '../../../../../core/models/userLogin';
 import { Observable, throwError, of } from 'rxjs';
-import { UserSession } from '../../../../../core/models/userSession';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppHttpErrorHandler } from '../../../../../core/utils/errorHandler';
@@ -30,61 +29,91 @@ export class ApiService extends AppHttpErrorHandler  {
       active: true,
       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
       email: 'pedro@hotmail.com',
-      city: '5001',
+      cityId: '5001',
       state: '5',
       role: 'admin',
       token: '12234567890TOKEN',
-      birthDate: '1960-02-12',
+      birthDate: '1960-02-12T000112',
 
-    });
-    return this.http.post<UserModel>(this.BASEURL + 'useritems/authenticate', userLogin)
+    }).pipe(
+      catchError((err) => this.handleError(err)),
+      map((user) => {
+        return { ...user, city: user.cityId, birthDate: user.birthDate.substring(0, 10) };
+      })
+      );
+    return this.http.post<UserModel>(this.BASEURL + 'user/authenticate', userLogin)
     .pipe(
-      catchError((err) => this.handleError(err))
+      catchError((err) => this.handleError(err)),
+      map((user) => {
+        return { ...user, city: user.cityId, birthDate: user.birthDate.substring(0, 10) };
+      })
       );
   }
 
   public createUser(userModel: UserModel): Observable<boolean> {
     const params = {
-      userName: userModel.name,
-      userLastName: userModel.lastName,
-      userPassword: userModel.password,
-      userRole: userModel.role,
-      userCity: userModel.city,
-      userEmail: userModel.email,
-      userActive: userModel.active,
+      name: userModel.name,
+      lastName: userModel.lastName,
+      password: userModel.password,
+      role: userModel.role,
+      cityId: userModel.city,
+      email: userModel.email,
+      active: userModel.active,
+      identification: userModel.identification,
+      birthDate: userModel.birthDate,
+      phone: userModel.phone,
+      imageUrl: userModel.imageUrl,
+      shouldChangePassword: true,
+      emailValidated: false,
+
     };
-    return this.http.post<boolean>(this.BASEURL + 'users', params);
+    return this.http.post<boolean>(this.BASEURL + 'user', params).pipe(
+        catchError((err) => this.handleError(err))
+      );
   }
 
   public updateUser(userModel: UserModel): Observable<boolean> {
     const params = {
-      userName: userModel.name,
-      userLastName: userModel.lastName,
-      userPassword: userModel.password,
-      userRole: userModel.role,
-      userCity: userModel.city,
-      userEmail: userModel.email,
-      userActive: userModel.active,
+      name: userModel.name,
+      lastName: userModel.lastName,
+      password: userModel.password,
+      role: userModel.role,
+      cityId: userModel.city,
+      email: userModel.email,
+      active: userModel.active,
+      identification: userModel.identification,
+      birthDate: userModel.birthDate,
+      phone: userModel.phone,
+      imageUrl: userModel.imageUrl,
+      shouldChangePassword: true,
+      emailValidated: false,
     };
-    return this.http.put<boolean>(this.BASEURL + 'users/' + userModel.email, params);
+    return this.http.put<boolean>(this.BASEURL + 'user/' + userModel.email, params).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
 
 
-  updateUserAdmin(userEmail: string, userRole: string, userActive: boolean): Observable<boolean> {
+  updateUserAdmin(email: string, role: string, active: boolean): Observable<boolean> {
+
     const params = {
-      userEmail,
-      userActive,
-      userRole,
+      email,
+      active,
+      role,
     };
-    return this.http.put<boolean>(this.BASEURL + 'users/' + userEmail, params);
+    return this.http.put<boolean>(this.BASEURL + 'user/' + email, params).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
-  public deleteUser(userEmail: string): Observable<boolean> {
-    return this.http.delete<boolean>(this.BASEURL + 'users/' + userEmail);
+  public deleteUser(email: string): Observable<boolean> {
+    return this.http.delete<boolean>(this.BASEURL + 'user/' + email).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
-  public getUsers(): Observable<UserModel[]> {
+  public getUsers(): Observable<UserModel[]> | Observable<any[]> {
     return of([{
       name: 'Antonio',
       lastName: 'Aguilar',
@@ -93,14 +122,14 @@ export class ApiService extends AppHttpErrorHandler  {
       active: true,
       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
       email: 'antonio@hotmail.com',
-      city: '5001',
+      cityId: '5001',
       state: '5',
       role: 'user',
       age: 43,
       cityName: 'Medellin',
       stateName: 'Antioquia',
       regionName: 'Caribe',
-      creationDate: '2020/10/28',
+      creationDate: '2020/10/28TTT',
     },
     {
       name: 'Maria Antonieta',
@@ -110,18 +139,26 @@ export class ApiService extends AppHttpErrorHandler  {
       active: true,
       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
       email: 'amaria@hotmail.com',
-      city: '5001',
+      cityId: '5001',
       state: '5',
       role: 'user',
       age: 56,
       cityName: 'Tunja',
       stateName: 'Boyaca',
       regionName: 'Andina',
-      creationDate: '2020/10/13',
+      creationDate: '2020/10/13T001',
 
     },
-  ]);
-    // return this.http.get<any>(this.BASEURL + 'users');
-  }
+  ]).pipe(
+      map((users: any[]) => users.map((user: any) => {
+        return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
+    } ))
+);
+     return this.http.get<UserModel[]>(this.BASEURL + 'users').pipe(
+      map((users: any[]) => users.map((user: any) => {
+            return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
+        } ))
+    );
+ }
 
 }

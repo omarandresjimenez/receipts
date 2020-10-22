@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AdminRoutingModule } from './admin-recipe.routing.module';
 import { AdminRecipeComponent } from './admin-recipe.component';
@@ -24,6 +25,7 @@ import { ShareModule } from '../../../../../app/share/share.module';
     AdminRoutingModule,
     FormsModule,
     ShareModule,
+    AgGridModule.withComponents([]),
   ],
   providers: [],
   bootstrap: []

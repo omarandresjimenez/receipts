@@ -17,7 +17,7 @@
             <i class="fas fa-font" [class.green-icon]="summary.valid" [class.red-icon]="summary.invalid && summary.touched"></i>
           </div>
         </div>
-        <textarea name="summary" #summary="ngModel" [(ngModel)]="recipeData.summary" class="form-control"
+        <textarea name="summary" #summary="ngModel" [(ngModel)]="recipeData.description" class="form-control"
           placeholder="Descripcion" required maxlength="500"  rows="5"></textarea>
       </div>
     </div>

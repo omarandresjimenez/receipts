@@ -23,7 +23,7 @@ export class RecipeApiService {
                      id:  item.id,
                      name: item.name,
                      imageURL: item.imageURL ? item.imageURL : null,
-                     summary: '',
+                     description: '',
                      rating: this.getRandomInt(0, 10),
                      preparations: item.preparations.map((x: any) => {
                        return {

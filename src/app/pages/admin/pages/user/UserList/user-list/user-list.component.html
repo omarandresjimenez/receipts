@@ -9,10 +9,11 @@
     [rowData]="rowData"
     [rowSelection]="'single'"
     [pagination]="true"
+    [paginationPageSize]="100"
     (selectionChanged)="onSelectRow($event)"
     (gridReady)="onGridReady($event)"
   ></ag-grid-angular>
-</div>`
+</div>
 
 <app-jwmodal id="usercard">
     <app-user-card [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>

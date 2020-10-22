@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppHttpErrorHandler } from '../../../../../core/utils/errorHandler';
 import {  Recipe } from '../../../../../core/models/models';
 import { environment } from '../../../../../../environments/environment';
+import { catchError, map } from 'rxjs/operators';
 
 
 
@@ -27,10 +28,12 @@ export class AdminApiService extends AppHttpErrorHandler  {
     const params = {
       name: recipeModel.name,
       image: recipeModel.imageURL,
-      description: recipeModel.summary,
+      description: recipeModel.description,
       preparations: [],
     };
-    return this.http.post<boolean>(this.BASEURL + 'recipe', params);
+    return this.http.post<boolean>(this.BASEURL + 'recipe', params).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
 
@@ -39,18 +42,24 @@ export class AdminApiService extends AppHttpErrorHandler  {
       id: recipeModel.id,
       name: recipeModel.name,
       image: recipeModel.imageURL,
-      description: recipeModel.summary,
+      description: recipeModel.description,
       preparations: [],
     };
-    return this.http.post<boolean>(this.BASEURL + 'recipe', params);
+    return this.http.post<boolean>(this.BASEURL + 'recipe', params).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
   public deleteRecipe(id: string): Observable<boolean> {
-    return this.http.delete<boolean>(this.BASEURL + 'recipe/' + id);
+    return this.http.delete<boolean>(this.BASEURL + 'recipe/' + id).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
   public getRecipes(): Observable<Recipe[]> {
-    return this.http.get<any>(this.BASEURL + 'recipe');
+    return this.http.get<Recipe[]>(this.BASEURL + 'recipe').pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
 }

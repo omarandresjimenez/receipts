@@ -113,7 +113,7 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
   public onSubmit(form: NgForm) {
     if (!form.invalid) {
       this.signUp.birthDate = this.birthDate.year.toString() + '-' +
-                              this.months.indexOf(this.birthDate.month).toString().padStart(2, '0') + '-' +
+                              (this.months.indexOf(this.birthDate.month) + 1).toString().padStart(2, '0') + '-' +
                               this.birthDate.day.toString().padStart(2, '0');
       this.formSubmit.emit({ ... this.signUp,
                              imageUrl: this.signUp.imageUrl && !this.signUp.imageUrl.startsWith('data') ? null :

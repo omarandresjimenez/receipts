@@ -9,21 +9,20 @@ import { AdminApiService } from '../api/admin-api.service';
   providedIn: 'root'
 })
 export class AdminService {
-  public newRecipeAdded$ = new Observable();
-  private newRecipeAdded = new Subject();
+  public newRecipeAdded$ = new Observable<Recipe>();
+  private newRecipeAdded = new Subject<Recipe>();
 
   constructor(private service: AdminApiService) {
     this.newRecipeAdded$ = this.newRecipeAdded.asObservable();
   }
 
   public getRecipes(): Observable<Recipe[]> {
-    return this.service.getRecipes().pipe(
-     map((val: Recipe[]) => val.slice(val.length - 10)),
-    );
+    return this.service.getRecipes();
+    // .pipe(map((val: Recipe[]) => val.slice(val.length - 10)));
   }
 
-  public notifyNewRecipe(): void {
-    this.newRecipeAdded.next();
+  public notifyNewRecipe(rec: Recipe): void {
+    this.newRecipeAdded.next(rec);
   }
 
   public createRecipe(recipeInfo: Recipe): Observable<boolean> {

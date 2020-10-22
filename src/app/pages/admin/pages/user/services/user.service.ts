@@ -26,7 +26,7 @@ export class UserService {
 
   public createUser(userInfo: UserModel): Observable<boolean> {
     console.log(userInfo);
-    return of(true); // this.service.createUser(userInfo);
+    return this.service.createUser(userInfo);
   }
 
   public updateUser(userInfo: UserModel): Observable<boolean> {

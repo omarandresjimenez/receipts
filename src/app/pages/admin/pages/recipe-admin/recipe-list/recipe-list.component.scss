@@ -1,10 +1,9 @@
-.photo-upload-preview {
-    width: 70px;
-    height: 70px;
-    background-color: #e3e3e3;
-    border: 1px solid #9ba2ac;
-    margin-bottom: 1px;
-    background-image: url('/assets/img/default.png');
-    background-repeat: no-repeat;
-    background-position: center;
+
+:host ::ng-deep {
+
+  .link {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
   }

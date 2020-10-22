@@ -25,10 +25,14 @@ export class SignUpComponent implements OnInit {
   public onSubmit($event) {
    // this.session.authenticate(this.userLogin);
    // this.logAsGuest();
-   this.userService.createUser($event);
+   this.userService.createUser($event).subscribe((res) => {
+     if (res) {
+      this.dialog.success('Usuario creado');
+      this.router.navigate([ '..', 'login' ], { relativeTo: this.route });
+     }
+   }
+   );
 
-   this.dialog.success('Usuario creado');
-   this.router.navigate([ '..', 'login' ], { relativeTo: this.route });
   }
 
   public logAsGuest() {

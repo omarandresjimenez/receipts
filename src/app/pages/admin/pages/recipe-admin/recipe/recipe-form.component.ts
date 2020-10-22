@@ -15,7 +15,7 @@ import { Recipe } from '../../../../../core/models/models';
 })
 export class AdminRecipeFormComponent implements OnInit, OnChanges {
   public newRecipe = true;
-  public recipeData: Recipe = { id: '0', name: '', summary: '', imageURL: ''};
+  public recipeData: Recipe = { id: '0', name: '', description: '', imageURL: ''};
 
   public avatarBgSize: any = '80%';
   public imageAvatarFile: any = '';
@@ -37,7 +37,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     if (this.recipeToEdit) {
       this.newRecipe = false;
       this.recipeData = { ...this.recipeToEdit };
-      this.imageAvatar = this.recipeData.imageURL;
+      this.renderAvatar(this.recipeData.imageURL);
     }
   }
 
@@ -45,7 +45,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     if (this.newRecipe) {
       this.service.createRecipe(this.recipeData).subscribe((res: boolean) => {
         this.toast.success('Receta creada exitosamente');
-        this.service.notifyNewRecipe();
+        this.service.notifyNewRecipe(this.recipeData);
         this.resetForm();
     },
       (err) => {
@@ -54,7 +54,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
       } else {
         this.service.updateRecipe(this.recipeData).subscribe((res: boolean) => {
           this.toast.success('Receta modificada exitosamente');
-          this.service.notifyNewRecipe();
+          this.service.notifyNewRecipe(this.recipeData);
           this.resetForm();
       },
         (err) => {
@@ -93,10 +93,11 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
 
   public resetForm(form?: NgForm) {
     this.newRecipe = true;
+    this.imageAvatar = null;
     this.recipeData = {
       id: '0',
       name: '',
-      summary: '',
+      description: '',
       imageURL: '',
     };
     if (form != null) {

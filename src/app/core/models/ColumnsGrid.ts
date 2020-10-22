@@ -5,6 +5,7 @@ export interface ColumnsGrid {
     filter?: string;
     cellRenderer?: any;
     width?: string;
+    hide?: boolean;
     floatingFilter?: boolean;
 }
 

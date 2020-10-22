@@ -1,7 +1,7 @@
 export interface Recipe {
   id: string;
   name: string;
-  summary: string;
+  description: string;
   imageURL: string;
   city?: City;
   rating?: number;

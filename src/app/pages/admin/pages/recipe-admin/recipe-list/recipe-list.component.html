@@ -1,10 +1,16 @@
-<table class="table table-hover">
-    <tr *ngFor="let recipe of recipes$ | async" (click)="onEditRecipe(recipe)">
-        <td><img [src]="recipe.imageURL" height="100px"></td>
-        <td>{{recipe.name}}</td>
-        <td>{{recipe.summary | limitTo : '15'}}</td>
-        <td>
-          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete($event, recipe.id)"></i>
-        </td>
-       </tr>
-</table>
+<div style="height: 100%; box-sizing: border-box;">
+  <ag-grid-angular
+    #recipeGrid
+    style="width: 100%; height: 100%;"
+    id="recipeGrid"
+    class="ag-theme-alpine"
+    [defaultColDef]="defaultColDef"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    [rowSelection]="'single'"
+    [pagination]="true"
+    [paginationPageSize]="100"
+    (selectionChanged)="onSelectRow($event)"
+    (gridReady)="onGridReady($event)"
+  ></ag-grid-angular>
+</div>
