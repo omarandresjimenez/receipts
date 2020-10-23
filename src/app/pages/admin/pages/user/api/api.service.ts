@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AppHttpErrorHandler } from '../../../../../core/utils/errorHandler';
 import { UserModel } from 'src/app/core/models/UserModel';
+import { CompileStylesheetMetadata } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -21,31 +22,11 @@ export class ApiService extends AppHttpErrorHandler  {
    }
 
   public authenticate(userLogin: UserLogin): Observable<UserModel> {
-    return of({
-      name: 'Pedro Antonio',
-      lastName: 'Lopez',
-      identification: '1014870900',
-      phone: '323456789',
-      active: true,
-      imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      email: 'pedro@hotmail.com',
-      cityId: '5001',
-      state: '5',
-      role: 'admin',
-      token: '12234567890TOKEN',
-      birthDate: '1960-02-12T000112',
-
-    }).pipe(
-      catchError((err) => this.handleError(err)),
-      map((user) => {
-        return { ...user, city: user.cityId, birthDate: user.birthDate.substring(0, 10) };
-      })
-      );
     return this.http.post<UserModel>(this.BASEURL + 'user/authenticate', userLogin)
     .pipe(
       catchError((err) => this.handleError(err)),
       map((user) => {
-        return { ...user, city: user.cityId, birthDate: user.birthDate.substring(0, 10) };
+        return { ...user, role: 'admin', city: user.cityId, state: user.city?.departmentId, birthDate: user.birthDate?.substring(0, 10) };
       })
       );
   }
@@ -114,47 +95,47 @@ export class ApiService extends AppHttpErrorHandler  {
   }
 
   public getUsers(): Observable<UserModel[]> | Observable<any[]> {
-    return of([{
-      name: 'Antonio',
-      lastName: 'Aguilar',
-      identification: '101870900',
-      phone: '323456589',
-      active: true,
-      imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      email: 'antonio@hotmail.com',
-      cityId: '5001',
-      state: '5',
-      role: 'user',
-      age: 43,
-      cityName: 'Medellin',
-      stateName: 'Antioquia',
-      regionName: 'Caribe',
-      creationDate: '2020/10/28TTT',
-    },
-    {
-      name: 'Maria Antonieta',
-      lastName: 'De las Nieves',
-      identification: '331870900',
-      phone: '3119089876',
-      active: true,
-      imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      email: 'amaria@hotmail.com',
-      cityId: '5001',
-      state: '5',
-      role: 'user',
-      age: 56,
-      cityName: 'Tunja',
-      stateName: 'Boyaca',
-      regionName: 'Andina',
-      creationDate: '2020/10/13T001',
+//     return of([{
+//       name: 'Antonio',
+//       lastName: 'Aguilar',
+//       identification: '101870900',
+//       phone: '323456589',
+//       active: true,
+//       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
+//       email: 'antonio@hotmail.com',
+//       cityId: '5001',
+//       state: '5',
+//       role: 'user',
+//       age: 43,
+//       cityName: 'Medellin',
+//       stateName: 'Antioquia',
+//       regionName: 'Caribe',
+//       creationDate: '2020/10/28TTT',
+//     },
+//     {
+//       name: 'Maria Antonieta',
+//       lastName: 'De las Nieves',
+//       identification: '331870900',
+//       phone: '3119089876',
+//       active: true,
+//       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
+//       email: 'amaria@hotmail.com',
+//       cityId: '5001',
+//       state: '5',
+//       role: 'user',
+//       age: 56,
+//       cityName: 'Tunja',
+//       stateName: 'Boyaca',
+//       regionName: 'Andina',
+//       creationDate: '2020/10/13T001',
 
-    },
-  ]).pipe(
-      map((users: any[]) => users.map((user: any) => {
-        return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
-    } ))
-);
-     return this.http.get<UserModel[]>(this.BASEURL + 'users').pipe(
+//     },
+//   ]).pipe(
+//       map((users: any[]) => users.map((user: any) => {
+//         return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
+//     } ))
+// );
+     return this.http.get<UserModel[]>(this.BASEURL + 'user').pipe(
       map((users: any[]) => users.map((user: any) => {
             return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
         } ))
