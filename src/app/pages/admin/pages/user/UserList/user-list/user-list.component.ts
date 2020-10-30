@@ -74,7 +74,7 @@ export class UserListComponent implements OnInit, OnDestroy {
           });
           return span;
        },
-       width: '50px', filter: '', floatingFilter: false
+       width: '60px', filter: '', floatingFilter: false
       },
       { field: 'name', headerName: 'Nombres' },
       { field: 'lastName', headerName: 'Apellidos' },
@@ -85,9 +85,15 @@ export class UserListComponent implements OnInit, OnDestroy {
       { field: 'regionName', headerName: 'Region' },
       { field: 'stateName', headerName: 'Departamento' },
       { field: 'cityName', headerName: 'Ciudad' },
+      { field: 'actorTypeName', headerName: 'Tipo Actor' },
+      { field: 'establishment', headerName: 'Establecimiento' },
       { field: 'creationDate', headerName: 'Fecha creado' },
       { field: 'role', headerName: 'Role' },
-      { field: 'active', headerName: 'Activo' },
+      { field: 'active', headerName: 'Activo', width: '100',
+        cellRenderer: (params) => {
+          return params.data?.active ? 'Si' : 'No';
+        }
+      },
 
     ];
   }

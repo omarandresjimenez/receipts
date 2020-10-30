@@ -1,0 +1,146 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+  <div class="main">
+  <div class="container">
+
+
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-utensils" [class.green-icon]="recipeControl.valid" [class.red-icon]="recipeControl.invalid && recipeControl.touched"></i>
+          </div>
+        </div>
+        
+        <input name="recipe"  class="form-control" 
+          placeholder="Seleccione la Receta" required maxlength="100"
+          [matAutocomplete]="auto"
+          [formControl]="recipeControl"
+          >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let rec of recipeList$ | async" [value]="rec.name" (onSelectionChange)="selectRecipe(rec.id)">
+              {{rec.name}}
+            </mat-option>
+          </mat-autocomplete>
+      </div>
+    </div>
+    
+     <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-utensils" [class.green-icon]="name.valid" [class.red-icon]="name.invalid && name.touched"></i>
+          </div>
+        </div>
+        <input name="name" #name="ngModel" [(ngModel)]="preparationData.name" class="form-control" 
+          placeholder="Nombre preparación" required maxlength="100">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-font" [class.green-icon]="summary.valid" [class.red-icon]="summary.invalid && summary.touched"></i>
+          </div>
+        </div>
+        <textarea name="summary" #summary="ngModel" [(ngModel)]="preparationData.description" class="form-control"
+          placeholder="Descripcion" required maxlength="500"  rows="5"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-address-card" [class.green-icon]="authorControl.valid" [class.red-icon]="authorControl.invalid && authorControl.touched"></i>
+          </div>
+        </div>
+        
+        <input name="author"  class="form-control" 
+          placeholder="Seleccione el autor" required maxlength="100"
+          [matAutocomplete]="auto1"
+          [formControl]="authorControl"
+          >
+          <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let rec of authorList$ | async" [value]="rec.name + ' ' + rec.lastName" (onSelectionChange)="selectAuthor(rec.id)">
+              <img class="option-img" aria-hidden [src]="rec.imageUrl" height="25">
+              <span>{{rec.name + ' ' + rec.lastName}}</span>
+            </mat-option>
+          </mat-autocomplete>
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="user-avatar">
+      <div class="form-group photo-upload">
+        <div class="photo-upload-preview" [style.background-size]="avatarBgSize" [style.background-image]="imageAvatar">
+        </div>
+        <label class="photo-upload-label">
+          <span
+            class="btn btn-primary btn-sm">Cargar Imagen</span>
+          <input type="file"  accept="image/gif, image/jpeg, image/png" name="avatar" (change)="showAvatarPreview($event)">
+        </label>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+        
+            <div class="input-group-text bg-white">
+              
+                <i   class="fas fa-plus"   [class.green-icon]="preparationData.ingredients.length"
+                [style.cursor]="'pointer'" (click)="onAddNewElement('I')" title="Agregar un nuevo elemento si no aparece en la lista"
+                ></i>
+                
+            </div>
+ 
+        </div>
+        <div class="bg-white customfield">
+          <app-chip-autocomplete titleItem="Seleccione Ingredientes"
+                              [listItems]="listIngredients"
+                              [initialListItems]="initialListIngredients"
+                              [typeItem]="'I'"
+                              (itemsSelected)="setIngredients($event)"
+                              ></app-chip-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-font" [class.green-icon]="technique.valid" [class.red-icon]="technique.invalid && technique.touched"></i>
+          </div>
+        </div>
+        <textarea name="technique" #technique="ngModel" [(ngModel)]="preparationData.cookingTechnique" class="form-control"
+          placeholder="Técnica de Cocina usada"  maxlength="300"  rows="3"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-font" [class.green-icon]="preparationType.valid" [class.red-icon]="preparationType.invalid && preparationType.touched"></i>
+          </div>
+        </div>
+        <textarea name="preparationType" #preparationType="ngModel" [(ngModel)]="preparationData.preparationType" class="form-control"
+          placeholder="Tipo preparación"  maxlength="300"  rows="3"></textarea>
+      </div>
+    </div>
+      <BR>
+
+       
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="preparationData.id" >
+    <div class="form-group" style="display: flex;">
+      <button type="button" class="btn btn-success btn-lg btn-block col-md-5" (click)="resetForm(form)"><i class="fas fa-plus"></i> Nueva Receta</button>
+      <div class="col-md-2"></div>
+     
+     <button class="btn btn-success btn-lg btn-block col-md-5" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Guardar</button>
+    </div>
+  </div>
+</div>
+  </form>
+  <app-jwmodal id="newElementModal">
+      <app-new-element-card [title]="titleNewElement" [typeElement]="typeElement" (submitData)="onSaveElement($event)" ></app-new-element-card>
+  </app-jwmodal>
+

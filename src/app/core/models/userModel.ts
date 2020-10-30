@@ -1,11 +1,12 @@
 export interface UserModel {
+    id?: string;
     name: string;
     lastName: string;
     imageUrl?: string;
     phone?: string;
-    state: string;
-    city: string;
-    email: string;
+    state?: string;
+    city?: string;
+    email?: string;
     birthDate?: string;  // yyyy-mm-dd
     password?: string;
     confirmPassword?: string;
@@ -20,4 +21,7 @@ export interface UserModel {
     stateName?: string;
     regionName?: string;
     age?: number;
+    actorTypeId?: string;
+    establishment?: string;
+    actorTypeName?: string;
 }

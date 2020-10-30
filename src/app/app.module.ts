@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastNoAnimation,
         ToastNoAnimationModule,
         ToastrService} from 'ngx-toastr';
@@ -19,6 +21,7 @@ import { PipesModule } from './share/pipes/pipes.module';
 import { HeaderModule } from './share/widgets/header/header.module';
 import { JwtInterceptor } from './core/utils/jwt.interceptor';
 import { LandingComponent } from './pages/landing/landing.component';
+
 
 
 
@@ -43,6 +46,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     HeaderModule,
     PipesModule,
     ToastNoAnimationModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [
     HttpClient,

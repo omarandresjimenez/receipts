@@ -3,13 +3,14 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy,
 
 import { NgForm, PatternValidator } from '@angular/forms';
 
-import { UserModel } from '../../../core/models/userModel';
+import { UserModel } from 'src/app/core/models/userModel';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { City, State } from '../../../core/models/models';
-import { CitiesService } from '../../../core/api/cities.service';
+import { City, State, ActorType } from 'src/app/core/models/models';
+import { CitiesService } from 'src/app/core/api/cities.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/pages/admin/pages/user/services/user.service';
 
 
 
@@ -22,6 +23,7 @@ import { ToastrService } from 'ngx-toastr';
 export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
   public deps$: Observable<State[]>;
   public cities$: Observable<City[]>;
+  public typeActors$: Observable<ActorType[]>;
 
   public pwderror = false;
 
@@ -49,18 +51,20 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   public signUp: UserModel = { name: '', lastName: '', password: '', birthDate: null, phone: '', identification: '',
-                               confirmPassword: '', email: '', state: '', city: '', imageUrl: '',
+                               confirmPassword: '', email: '', state: '', city: '', imageUrl: '', actorTypeId: '', establishment: '',
                                active: false, emailValidated: false,  role: 'user', shouldChangePassword: true };
 
   @Output()
   public formSubmit = new EventEmitter<UserModel>();
 
   constructor(private cityService: CitiesService,
+              private userService: UserService,
               private cdr: ChangeDetectorRef,
               private toast: ToastrService) { }
 
   public ngOnInit(): void {
     this.deps$ = this.cityService.getStates();
+    this.typeActors$ = this.userService.getTypeActors();
     const maxYear = new Date().getFullYear() - 18; // user should have more than 18 years
     for (let index = 1950; index < maxYear; index++) {
       this.years.push(index);
@@ -115,10 +119,7 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
       this.signUp.birthDate = this.birthDate.year.toString() + '-' +
                               (this.months.indexOf(this.birthDate.month) + 1).toString().padStart(2, '0') + '-' +
                               this.birthDate.day.toString().padStart(2, '0');
-      this.formSubmit.emit({ ... this.signUp,
-                             imageUrl: this.signUp.imageUrl && !this.signUp.imageUrl.startsWith('data') ? null :
-                                       this.signUp.imageUrl
-                          });
+      this.formSubmit.emit({ ... this.signUp });
     }
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
-import { shareReplay, tap, catchError, map, toArray } from 'rxjs/operators';
+
 
 import { Recipe } from 'src/app/core/models/models';
 import { AdminApiService } from '../api/admin-api.service';
@@ -30,12 +30,19 @@ export class AdminService {
   }
 
   public updateRecipe(recipeInfo: Recipe): Observable<boolean> {
-    return this.service.updateeRecipe(recipeInfo);
+    return this.service.updateRecipe(recipeInfo);
   }
 
   public deleteRecipe(id: string): Observable<boolean> {
     return this.service.deleteRecipe(id);
   }
 
+  public updateAdminPreparation(id: string, active: boolean): Observable<boolean> {
+    return this.service.updateAdminPreparation(id, active);
+  }
+
+  public deletePreparation(id: string): Observable<boolean> {
+    return this.service.deletePreparation(id);
+  }
 
 }

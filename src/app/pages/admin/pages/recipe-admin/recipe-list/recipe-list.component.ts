@@ -4,9 +4,10 @@ import { Observable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 
-import { Recipe } from '../../../../../core/models/models';
+import { Preparation, Recipe } from '../../../../../core/models/models';
 import { AdminService } from '../../../pages/recipe-admin/services/admin.service';
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
+
 
 
 @Component({
@@ -19,6 +20,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   public recipes$: Observable<Recipe[]>;
   public gridApi;
   public gridColumnApi;
+
+  public selectedPrep: Preparation;
 
   public defaultColDef: any;
   public columnDefs: ColumnsGrid[];
@@ -46,6 +49,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       this.service.deleteRecipe(id).subscribe((res) => {
         this.toast.success('Receta eliminada!');
         this.rowData = this.rowData.filter((rec) => rec.id !== id);
+        this.editRecipe.emit(null);
         this.cdr.markForCheck();
       });
     }
@@ -79,7 +83,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     return [
       { field: 'id', hide: true },
       { field: 'name', headerName: 'Receta', width: '350' },
-      { field: 'description', headerName: 'Descripcion', width: '380' },
+      { field: 'description', headerName: 'Descripcion', width: '350' },
       { field: '', headerName: '',
       cellRenderer: (params) => {
         const span = this.document.createElement('span');
@@ -92,10 +96,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         });
         return span;
      },
-     width: '70px', filter: '', floatingFilter: false
+     width: '60px', filter: '', floatingFilter: false
     },
     ];
   }
+
 
   onGridReady(params) {
     this.gridApi = params.api;
@@ -104,7 +109,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.subs = this.service.getRecipes().subscribe((recipes) => {
       this.columnDefs = this.prepareGridColumns();
       this.rowData = recipes;
-      console.log(this.rowData);
       this.cdr.markForCheck();
     });
   }

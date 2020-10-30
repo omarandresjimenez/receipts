@@ -39,3 +39,12 @@
       display: none;
     }
 }
+
+:host ::ng-deep {
+
+  .link {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
+  }

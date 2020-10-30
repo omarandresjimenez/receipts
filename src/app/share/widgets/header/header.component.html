@@ -24,13 +24,14 @@
         <li class="nav-item dropdown">
           
             <a class="nav-link" [class.dropdown-toggle]="true" data-toggle="dropdown" href="#" id="navbardrop" >
-      
-               <app-avatar  [avatarName]="(sessionUser$  | async)?.name || 'Invitado'" [avatarImage]="(sessionUser$  | async)?.imageUrl" ></app-avatar>
+      <app-avatar  [avatarName]="(sessionUser$  | async)?.name || 'Invitado'" [avatarImage]="(sessionUser$  | async)?.imageUrl" ></app-avatar>
+               
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" style="cursor:pointer" (click)="onGoProfile()">Editar perfil</a>
-                <a class="dropdown-item" style="cursor:pointer" (click)="onGoAdmin()">Administracion Recetas</a>
-                <a class="dropdown-item" style="cursor:pointer" (click)="onGoAdminUsers()">Administracion Usuarios</a>
+                <a class="dropdown-item"  style="cursor:pointer" (click)="onGoProfile()">Editar perfil</a>
+                <a class="dropdown-item"  style="cursor:pointer" (click)="onGoPreparations()">Administracion Preparaciones</a>
+                <a class="dropdown-item" style="cursor:pointer" (click)="onGoAdmin()" *ngIf="(sessionUser$  | async)?.role==='admin'">Administracion Recetas</a>
+                <a class="dropdown-item" style="cursor:pointer" (click)="onGoAdminUsers()" *ngIf="(sessionUser$  | async)?.role==='admin'">Administracion Usuarios</a>
               </div>
         </li>
         <li class="nav-item">

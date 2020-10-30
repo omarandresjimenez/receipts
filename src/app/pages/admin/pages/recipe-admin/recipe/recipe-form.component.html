@@ -37,6 +37,21 @@
 
       <BR>
       <BR>
+        <app-bottom-bar [textOpen]="'Ver Preparaciones'" [textClose]="'Ocultar Preparaciones'">
+          <div style="height: 400px; box-sizing: border-box;">
+            <ag-grid-angular
+              #preparationsGrid
+              style="width: 100%; height: 100%;"
+              id="preparationsGrid"
+              class="ag-theme-alpine"
+              [defaultColDef]="defaultColDef"
+              [columnDefs]="columnDefs"
+              [rowData]="rowPrepData"
+              [rowSelection]="'single'"
+            ></ag-grid-angular>
+          </div>
+        </app-bottom-bar>
+        <br>
         <input type="hidden" name="id" #id="ngModel" [(ngModel)]="recipeData.id" >
     <div class="form-group" style="display: flex;">
       <button type="button" class="btn btn-success btn-lg btn-block col-md-5" (click)="resetForm(form)"><i class="fas fa-plus"></i> Nueva Receta</button>
@@ -45,3 +60,7 @@
      <button class="btn btn-success btn-lg btn-block col-md-5" type="submit" [disabled]="form.invalid"><i class="fas fa-database"></i> Guardar</button>
     </div>
   </form>
+
+  <app-jwmodal id="prepcard">
+    <app-prep-card [preparation]="selectedPrep" (updatePrep)="onSavePrep($event)" (deletePrep)="onDeletePreparation($event)"></app-prep-card>
+</app-jwmodal>

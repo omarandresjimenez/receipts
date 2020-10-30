@@ -1,0 +1,14 @@
+<div style="height: 200px; box-sizing: border-box;">
+  <ag-grid-angular
+    #preparationGrid
+    style="width: 100%; height: 100%;"
+    id="preparationGrid"
+    class="ag-theme-alpine"
+    [defaultColDef]="defaultColDef"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    [rowSelection]="'single'"
+    (selectionChanged)="onSelectRow($event)"
+    (gridReady)="onGridReady($event)"
+  ></ag-grid-angular>
+</div>

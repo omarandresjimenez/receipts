@@ -11,16 +11,16 @@ const routes: Routes = [{
   component: ContainerComponent,
   children: [
     {
-      path: 'users',
-      loadChildren: () => import('../admin/pages/user/user.module').then((m) => m.UserModule),
-      canLoad: [ AdminGuard ],
-      canActivate: [ AdminGuard ],
-    },
-    {
       path: 'admin-recipe',
       loadChildren: () => import('../admin/pages/recipe-admin/admin-recipe.module').then((m) => m.AdminRecipeModule),
       canLoad: [ AdminGuard ],
       canActivate: [ AdminGuard ],
+    },
+    {
+      path: 'admin-preparation',
+      loadChildren: () => import('../admin/pages/preparation-admin/admin-preparation.module').then((m) => m.AdminPreparationModule),
+      // canLoad: [ LoggedInGuard ],
+      // canActivate: [ LoggedInGuard ],
     },
     {
       path: 'admin-user',
@@ -39,7 +39,7 @@ const routes: Routes = [{
       component: CatalogComponent,
     },
    { path: '', redirectTo: 'catalog', pathMatch: 'full' },
-   { path: '**', redirectTo: '/', pathMatch: 'full' },
+   { path: '**', redirectTo: 'catalog' },
  ],
 }];
 

@@ -36,6 +36,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('container/admin-recipe');
    }
 
+   onGoPreparations() {
+    this.router.navigateByUrl('container/admin-preparation');
+   }
+
    onGoAdminUsers() {
     this.router.navigateByUrl('container/admin-user');
    }

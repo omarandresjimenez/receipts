@@ -1,0 +1,19 @@
+
+<div class="jumbtron" >
+    <h1 class="display-4 text-center">Administracion de mis preparaciones</h1>
+    <hr>
+    <div class="row">
+      <div class="col-md-12" >
+        <app-preparation-list (editPreparation)="onPreparationSelected($event)"></app-preparation-list>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12" >
+        <app-admin-preparation-form [preparationToEdit]="preparation" [recipe]="preparation?.recipe"></app-admin-preparation-form>
+      </div>
+
+    </div>
+  </div>
+
+

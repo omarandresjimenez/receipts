@@ -1,0 +1,38 @@
+<div id="login-container" *ngIf="preparation">
+  <div class="title">
+    <div class="profile-img">
+      <app-avatar [avatarSizePixels]="100"
+        [avatarImage]="preparation?.imageURL ? preparation?.imageURL : '/assets/img/default.png'"></app-avatar>
+    </div>
+
+    <h3>
+      {{ preparation.name }}
+    </h3>
+  </div>
+  <div class="description">
+    {{ preparation.description }}<br>
+
+    <br>
+    <b>Autor: </b> <span>
+      <app-avatar [avatarSizePixels]="38" [avatarImage]="preparation.author?.imageUrl"
+        [avatarName]="preparation.author?.name + ' ' + preparation.author?.lastName"></app-avatar>
+    </span><BR>
+
+    <b>Ingredientes: </b> <span class="list" *ngFor="let i of preparation.ingredients">{{ i.name }}</span><BR>
+    <b>Utensilios: </b> <span class="list" *ngFor="let u of preparation.tools">{{ u.name }}</span><BR>
+    <label class="c_checkbox by-store-checkbox">
+      <div class="c_checkbox-label">Activo: </div>
+      <div class="c_checkbox-toggle">
+        <input type="checkbox" [checked]="preparation.active" [(ngModel)]="preparation.active" />
+        <div class="c_checkbox-toggle-view"></div>
+      </div>
+    </label>
+
+
+
+  </div>
+  <div>
+    <button (click)="onUpdatePreparation()">Actualizar</button>
+    <button class="remove" (click)="onDeletePreparation()">Eliminar</button>
+  </div>
+</div>

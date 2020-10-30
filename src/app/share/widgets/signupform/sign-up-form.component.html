@@ -72,7 +72,31 @@
                         </select>                      
                     </div>
 
-                    
+                    <div class="form-group">
+                        <select class="form-control" name="type" [(ngModel)]="signUp.actorTypeId" style="width: 98%;" title="Seleccione el rol en el area de la cadena de valor de la cocina"
+                         #type="ngModel" required>
+                            <option value="">--Role--</option>
+                            
+                            <option *ngFor="let type of typeActors$ | async" [value]="type.id">
+                              {{type.name }}
+                            </option>
+                        </select>
+                        <div class="form-error" *ngIf="type.touched && type.errors">
+                            Seleccione un role
+                        </div>
+                       
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                        </div>
+                        <input type="text" name="establishment" class="form-control" title="Si representa algun establecimiento educativo o restaurante coloquelo aqui" 
+                         [(ngModel)]="signUp.establishment" #establishment="ngModel"
+                          placeholder="Establecimiento" maxlength="100" [style.height.px]="38"
+                          >
+             
+                    </div>
+
                     <div class="form-group">
                         <select class="form-control" name="state" [(ngModel)]="signUp.state" style="width: 98%;"
                          #state="ngModel" required (change)="loadCities($event)">

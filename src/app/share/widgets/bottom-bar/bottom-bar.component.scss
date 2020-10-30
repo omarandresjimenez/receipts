@@ -1,0 +1,96 @@
+
+:host {
+  display: block;
+  flex: 0 0 40px;
+  transition: flex .5s ease;
+
+  &.opened {
+    flex: 0 0 275px;
+  }
+}
+
+.headerText {
+  font-weight: bolder;
+  padding-left: 20px;
+}
+
+.bottom-bar {
+
+  &-header {
+    height: 40px;
+    padding: 5px 20px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    border-top: 1px solid #747474;
+    background-color: darkgray;
+    
+
+    ::ng-deep .opened & {
+      border-top: none;
+      border-bottom: 1px solid #747474;
+    }
+  }
+
+  &-body {
+    height: 0;
+    overflow: hidden;
+    transition: height .5s ease;
+
+    ::ng-deep .opened & {
+      height: calc(100% - 40px);
+    }
+  }
+
+  &-trigger {
+    font-size: 14px;
+    font-weight: 400;
+    color: blue;
+    cursor: pointer;
+    position: relative;
+    padding-left: 24px;
+    text-transform: uppercase;
+
+    &:before {
+      content: '\e316';
+      font-family: 'Material Icons';
+      font-size: 24px;
+      color: inherit;
+      cursor: inherit;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-54%);
+
+      ::ng-deep .opened & {
+        content: '\e313';
+      }
+    }
+  }
+}
+
+.content-details {
+  height: 100%;
+
+  &-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 20px 5px;
+    height: 50px;
+  }
+
+  &-body {
+    height: calc(100% - 50px);
+    padding: 0 20px 10px;
+  }
+
+  &-heading {
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #404040;
+  }
+}
+

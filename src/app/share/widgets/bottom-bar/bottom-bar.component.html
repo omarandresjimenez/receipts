@@ -1,0 +1,10 @@
+<div class="bottom-bar-header" (click)="onToggle()">
+  <i [ngClass]="isOpened ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          
+  ></i>  <span class="headerText">{{ !isOpened ? textOpen : textClose }}</span>
+</div>
+<div class="bottom-bar-body">
+  <div class="content-details">
+     <ng-content></ng-content>
+  </div>
+</div>

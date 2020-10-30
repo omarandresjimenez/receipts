@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 
 import { ApiService } from '../api/api.service';
 import { UserModel } from 'src/app/core/models/UserModel';
+import { ActorType } from 'src/app/core/models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -24,23 +25,31 @@ export class UserService {
     return this.service.getUsers();
   }
 
+  public getUsersByTypeActor(idActorType: string, search: string): Observable<UserModel[]> {
+    return this.service.getUsersByTypeActor(idActorType, search);
+  }
+
+  public getTypeActors(): Observable<ActorType[]> {
+    return this.service.getActorTypes();
+  }
+
   public createUser(userInfo: UserModel): Observable<boolean> {
-    console.log(userInfo);
     return this.service.createUser(userInfo);
   }
 
   public updateUser(userInfo: UserModel): Observable<boolean> {
-    console.log(userInfo);
-    return of(true); // this.service.updateUser(userInfo);
+    return this.service.updateUser(userInfo);
+  }
+
+  public getUser(id: string) {
+    return this.service.getUser(id);
   }
 
   public updateUserAdmin(userEmail: string, userRole: string, userActive: boolean): Observable<boolean> {
-    console.log(userEmail);
-    return of(true); // this.service.updateUserAdmin(userEmail, userRole, userActive);
+    return this.service.updateUserAdmin(userEmail, userRole, userActive);
   }
 
   public deleteUser(userEmail: string): Observable<boolean> {
-    return of(true);
     return this.service.deleteUser(userEmail);
   }
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { Observable, forkJoin } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Observable, forkJoin, of } from 'rxjs';
 import { map, toArray, tap, take } from 'rxjs/operators';
-import { Recipe, Preparation } from '../../../core/models/models';
+import { Recipe, Preparation } from 'src/app/core/models/models';
 
 
 @Injectable({
@@ -16,6 +16,14 @@ export class RecipeApiService {
 
   }
 
+  public recipeSearchBasic(search: string): Observable<Recipe[]> {
+    if (!search ||  search.length < 3) {
+      return of([]);
+    }
+    return this.http.get<any[]>(this.BASEURL + 'recipe/search/' + search);
+    return this.http.get<Recipe[]>(this.BASEURL + 'recipe/searchBasic/' + search);
+  }
+
   public recipeSearch(search: string): Observable<Recipe[]> {
     return this.http.get<any[]>(this.BASEURL + 'recipe/search/' + (!search ? 'ajiaco' : search))
             .pipe(map((res) => res.map((item) => {
@@ -23,11 +31,12 @@ export class RecipeApiService {
                      id:  item.id,
                      name: item.name,
                      imageURL: item.imageURL ? item.imageURL : null,
-                     description: '',
+                     description: item.description,
                      rating: this.getRandomInt(0, 10),
                      preparations: item.preparations.map((x: any) => {
                        return {
                          name : x.name,
+                         description: x.description,
                          imageURL: x.imageURL ? x.imageURL : null,
                          rating: this.getRandomInt(0, 10),
                          region: this.getRandomRegion(),

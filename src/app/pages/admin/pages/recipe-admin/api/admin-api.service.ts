@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { AppHttpErrorHandler } from '../../../../../core/utils/errorHandler';
-import {  Recipe } from '../../../../../core/models/models';
-import { environment } from '../../../../../../environments/environment';
+import { AppHttpErrorHandler } from 'src/app/core/utils/errorHandler';
+import {  Recipe } from 'src/app/core/models/models';
+import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
 
@@ -37,15 +37,13 @@ export class AdminApiService extends AppHttpErrorHandler  {
   }
 
 
-  public updateeRecipe(recipeModel: Recipe): Observable<boolean> {
+  public updateRecipe(recipeModel: Recipe): Observable<boolean> {
     const params = {
-      id: recipeModel.id,
       name: recipeModel.name,
-      image: recipeModel.imageURL,
+      image: !recipeModel.imageURL.startsWith('data') ? null : recipeModel.imageURL,
       description: recipeModel.description,
-      preparations: [],
     };
-    return this.http.post<boolean>(this.BASEURL + 'recipe', params).pipe(
+    return this.http.put<boolean>(this.BASEURL + 'recipe/' + recipeModel.id, params).pipe(
       catchError((err) => this.handleError(err))
     );
   }
@@ -58,8 +56,50 @@ export class AdminApiService extends AppHttpErrorHandler  {
 
   public getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.BASEURL + 'recipe').pipe(
+      map((res) => res.map((item) => {
+      const obj: Recipe = {
+          id:  item.id,
+          name: item.name,
+          imageURL: item.imageURL ? item.imageURL : null,
+          description: item.description,
+          preparations: item.preparations.map((x: any) => {
+            return {
+              id: x.id,
+              active: x.active,
+              name : x.name,
+              description: x.description,
+              imageURL: x.imageURL ? x.imageURL : null,
+              rating: x.rating ? x.rating : 0 ,
+              region: x.region,
+              author: x.autor ? x.author : {  id: 1, name: ''},
+              user: x.user ? x.user : {  id: 1, name: ''},
+              ingredients: x.ingredients,
+              tools: x.tools,
+              recipeId: x.recipeId ? x.recipeId : 1,
+            };
+          }),
+      };
+      return obj;
+    })),
       catchError((err) => this.handleError(err))
     );
   }
+
+  public updateAdminPreparation(idPrep: string, active: boolean): Observable<boolean> {
+    const params = {
+      id: idPrep,
+      active,
+    };
+    return this.http.put<boolean>(this.BASEURL + 'preparation/updateAdmin/' + idPrep, params).pipe(
+      catchError((err) => this.handleError(err))
+    );
+  }
+
+  public deletePreparation(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(this.BASEURL + 'preparation/' + id).pipe(
+      catchError((err) => this.handleError(err))
+    );
+  }
+
 
 }

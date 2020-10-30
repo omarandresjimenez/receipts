@@ -29,6 +29,10 @@ export class RecipeCatalogService {
       });
   }
 
+  public searchRecipesBasic(search: string): Observable<Recipe[]> {
+    return this.service.recipeSearchBasic(search);
+  }
+
   public getRecipesImages(): void {
     this.service.getRandomImages().pipe(
         ).

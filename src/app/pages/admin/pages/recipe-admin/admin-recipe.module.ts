@@ -9,8 +9,9 @@ import { AdminRecipeComponent } from './admin-recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { AdminRecipeFormComponent } from './recipe/recipe-form.component';
 
-import { ShareModule } from '../../../../../app/share/share.module';
-
+import { ShareModule } from 'src/app/share/share.module';
+import { BottomBarModule } from 'src/app/share/widgets/bottom-bar/bottom-bar.module';
+import { PreparationCardModule } from 'src/app/share/widgets/preparationcard/prep-card.module';
 
 
 
@@ -25,6 +26,8 @@ import { ShareModule } from '../../../../../app/share/share.module';
     AdminRoutingModule,
     FormsModule,
     ShareModule,
+    PreparationCardModule,
+    BottomBarModule,
     AgGridModule.withComponents([]),
   ],
   providers: [],
