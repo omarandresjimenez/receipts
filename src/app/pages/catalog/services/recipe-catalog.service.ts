@@ -30,8 +30,9 @@ export class RecipeCatalogService {
   }
 
   public searchRecipesBasic(search: string): Observable<Recipe[]> {
-    return this.service.recipeSearchBasic(search);
+    return this.service.recipeSearch(search);
   }
+
 
   public getRecipesImages(): void {
     this.service.getRandomImages().pipe(
@@ -43,6 +44,10 @@ export class RecipeCatalogService {
   }
   public setRatingFilter(val: number): void {
      this.ratingFilter.next(val);
+  }
+
+  public getPreparationsByRecipe(recipeId: string): Observable<Preparation[]> {
+    return this.service.getPreparationsByRecipe(recipeId);
   }
 
 }

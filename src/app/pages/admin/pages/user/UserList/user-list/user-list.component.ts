@@ -103,10 +103,10 @@ export class UserListComponent implements OnInit, OnDestroy {
       // console.log(selectedRows);
   }
 
-  onDeleteUser(userEmail: string) {
-    this.service.deleteUser(userEmail).subscribe((res) => {
+  onDeleteUser(userId: string) {
+    this.service.deleteUser(userId).subscribe((res) => {
         this.toast.success('Usuario eliminado');
-        this.rowData = this.rowData.filter((user) => user.email !== userEmail);
+        this.rowData = this.rowData.filter((user) => user.id !== userId);
         this.closeModal('usercard');
         this.cdr.markForCheck();
       });
@@ -119,9 +119,9 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   onSaveUser(user: UserModel) {
-    this.service.updateUserAdmin(user.email, user.role, user.active).subscribe((res) => {
+    this.service.updateUserAdmin(user.id, user.role, user.active).subscribe((res) => {
       this.toast.success('Usuario actualizado');
-      this.rowData = this.rowData.filter((usr) => usr.email !== user.email);
+      this.rowData = this.rowData.filter((usr) => usr.id !== user.id);
       this.rowData.push(user);
       this.closeModal('usercard');
       this.cdr.markForCheck();

@@ -3,6 +3,7 @@ import { RecipeCatalogService } from './services/recipe-catalog.service';
 import { Observable, Subscription, combineLatest } from 'rxjs';
 import { Recipe, Preparation } from 'src/app/core/models/models';
 import { map } from 'rxjs/operators';
+import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.recipeCatalog$ = [];
         res.map((x: Recipe) => {
          x.imageURL = x.imageURL ? x.imageURL : images[ Math.floor(Math.random() * 10) ];
-         x.preparations.map((prep) => prep.imageURL = prep.imageURL ? prep.imageURL : images[ Math.floor(Math.random() * 10) ]);
+         // x.preparations.map((prep) => prep.imageURL = prep.imageURL ? prep.imageURL : images[ Math.floor(Math.random() * 10) ]);
          this.recipeCatalog$.push(x);
         });
         this.cdr.markForCheck();
@@ -51,7 +52,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
     //    this.casts = res;
           this.catalogView = false;
           this.cardInfo = this.recipeCatalog$.find((card) => card.id === id);
-          this.cdr.markForCheck();
+          this.sub = combineLatest([  this.serviceCatalog.getPreparationsByRecipe(this.cardInfo.id), this.serviceCatalog.recipeImages$]).
+              subscribe(([ res, images ]: [ Preparation[], string[]]) => {
+                this.cardInfo.preparations = res.map((prep: Preparation) => {
+                                              return { ...prep, imageURL : prep.imageURL ?
+                                                       prep.imageURL : images[ Math.floor(Math.random() * 10) ] };
+                                              });
+                this.cdr.markForCheck();
+              });
     //   });
   }
 

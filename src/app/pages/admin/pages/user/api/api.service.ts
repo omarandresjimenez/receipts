@@ -23,25 +23,25 @@ export class ApiService extends AppHttpErrorHandler  {
    }
 
   public authenticate(userLogin: UserLogin): Observable<UserModel> {
-    return of({
-      name: 'Antonio',
-      lastName: 'Aguilar',
-      identification: '101870900',
-      phone: '323456589',
-      active: true,
-      imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      email: 'antonio@hotmail.com',
-      cityId: '5001',
-      state: '5',
-      role: 'user',
-      age: 43,
-      cityName: 'Medellin',
-      stateName: 'Antioquia',
-      regionName: 'Caribe',
-      creationDate: '2020/10/28TTT',
-      establishment: 'Restaurante caribe',
-      actorTypeName: 'Cocinero',
-    });
+    // return of({
+    //   name: 'Antonio',
+    //   lastName: 'Aguilar',
+    //   identification: '101870900',
+    //   phone: '323456589',
+    //   active: true,
+    //   imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
+    //   email: 'antonio@hotmail.com',
+    //   cityId: '5001',
+    //   state: '5',
+    //   role: 'user',
+    //   age: 43,
+    //   cityName: 'Medellin',
+    //   stateName: 'Antioquia',
+    //   regionName: 'Caribe',
+    //   creationDate: '2020/10/28TTT',
+    //   establishment: 'Restaurante caribe',
+    //   actorTypeName: 'Cocinero',
+    // });
     return this.http.post<UserModel>(this.BASEURL + 'user/authenticate', userLogin)
     .pipe(
       catchError((err) => this.handleError(err)),
@@ -77,6 +77,7 @@ export class ApiService extends AppHttpErrorHandler  {
 
   public updateUser(userModel: UserModel): Observable<boolean> {
     const params = {
+      id: userModel.id,
       name: userModel.name,
       lastName: userModel.lastName,
       password: userModel.password,
@@ -93,27 +94,27 @@ export class ApiService extends AppHttpErrorHandler  {
       actorTypeId: userModel.actorTypeId,
       establishment: userModel.establishment,
     };
-    return this.http.put<boolean>(this.BASEURL + 'user/' + userModel.email, params).pipe(
+    return this.http.put<boolean>(this.BASEURL + 'user/' + userModel.id, params).pipe(
       catchError((err) => this.handleError(err))
     );
   }
 
 
 
-  updateUserAdmin(email: string, role: string, active: boolean): Observable<boolean> {
+  updateUserAdmin(id: string, role: string, active: boolean): Observable<boolean> {
 
     const params = {
-      email,
+      id,
       active,
       role,
     };
-    return this.http.put<boolean>(this.BASEURL + 'user/' + email, params).pipe(
+    return this.http.put<boolean>(this.BASEURL + 'user/UpdateUserByAdmin/' + id, params).pipe(
       catchError((err) => this.handleError(err))
     );
   }
 
-  public deleteUser(email: string): Observable<boolean> {
-    return this.http.delete<boolean>(this.BASEURL + 'user/' + email).pipe(
+  public deleteUser(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(this.BASEURL + 'user/' + id).pipe(
       catchError((err) => this.handleError(err))
     );
   }
@@ -152,55 +153,58 @@ export class ApiService extends AppHttpErrorHandler  {
   }
 
   public getUsers(): Observable<UserModel[]> | Observable<any[]> {
-    return of([{
-      name: 'Antonio',
-      lastName: 'Aguilar',
-      identification: '101870900',
-      phone: '323456589',
-      active: true,
-      imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      email: 'antonio@hotmail.com',
-      cityId: '5001',
-      state: '5',
-      role: 'user',
-      age: 43,
-      cityName: 'Medellin',
-      stateName: 'Antioquia',
-      regionName: 'Caribe',
-      creationDate: '2020/10/28TTT',
-      establishment: 'Restaurante caribe',
-      actorTypeName: 'Cocinero',
-    },
-    {
-      name: 'Maria Antonieta',
-      lastName: 'De las Nieves',
-      identification: '331870900',
-      phone: '3119089876',
-      active: true,
-      imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      email: 'amaria@hotmail.com',
-      cityId: '5001',
-      state: '5',
-      role: 'user',
-      age: 56,
-      cityName: 'Tunja',
-      stateName: 'Boyaca',
-      regionName: 'Andina',
-      creationDate: '2020/10/13T001',
-      establishment: 'Universiodad Nacional',
-      actorTypeName: 'Docente',
+//     return of([{
+//       id: '1',
+//       name: 'Antonio',
+//       lastName: 'Aguilar',
+//       identification: '101870900',
+//       phone: '323456589',
+//       active: true,
+//       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
+//       email: 'antonio@hotmail.com',
+//       cityId: '5001',
+//       state: '5',
+//       role: 'user',
+//       age: 43,
+//       cityName: 'Medellin',
+//       stateName: 'Antioquia',
+//       regionName: 'Caribe',
+//       creationDate: '2020/10/28TTT',
+//       establishment: 'Restaurante caribe',
+//       actorTypeName: 'Cocinero',
+//     },
+//     {
+//       id: '3',
+//       name: 'Maria Antonieta',
+//       lastName: 'De las Nieves',
+//       identification: '331870900',
+//       phone: '3119089876',
+//       active: true,
+//       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
+//       email: 'amaria@hotmail.com',
+//       cityId: '5001',
+//       state: '5',
+//       role: 'user',
+//       age: 56,
+//       cityName: 'Tunja',
+//       stateName: 'Boyaca',
+//       regionName: 'Andina',
+//       creationDate: '2020/10/13T001',
+//       establishment: 'Universiodad Nacional',
+//       actorTypeName: 'Docente',
 
-    },
-  ]).pipe(
+//     },
+//   ]).pipe(
+//       map((users: any[]) => users.map((user: any) => {
+//         return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
+//     } ))
+// );
+     return this.http.get<UserModel[]>(this.BASEURL + 'user').pipe(
+      catchError((err) => this.handleError(err)),
       map((users: any[]) => users.map((user: any) => {
-        return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
-    } ))
-);
-    //  return this.http.get<UserModel[]>(this.BASEURL + 'user').pipe(
-    //   map((users: any[]) => users.map((user: any) => {
-    //         return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
-    //     } ))
-    // );
+            return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
+        } ))
+    );
  }
 
 }

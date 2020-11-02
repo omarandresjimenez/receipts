@@ -45,12 +45,12 @@ export class UserService {
     return this.service.getUser(id);
   }
 
-  public updateUserAdmin(userEmail: string, userRole: string, userActive: boolean): Observable<boolean> {
-    return this.service.updateUserAdmin(userEmail, userRole, userActive);
+  public updateUserAdmin(userId: string, userRole: string, userActive: boolean): Observable<boolean> {
+    return this.service.updateUserAdmin(userId, userRole, userActive);
   }
 
-  public deleteUser(userEmail: string): Observable<boolean> {
-    return this.service.deleteUser(userEmail);
+  public deleteUser(userId: string): Observable<boolean> {
+    return this.service.deleteUser(userId);
   }
 
 

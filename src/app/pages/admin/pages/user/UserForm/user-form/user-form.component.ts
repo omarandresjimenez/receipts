@@ -35,7 +35,7 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   onDeleteUser() {
     if (confirm('Esta seguro que desea eliminar este usuario?')){
-      this.deleteUser.emit(this.user.email);
+      this.deleteUser.emit(this.user.id);
     }
   }
 

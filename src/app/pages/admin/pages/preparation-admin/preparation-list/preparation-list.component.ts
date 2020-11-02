@@ -87,7 +87,7 @@ export class PreparationListComponent implements OnInit, OnDestroy {
       { field: 'recipeName', headerName: 'Receta', width: '220' },
       { field: 'name', headerName: 'Nombre', width: '220' },
       { field: 'description', headerName: 'Descripción', width: '350' },
-      { field: 'cookingThecnique', headerName: 'Técnica de cocina usada', width: '200' },
+      { field: 'cookingTechnique', headerName: 'Técnica de cocina usada', width: '200' },
       { field: 'preparationType', headerName: 'Tipo preparación', width: '200' },
       { field: 'userName', headerName: 'Autor preparación', width: '200' },
       { field: 'active', headerName: 'Activo', width: '100',

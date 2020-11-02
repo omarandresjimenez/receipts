@@ -2,26 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, forkJoin, of } from 'rxjs';
-import { map, toArray, tap, take } from 'rxjs/operators';
+import { map, toArray, tap, take, catchError } from 'rxjs/operators';
 import { Recipe, Preparation } from 'src/app/core/models/models';
+import { AppHttpErrorHandler } from 'src/app/core/utils/errorHandler';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeApiService {
+export class RecipeApiService  extends AppHttpErrorHandler {
   private readonly BASEURL = environment.baseUrlApi;
   private readonly MAX_RESULTS = 50;
-  constructor(private http: HttpClient) {
-
-  }
-
-  public recipeSearchBasic(search: string): Observable<Recipe[]> {
-    if (!search ||  search.length < 3) {
-      return of([]);
-    }
-    return this.http.get<any[]>(this.BASEURL + 'recipe/search/' + search);
-    return this.http.get<Recipe[]>(this.BASEURL + 'recipe/searchBasic/' + search);
+  constructor(private http: HttpClient,
+              public router: Router,
+              public toast: ToastrService) {
+      super(router, toast);
   }
 
   public recipeSearch(search: string): Observable<Recipe[]> {
@@ -32,23 +29,17 @@ export class RecipeApiService {
                      name: item.name,
                      imageURL: item.imageURL ? item.imageURL : null,
                      description: item.description,
-                     rating: this.getRandomInt(0, 10),
-                     preparations: item.preparations.map((x: any) => {
-                       return {
-                         name : x.name,
-                         description: x.description,
-                         imageURL: x.imageURL ? x.imageURL : null,
-                         rating: this.getRandomInt(0, 10),
-                         region: this.getRandomRegion(),
-                         author: this.getRandomAuthor(),
-                         ingredients: x.preparationIngredients?.map( y => y.ingredient?.name),
-                         tools: x.preparationTools?.map( y => y.tool?.name),
-                       };
-                     }),
                  };
                  return obj;
                }
              )));
+  }
+
+
+  public getPreparationsByRecipe(recipeId: string): Observable<Preparation[]> {
+    return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getPreparationsByRecipe/' + recipeId).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
   public  getRandomImages(): Observable<any[]> {
