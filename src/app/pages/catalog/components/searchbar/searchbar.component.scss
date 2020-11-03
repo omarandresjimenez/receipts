@@ -19,19 +19,19 @@
         transition: width .4s linear;
     }
 
-    .searchbar:hover, .searchbar:focus {
+    .search_input:hover, .search_input:focus {
         border: 1px solid white;
         background-color: #353b48;
         outline: none;
     }
 
-    .searchbar:active {
+    .search_input:active {
         border: 1px solid yellow;
         background-color: #353b48;
         outline: none;
     }
 
-    input:-internal-autofill-selected {
+    input.search_input:-internal-autofill-selected {
         appearance: menulist-button;
         background-color: rgba(232, 240, 254,0) !important;
         background-image: none !important;
