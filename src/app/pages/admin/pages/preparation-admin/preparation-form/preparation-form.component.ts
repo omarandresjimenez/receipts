@@ -200,6 +200,26 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
      this.cdr.markForCheck();
   }
 
+  public onAddNewAuthor(): void {
+    this.modal.open('newAuthorModal');
+    this.cdr.markForCheck();
+  }
+
+  public onSaveAuthor($event): void {
+    this.userService.createUser($event).subscribe((res) => {
+      if (res) {
+        this.toast.success('Autor creado');
+      }
+      this.modal.close('newAuthorModal');
+      this.cdr.markForCheck();
+    });
+  }
+
+  public onCancelAuthor() {
+    this.modal.close('newAuthorModal');
+    this.cdr.markForCheck();
+  }
+
   public onSaveElement(item: ItemChip): void {
     if (!item) {
       this.modal.close('newElementModal');

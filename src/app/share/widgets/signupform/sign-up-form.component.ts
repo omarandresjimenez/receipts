@@ -38,6 +38,8 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
   public imageAvatarFile: any = '';
   public imageAvatar: any = '/assets/img/defaultuser.png';
 
+  private readonly ID_TYPEAUTHOR_COOKER = '5';
+
   @ViewChild(NgForm)
   public form: NgForm;
 
@@ -45,6 +47,9 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   public title: string;
+
+  @Input()
+  public isAuthor = false;
 
   @Input()
   public editionMode = false;
@@ -56,6 +61,9 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
 
   @Output()
   public formSubmit = new EventEmitter<UserModel>();
+
+  @Output()
+  public cancelAction = new EventEmitter<boolean>();
 
   constructor(private cityService: CitiesService,
               private userService: UserService,
@@ -73,6 +81,7 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
       this.days.push(index);
     }
 
+
   }
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -83,6 +92,9 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
       this.loadCities(null);
       this.renderAvatar(this.signUp?.imageUrl);
       // this.signUp.imageUrl = null;
+    }
+    if (this.isAuthor) {
+      this.signUp.actorTypeId = this.ID_TYPEAUTHOR_COOKER;
     }
 
   }
@@ -120,7 +132,20 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
                               (this.months.indexOf(this.birthDate.month) + 1).toString().padStart(2, '0') + '-' +
                               this.birthDate.day.toString().padStart(2, '0');
       this.formSubmit.emit({ ... this.signUp });
+      this.resetForm();
     }
+  }
+
+  public onCancel() {
+    this.resetForm();
+    this.cancelAction.emit(true);
+  }
+
+  private resetForm() {
+    this.signUp = { name: '', lastName: '', password: '', birthDate: null, phone: '', identification: '',
+                    confirmPassword: '', email: '', state: '', city: '', imageUrl: '',
+                    actorTypeId: this.isAuthor ? this.ID_TYPEAUTHOR_COOKER : '',
+                    establishment: '', active: false, emailValidated: false,  role: 'user', shouldChangePassword: true };
   }
 
   public showAvatarPreview($event: any) {

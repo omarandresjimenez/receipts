@@ -8,11 +8,15 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  min-width: 600px;
 }
 
 .customfield {
-  width: 94%;
-  border-radius: .25rem;
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  width: 1%;
+  margin-bottom: 0;
 }
 
 .container {
@@ -30,6 +34,10 @@ bootstrap-autocomplete {
   .bs-autocomplete-input {
     color: blue;
   }
+}
+
+.container-form-user {
+  margin-top: -30px;
 }
 
 .photo-upload {

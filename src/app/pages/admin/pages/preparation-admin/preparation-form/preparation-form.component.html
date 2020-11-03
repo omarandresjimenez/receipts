@@ -50,7 +50,10 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text bg-white">
-            <i class="fas fa-address-card" [class.green-icon]="authorControl.valid" [class.red-icon]="authorControl.invalid && authorControl.touched"></i>
+            <i   class="fas fa-plus"   [class.green-icon]="authorControl.valid" [class.red-icon]="authorControl.invalid && authorControl.touched"
+            [style.cursor]="'pointer'" (click)="onAddNewAuthor()" title="Agregar un nuevo Autor.  (No aparece en el listado)"
+            ></i>
+
           </div>
         </div>
         
@@ -180,4 +183,9 @@
   <app-jwmodal id="newElementModal">
       <app-new-element-card [title]="titleNewElement" [typeElement]="typeElement" (submitData)="onSaveElement($event)" ></app-new-element-card>
   </app-jwmodal>
-
+  <app-jwmodal id="newAuthorModal">
+    <div class="container-form-user" >
+      <app-signup-form (formSubmit)="onSaveAuthor($event)" (cancelAction)="onCancelAuthor()" [isAuthor]="true" title="Crear Autor"></app-signup-form>
+     
+    </div>
+  </app-jwmodal>

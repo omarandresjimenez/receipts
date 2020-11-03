@@ -1,188 +1,199 @@
-            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">            
-              
-            <div class="card" >
-                <div class="card-header">
-                    <h3>Registro datos de usuario:</h3>
-                    
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Registro datos:</h3>
+
+        </div>
+        <div class="form-group" style="width: 100%;">
+            <div class="user-avatar" style="text-align: center; height: 70px; margin-top: 5px;">
+                <div class="form-group photo-upload" style="display: inline-block;">
+                    <label class="photo-upload-label" title="Click para seleccionar imagen">
+                        <div class="photo-upload-preview" [style.background-size]="avatarBgSize"
+                            [style.background-image]="imageAvatar | appCssUrl">
+                        </div>
+                        <input type="file" accept="image/gif, image/jpeg, image/png" name="avatar"
+                            (change)="showAvatarPreview($event)">
+                    </label>
                 </div>
-                <div class="form-group" style="width: 100%;">
-                    <div class="user-avatar" style="text-align: center; height: 70px; margin-top: 5px;">
-                      <div class="form-group photo-upload" style="display: inline-block;">
-                        <label class="photo-upload-label" title="Click para seleccionar imagen">
-                        <div class="photo-upload-preview" [style.background-size]="avatarBgSize" [style.background-image]="imageAvatar | appCssUrl">
-                        </div>
-                          <input type="file"  accept="image/gif, image/jpeg, image/png" name="avatar" (change)="showAvatarPreview($event)">
-                        </label>
-                      </div>
-                    </div>
-                    </div>
-                <div class="card-body">
-                    <div class="input-group form-group">
-                        
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-address-book"></i></span>
-                        </div>
-
-                        <input type="text" name="name" class="form-control"  [(ngModel)]="signUp.name" #name="ngModel" placeholder="Nombres" required maxlength="40">
-                        <div class="form-error"  *ngIf="name.touched && name.errors?.required">
-                            Nombre es requerido
-                        </div>
-    
-                    </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-address-book"></i></span>
-                        </div>
-                        <input type="text" name="lastName" class="form-control"  [(ngModel)]="signUp.lastName" #lastName="ngModel" placeholder="Apellidos" required maxlength="40">
-                        <div class="form-error"  *ngIf="lastName.touched && lastName.errors?.required">
-                            Apellidos es requerido
-                        </div>
-    
-                    </div>
-
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                        </div>
-                        <input type="text" name="identification" class="form-control" 
-                         [(ngModel)]="signUp.identification" #identification="ngModel"
-                          placeholder="Identificacion" maxlength="10" [style.height.px]="38"
-                          required>
-                        <div class="form-error"  *ngIf="identification.touched && identification.errors?.required">
-                            Identificacion es requerido
-                        </div>
-                    </div>
-               
-                    <div class="form-group" title="Fecha Nacimiento">
-                       
-                        <select class="form-control date" name="year" [(ngModel)]="birthDate.year" #year="ngModel" required >
-                            <option *ngFor="let i of years" [value]="i">
-                                {{ i  }}
-                              </option>
-                        </select>
-                        <select class="form-control date" name="month" [(ngModel)]="birthDate.month" (change)="onChangeMonth(month)" #month="ngModel" required >
-                            <option *ngFor="let i of months" [value]="i">
-                                {{ i  }}
-                              </option>
-                        </select>
-                        <select class="form-control date" name="day" [(ngModel)]="birthDate.day" #day="ngModel" required >
-                            <option *ngFor="let i of days" [value]="i">
-                                {{ i  }}
-                              </option>
-                        </select>                      
-                    </div>
-
-                    <div class="form-group">
-                        <select class="form-control" name="type" [(ngModel)]="signUp.actorTypeId" style="width: 98%;" title="Seleccione el rol en el area de la cadena de valor de la cocina"
-                         #type="ngModel" required>
-                            <option value="">--Role--</option>
-                            
-                            <option *ngFor="let type of typeActors$ | async" [value]="type.id">
-                              {{type.name }}
-                            </option>
-                        </select>
-                        <div class="form-error" *ngIf="type.touched && type.errors">
-                            Seleccione un role
-                        </div>
-                       
-                    </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                        </div>
-                        <input type="text" name="establishment" class="form-control" title="Si representa algun establecimiento educativo o restaurante coloquelo aqui" 
-                         [(ngModel)]="signUp.establishment" #establishment="ngModel"
-                          placeholder="Establecimiento" maxlength="100" [style.height.px]="38"
-                          >
-             
-                    </div>
-
-                    <div class="form-group">
-                        <select class="form-control" name="state" [(ngModel)]="signUp.state" style="width: 98%;"
-                         #state="ngModel" required (change)="loadCities($event)">
-                            <option value="">--Seleccione Departamento--</option>
-                            
-                            <option *ngFor="let state of deps$ | async" [value]="state.id">
-                              {{ state.name }}
-                            </option>
-                        </select>
-                        <div class="form-error" *ngIf="state.touched && state.errors">
-                            Seleccione un departamento
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="city" [(ngModel)]="signUp.city" #city="ngModel" required style="width: 98%;">
-                            <option value="">--Seleccione ciudad--</option>
-                            <option *ngFor="let city of cities$ | async" [value]="city.id">
-                                {{ city.name }}
-                              </option>
-                        </select>
-                        <div class="form-error" *ngIf="city.touched && city.errors">
-                            Seleccione una ciudad
-                        </div>
-                    </div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <input type="email" name="email" class="form-control"
-                              [(ngModel)]="signUp.email" #email="ngModel"
-                               placeholder="Email.  Este será su usuario"
-                               required email  [disabled]="editionMode">
-                            <div class="form-error"  *ngIf="email.touched && email.errors?.email">
-                                Formato de email no valido
-                            </div>
-                            <div class="form-error"  *ngIf="email.touched && email.errors?.required">
-                                Email es requerido
-                            </div>
-                        </div>
-
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                            </div>
-                            <input type="text" name="phone" class="form-control"  [(ngModel)]="signUp.phone" #phone="ngModel" placeholder="Telefono (Opcional)" maxlength="10" [style.height.px]="38">
-
-                        </div>
-    
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" name="password" #password="ngModel"
-                             [(ngModel)]="signUp.password" class="form-control"
-                              placeholder="Contraseña" minlength="8" maxlength="15"
-                              [required]="!editionMode" >
-                            <div class="form-error"  *ngIf="password.touched && password.errors?.required">
-                                Contraseña es requerida
-                            </div>
-                            <div class="form-error"  *ngIf="password.touched && password.errors?.minlength">
-                                Minimo 8 caracteres
-                            </div>
-                        </div>
-    
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" name="confirmPassword" #confirmPassword="ngModel"
-                             [(ngModel)]="signUp.confirmPassword" class="form-control" (change)="onChange()" 
-                              placeholder="Confirmar Contraseña"                              
-                                maxlength="15">
-                            <div class="form-error"  *ngIf="pwderror">
-                                Confirmar contraseña no coincide
-                            </div>
-                        </div>
-                        
-                        <div class="row align-items-center remember">
-                            
-                        </div>
-                        <div class="form-group">
-                               <input type="submit" [value]="title" class="btn float-right login_btn" [disabled]="form.pristine || form.invalid || pwderror">
-                        </div>
-                    
-                </div>
-               
-    
             </div>
-    </form>
+        </div>
+        <div class="card-body">
+            <div class="input-group form-group">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+                </div>
+
+                <input type="text" name="name" class="form-control" [(ngModel)]="signUp.name" #name="ngModel"
+                    placeholder="Nombres" required maxlength="40">
+                <div class="form-error" *ngIf="name.touched && name.errors?.required">
+                    Nombre es requerido
+                </div>
+
+            </div>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-address-book"></i></span>
+                </div>
+                <input type="text" name="lastName" class="form-control" [(ngModel)]="signUp.lastName"
+                    #lastName="ngModel" placeholder="Apellidos" required maxlength="40">
+                <div class="form-error" *ngIf="lastName.touched && lastName.errors?.required">
+                    Apellidos es requerido
+                </div>
+
+            </div>
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                </div>
+                <input type="text" name="identification" class="form-control" [(ngModel)]="signUp.identification"
+                    #identification="ngModel" placeholder="Identificacion" maxlength="10" [style.height.px]="38"
+                    required>
+                <div class="form-error" *ngIf="identification.touched && identification.errors?.required">
+                    Identificacion es requerido
+                </div>
+            </div>
+
+            <div class="form-group" title="Fecha Nacimiento">
+
+                <select class="form-control date" name="year" [(ngModel)]="birthDate.year" #year="ngModel" required>
+                    <option *ngFor="let i of years" [value]="i">
+                        {{ i  }}
+                    </option>
+                </select>
+                <select class="form-control date" name="month" [(ngModel)]="birthDate.month"
+                    (change)="onChangeMonth(month)" #month="ngModel" required>
+                    <option *ngFor="let i of months" [value]="i">
+                        {{ i  }}
+                    </option>
+                </select>
+                <select class="form-control date" name="day" [(ngModel)]="birthDate.day" #day="ngModel" required>
+                    <option *ngFor="let i of days" [value]="i">
+                        {{ i  }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="type" [(ngModel)]="signUp.actorTypeId" style="width: 98%;"
+                    title="Seleccione el rol en el area de la cadena de valor de la cocina" [disabled]="isAuthor"
+                    #type="ngModel" required>
+                    <option value="">--Role--</option>
+
+                    <option *ngFor="let type of typeActors$ | async" [value]="type.id">
+                        {{type.name }}
+                    </option>
+                </select>
+                <div class="form-error" *ngIf="type.touched && type.errors">
+                    Seleccione un role
+                </div>
+
+            </div>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-address-card"></i></span>
+                </div>
+                <input type="text" name="establishment" class="form-control"
+                    title="Si representa algun establecimiento educativo o restaurante coloquelo aqui"
+                    [(ngModel)]="signUp.establishment" #establishment="ngModel" placeholder="Establecimiento"
+                    maxlength="100" [style.height.px]="38">
+
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="state" [(ngModel)]="signUp.state" style="width: 98%;"
+                    #state="ngModel" required (change)="loadCities($event)">
+                    <option value="">--Seleccione Departamento--</option>
+
+                    <option *ngFor="let state of deps$ | async" [value]="state.id">
+                        {{ state.name }}
+                    </option>
+                </select>
+                <div class="form-error" *ngIf="state.touched && state.errors">
+                    Seleccione un departamento
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="city" [(ngModel)]="signUp.city" #city="ngModel" required
+                    style="width: 98%;">
+                    <option value="">--Seleccione ciudad--</option>
+                    <option *ngFor="let city of cities$ | async" [value]="city.id">
+                        {{ city.name }}
+                    </option>
+                </select>
+                <div class="form-error" *ngIf="city.touched && city.errors">
+                    Seleccione una ciudad
+                </div>
+            </div>
+            <div class="input-group form-group">
+                <ng-container *ngIf="!isAuthor">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="email" name="email" class="form-control" [(ngModel)]="signUp.email" #email="ngModel"
+                        placeholder="Email.  Este será su usuario" required email [disabled]="editionMode">
+                    <div class="form-error" *ngIf="email.touched && email.errors?.email">
+                        Formato de email no valido
+                    </div>
+                    <div class="form-error" *ngIf="email.touched && email.errors?.required">
+                        Email es requerido
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                </div>
+                <input type="text" name="phone" class="form-control" [(ngModel)]="signUp.phone" #phone="ngModel"
+                    placeholder="Telefono (Opcional)" maxlength="10" [style.height.px]="38">
+
+            </div>
+            <ng-container *ngIf="!isAuthor">
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="password" #password="ngModel" [(ngModel)]="signUp.password"
+                        class="form-control" placeholder="Contraseña" minlength="8" maxlength="15"
+                        [required]="!editionMode">
+                    <div class="form-error" *ngIf="password.touched && password.errors?.required">
+                        Contraseña es requerida
+                    </div>
+                    <div class="form-error" *ngIf="password.touched && password.errors?.minlength">
+                        Minimo 8 caracteres
+                    </div>
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" name="confirmPassword" #confirmPassword="ngModel"
+                        [(ngModel)]="signUp.confirmPassword" class="form-control" (change)="onChange()"
+                        placeholder="Confirmar Contraseña" maxlength="15">
+                    <div class="form-error" *ngIf="pwderror">
+                        Confirmar contraseña no coincide
+                    </div>
+                </div>
+            </ng-container>
+            <div class="row align-items-center remember">
+
+            </div>
+            <div class="form-group">
+   
+                <input type="submit" [value]="title" class="btn float-right login_btn"
+                    [disabled]="form.pristine || form.invalid || pwderror">
+
+                    <input type="button" value="Cancelar" class="btn float-right login_btn"
+                    (click)="onCancel()" *ngIf="isAuthor"
+             >
+            </div>
+
+        </div>
+
+
+    </div>
+</form>

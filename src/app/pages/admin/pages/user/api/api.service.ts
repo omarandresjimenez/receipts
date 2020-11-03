@@ -148,8 +148,8 @@ export class ApiService extends AppHttpErrorHandler  {
    }
 
   public getUsersByTypeActor(idActorType: string, search: string): Observable<UserModel[]> | Observable<any[]> {
-    return this.getUsers();
-    // return this.http.get<UserModel[]>(this.BASEURL + 'user/getUsersbyActorType/' + idActorType + '/' + search);
+    // return this.getUsers();
+    return this.http.get<UserModel[]>(this.BASEURL + 'user/getUsersbyActorType/' + idActorType + '/' + search);
   }
 
   public getUsers(): Observable<UserModel[]> | Observable<any[]> {
