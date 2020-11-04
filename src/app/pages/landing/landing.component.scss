@@ -40,13 +40,13 @@ a{ color: inherit !important; }
 	background-color: #ffbc00;
 }
 
-
+a:hover{ text-decoration: none !important;}
 
 .card{ margin-bottom: 24px; border:none !important; position: relative; color: white; }
 
 .card .card-img-overlay{
 	position: relative;
-	padding: 100px 45px 45px; 
+	padding: 160px 45px 45px; 
 }
 
 .card h5{
@@ -83,7 +83,7 @@ a{ color: inherit !important; }
 }
 
 .hover-card{
-	background-color: rgba(7, 232, 255, 1);
+	background-color: #343F6A;
 	opacity: 0;
 	left: 0px;
 	top: 0px;
@@ -100,7 +100,7 @@ a{ color: inherit !important; }
 	position: relative;
 	height: 100px;
 	background: url('/assets/imgs/divider-paper.png') no-repeat center center;
-	background-size: contain;
+	background-size: cover;
 	top: -50px;
 }
 
@@ -209,10 +209,10 @@ section.winners img{
 }
 
 footer{
-	padding: 260px 0px 120px;
+	padding: 290px 0px 120px;
 	background-color: #2E3468;
 	color: white;
-	margin-top: -200px;
+	margin-top: -240px;
 }
 
 footer i{ font-size: 30px; color: rgba(255,255,255,1);}
