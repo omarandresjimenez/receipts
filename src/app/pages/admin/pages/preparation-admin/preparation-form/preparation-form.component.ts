@@ -92,7 +92,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
   ngOnInit(): void {
 
-    this.preparationData  = { id: '0', name: '', description: '', imageURL: '', region: { id: '', name: ' '},
+    this.preparationData  = { id: '', name: '', description: '', imageUrl: '', region: { id: '', name: ' '},
                               active: true, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
                               cookingTechnique: '', preparationType: '', tools: [], ingredients: [],
                               recipe: this.recipe };
@@ -137,7 +137,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
       this.initialListTools = this.preparationData.tools;
       this.recipeControl.setValue(this.recipe?.name);
       this.authorControl.setValue(this.preparationToEdit.author?.name + ' ' + this.preparationToEdit.author?.lastName);
-      this.renderAvatar(this.preparationData.imageURL);
+      this.renderAvatar(this.preparationData.imageUrl);
     }
   }
 
@@ -266,7 +266,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
     reader.onload = () => {
       this.renderAvatar(reader.result);
       this.imageAvatarFile = reader.result;
-      this.preparationData.imageURL = this.imageAvatarFile;
+      this.preparationData.imageUrl = this.imageAvatarFile;
      // this.saveProfilePhoto(this.imageAvatarFile);
     };
     reader.readAsDataURL($event.target.files[0]);
@@ -282,9 +282,15 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   public resetForm(form?: NgForm) {
     this.newpreparation = true;
     this.imageAvatar = null;
+    this.recipe =  { id: '', name: ''};
+    this.initialListIngredients = [];
+    this.initialListTools = [];
+    this.recipeControl.setValue(null);
+    this.authorControl.setValue(null);
 
-    this.preparationData = { id: '0', name: '', description: '', imageURL: '', region: {id: '', name: ''},
-    active: true, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
+
+    this.preparationData = { id: '', name: '', description: '', imageUrl: '', region: {id: '', name: ''},
+    active: false, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
     cookingTechnique: '', preparationType: '', tools: [], ingredients: [],
     recipe: this.recipe };
     if (form != null) {

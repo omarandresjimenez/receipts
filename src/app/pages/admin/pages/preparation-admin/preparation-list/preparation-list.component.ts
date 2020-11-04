@@ -76,7 +76,7 @@ export class PreparationListComponent implements OnInit, OnDestroy {
       width: 170,
       editable: false,
       filter: 'agTextColumnFilter',
-      floatingFilter: false,
+      floatingFilter: true,
       resizable: true,
       sortable: true,
     };

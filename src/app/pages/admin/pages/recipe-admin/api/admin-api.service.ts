@@ -27,7 +27,7 @@ export class AdminApiService extends AppHttpErrorHandler  {
   public createRecipe(recipeModel: Recipe): Observable<boolean> {
     const params = {
       name: recipeModel.name,
-      image: recipeModel.imageURL,
+      image: recipeModel.imageUrl,
       description: recipeModel.description,
       preparations: [],
     };
@@ -40,7 +40,7 @@ export class AdminApiService extends AppHttpErrorHandler  {
   public updateRecipe(recipeModel: Recipe): Observable<boolean> {
     const params = {
       name: recipeModel.name,
-      image: !recipeModel.imageURL.startsWith('data') ? null : recipeModel.imageURL,
+      image: !recipeModel.imageUrl?.startsWith('data') ? null : recipeModel.imageUrl,
       description: recipeModel.description,
     };
     return this.http.put<boolean>(this.BASEURL + 'recipe/' + recipeModel.id, params).pipe(
@@ -60,24 +60,9 @@ export class AdminApiService extends AppHttpErrorHandler  {
       const obj: Recipe = {
           id:  item.id,
           name: item.name,
-          imageURL: item.imageUrl ? item.imageUrl : null,
+          imageUrl: item.imageUrl ? item.imageUrl : null,
           description: item.description,
-          // preparations: item.preparations.map((x: any) => {
-          //   return {
-          //     id: x.id,
-          //     active: x.active,
-          //     name : x.name,
-          //     description: x.description,
-          //     imageURL: x.imageURL ? x.imageURL : null,
-          //     rating: x.rating ? x.rating : 0 ,
-          //     region: x.region,
-          //     author: x.autor ? x.author : {  id: 1, name: ''},
-          //     user: x.user ? x.user : {  id: 1, name: ''},
-          //     ingredients: x.ingredients,
-          //     tools: x.tools,
-          //     recipeId: x.recipeId ? x.recipeId : 1,
-          //   };
-          // }),
+
       };
       return obj;
     })),

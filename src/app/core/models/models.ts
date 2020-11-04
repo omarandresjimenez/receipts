@@ -4,7 +4,7 @@ export interface Recipe {
   id: string;
   name: string;
   description?: string;
-  imageURL?: string;
+  imageUrl?: string;
   city?: City;
   rating?: number;
   preparations?: Preparation[];
@@ -13,7 +13,7 @@ export interface Recipe {
 export interface Preparation {
   id: string;
   name: string;
-  imageURL: string;
+  imageUrl: string;
   description: string;
   active: boolean;
   ingredients?: Ingredient[];

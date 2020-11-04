@@ -25,29 +25,39 @@ export class PreparationApiService extends AppHttpErrorHandler  {
 
   public getPreparationsByUser(userId: string): Observable<Preparation[]> {
     return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getPreparationsByUser/' + userId).pipe(
-      catchError((err) => this.handleError(err))
-    );
+      catchError((err) => this.handleError(err)),
+      map((preps: any[]) => preps.map((prep: any) => {
+        return  { ...prep,
+          active: prep.isActive,
+        };
+      })
+    ));
   }
 
   public getPreparationsByRecipe(recipeId: string): Observable<Preparation[]> {
     return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getPreparationsByRecipe/' + recipeId).pipe(
-      catchError((err) => this.handleError(err))
-    );
+      catchError((err) => this.handleError(err)),
+      map((preps: any[]) => preps.map((prep: any) => {
+        return  { ...prep,
+          active: prep.isActive,
+        };
+      })
+    ));
   }
 
   public createPreparation(preparationModel: Preparation): Observable<string> {
     const params = {
-      recipeId: preparationModel.recipe.id,
+      recipeId: +preparationModel.recipe.id,
       name: preparationModel.name,
-      image: preparationModel.imageURL,
+      image: preparationModel.imageUrl,
       description: preparationModel.description,
       cookingTechnique: preparationModel.cookingTechnique,
       preparationType: preparationModel.preparationType,
-      preparationIngredients: preparationModel.ingredients.map(p  => p.id),
-      preparationTools: preparationModel.tools.map(t  => t.id),
-      authorId: preparationModel.author.id,
-      userId: preparationModel.user.id,
-      regionId: preparationModel.region.id,
+      preparationIngredientsIds: preparationModel.ingredients.map(p  => p.id),
+      preparationToolsIds: preparationModel.tools.map(t  => t.id),
+      authorId: +preparationModel.author.id,
+      userId: +preparationModel.user.id,
+      regionId: +preparationModel.region.id,
     };
     return this.http.post<string>(this.BASEURL + 'preparation', params).pipe(
       catchError((err) => this.handleError(err))
@@ -57,17 +67,17 @@ export class PreparationApiService extends AppHttpErrorHandler  {
 
   public updatePreparation(preparationModel: Preparation): Observable<boolean> {
     const params = {
-      id: preparationModel.id,
-      recipeId: preparationModel.recipe.id,
+      id: +preparationModel.id,
+      recipeId: +preparationModel.recipe.id,
       name: preparationModel.name,
-      image: !preparationModel.imageURL.startsWith('data') ? null : preparationModel.imageURL,
+      image: !preparationModel.imageUrl?.startsWith('data') ? null : preparationModel.imageUrl,
       description: preparationModel.description,
       cookingTechnique: preparationModel.cookingTechnique,
       preparationType: preparationModel.preparationType,
-      preparationIngredients: preparationModel.ingredients.map(p  => p.id),
-      preparationTools: preparationModel.tools.map(t  => t.id),
-      authorId: preparationModel.author.id,
-      userId: preparationModel.user.id,
+      preparationIngredientsIds: preparationModel.ingredients.map(p  => p.id),
+      preparationToolsIds: preparationModel.tools.map(t  => t.id),
+      authorId: +preparationModel.author.id,
+      userId: +preparationModel.user.id,
       regionId: preparationModel.region.id,
     };
     return this.http.put<boolean>(this.BASEURL + 'preparation/' + preparationModel.id, params).pipe(

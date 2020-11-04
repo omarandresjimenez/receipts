@@ -27,7 +27,7 @@ export class RecipeApiService  extends AppHttpErrorHandler {
                  const obj: Recipe = {
                      id:  item.id,
                      name: item.name,
-                     imageURL: item.imageUrl ? item.imageUrl : null,
+                     imageUrl: item.imageUrl ? item.imageUrl : null,
                      description: item.description,
                  };
                  return obj;

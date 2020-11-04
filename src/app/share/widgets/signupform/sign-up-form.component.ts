@@ -85,17 +85,18 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes?.signUp && this.signUp?.birthDate) {
-      this.birthDate.year = +this.signUp.birthDate.split('-')[0];
-      this.birthDate.month = this.months[+this.signUp.birthDate.split('-')[1] - 1];
-      this.birthDate.day = +this.signUp.birthDate.split('-')[2];
+    if (changes?.signUp && this.signUp) {
+      if (this.signUp.birthDate) {
+        this.birthDate.year = +this.signUp.birthDate.split('-')[0];
+        this.birthDate.month = this.months[+this.signUp.birthDate.split('-')[1] - 1];
+        this.birthDate.day = +this.signUp.birthDate.split('-')[2];
+      }
       this.loadCities(null);
       this.renderAvatar(this.signUp?.imageUrl);
-      // this.signUp.imageUrl = null;
     }
-    if (this.isAuthor) {
+    if (this.isAuthor && this.signUp) {
       this.signUp.actorTypeId = this.ID_TYPEAUTHOR_COOKER;
-      this.signUp.email = (Math.random() * 10000).toString() + '@cocinerotradicional';
+      this.signUp.email = parseInt((Math.random() * 10000).toString(), 10) + '@cocinerotradicional';
     }
 
   }
@@ -133,7 +134,9 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
                               (this.months.indexOf(this.birthDate.month) + 1).toString().padStart(2, '0') + '-' +
                               this.birthDate.day.toString().padStart(2, '0');
       this.formSubmit.emit({ ... this.signUp });
-      this.resetForm();
+      if (!this.editionMode) {
+        this.resetForm();
+      }
     }
   }
 

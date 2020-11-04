@@ -23,37 +23,19 @@ export class ApiService extends AppHttpErrorHandler  {
    }
 
   public authenticate(userLogin: UserLogin): Observable<UserModel> {
-    // return of({
-    //   name: 'Antonio',
-    //   lastName: 'Aguilar',
-    //   identification: '101870900',
-    //   phone: '323456589',
-    //   active: true,
-    //   imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-    //   email: 'antonio@hotmail.com',
-    //   cityId: '5001',
-    //   state: '5',
-    //   role: 'user',
-    //   age: 43,
-    //   cityName: 'Medellin',
-    //   stateName: 'Antioquia',
-    //   regionName: 'Caribe',
-    //   creationDate: '2020/10/28TTT',
-    //   establishment: 'Restaurante caribe',
-    //   actorTypeName: 'Cocinero',
-    // });
     return this.http.post<UserModel>(this.BASEURL + 'user/authenticate', userLogin)
     .pipe(
       catchError((err) => this.handleError(err)),
       map((user) => {
-        return { ...user, role: 'admin', city: user.city.id,
+        return { ...user, city: user.city.id,
                     state: user.city?.department.id,
                     birthDate: user.birthDate?.substring(0, 10),
                     actorTypeId: user.actorType.id,
                     actorTypeName: user.actorType.name,
                     cityName: user.city.name,
                     stateName: user.city.department?.name,
-                    regionName: user.city.department?.regionId
+                    regionName: user.city.department?.region?.name,
+                    active: user.isActive,
                   };
       })
       );
@@ -95,7 +77,7 @@ export class ApiService extends AppHttpErrorHandler  {
       identification: userModel.identification,
       birthDate: userModel.birthDate,
       phone: userModel.phone,
-      image: !userModel.imageUrl.startsWith('data') ? null : userModel.imageUrl,
+      image: !userModel.imageUrl?.startsWith('data') ? null : userModel.imageUrl,
       shouldChangePassword: true,
       emailValidated: false,
       actorTypeId: userModel.actorTypeId,
@@ -132,26 +114,21 @@ export class ApiService extends AppHttpErrorHandler  {
 
 
   public getUser(id: string): Observable<UserModel> {
-      // return of({
-      //   name: 'Antonio',
-      //   lastName: 'Aguilar',
-      //   identification: '101870900',
-      //   phone: '323456589',
-      //   active: true,
-      //   imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-      //   email: 'antonio@hotmail.com',
-      //   cityId: '5001',
-      //   state: '5',
-      //   role: 'user',
-      //   age: 43,
-      //   cityName: 'Medellin',
-      //   stateName: 'Antioquia',
-      //   regionName: 'Caribe',
-      //   creationDate: '2020/10/28TTT',
-      //   establishment: 'Restaurante caribe',
-      //   actorTypeName: 'Cocinero',
-      // });
-      return this.http.get<UserModel>(this.BASEURL + 'user/' + id);
+      return this.http.get<UserModel>(this.BASEURL + 'user/' + id).pipe(
+        catchError((err) => this.handleError(err)),
+        map((user) => {
+          return { ...user, city: user.city.id,
+                      state: user.city?.department.id,
+                      birthDate: user.birthDate?.substring(0, 10),
+                      actorTypeId: user.actorType.id,
+                      actorTypeName: user.actorType.name,
+                      cityName: user.city.name,
+                      stateName: user.city.department?.name,
+                      regionName: user.city.department?.region?.name,
+                      active: user.isActive,
+                    };
+        })
+        );
    }
 
   public getUsersByTypeActor(idActorType: string, search: string): Observable<UserModel[]> | Observable<any[]> {
@@ -163,52 +140,6 @@ export class ApiService extends AppHttpErrorHandler  {
   }
 
   public getUsers(): Observable<UserModel[]> | Observable<any[]> {
-//     return of([{
-//       id: '1',
-//       name: 'Antonio',
-//       lastName: 'Aguilar',
-//       identification: '101870900',
-//       phone: '323456589',
-//       active: true,
-//       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-//       email: 'antonio@hotmail.com',
-//       cityId: '5001',
-//       state: '5',
-//       role: 'user',
-//       age: 43,
-//       cityName: 'Medellin',
-//       stateName: 'Antioquia',
-//       regionName: 'Caribe',
-//       creationDate: '2020/10/28TTT',
-//       establishment: 'Restaurante caribe',
-//       actorTypeName: 'Cocinero',
-//     },
-//     {
-//       id: '3',
-//       name: 'Maria Antonieta',
-//       lastName: 'De las Nieves',
-//       identification: '331870900',
-//       phone: '3119089876',
-//       active: true,
-//       imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-//       email: 'amaria@hotmail.com',
-//       cityId: '5001',
-//       state: '5',
-//       role: 'user',
-//       age: 56,
-//       cityName: 'Tunja',
-//       stateName: 'Boyaca',
-//       regionName: 'Andina',
-//       creationDate: '2020/10/13T001',
-//       establishment: 'Universiodad Nacional',
-//       actorTypeName: 'Docente',
-
-//     },
-//   ]).pipe(
-//       map((users: any[]) => users.map((user: any) => {
-//         return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
-//     } ))
-// );
      return this.http.get<any[]>(this.BASEURL + 'user').pipe(
       catchError((err) => this.handleError(err)),
       map((users: any[]) => users.map((user: any) => {
@@ -231,7 +162,7 @@ export class ApiService extends AppHttpErrorHandler  {
                   regionName: user.city.department.region?.id,
                   creationDate: user.creationDate?.substring(0, 10),
                   role: user.role,
-                  active: user.active,
+                  active: user.isActive,
                   phone: user.phone,
              };
         } ))

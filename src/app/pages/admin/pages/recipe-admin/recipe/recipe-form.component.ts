@@ -21,7 +21,7 @@ import { PreparationService } from '../../preparation-admin/services/admin.servi
 })
 export class AdminRecipeFormComponent implements OnInit, OnChanges {
   public newRecipe = true;
-  public recipeData: Recipe = { id: '0', name: '', description: '', imageURL: '', preparations: []};
+  public recipeData: Recipe = { id: '0', name: '', description: '', imageUrl: '', preparations: []};
 
   public avatarBgSize: any = '80%';
   public imageAvatarFile: any = '';
@@ -55,18 +55,20 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     if (this.recipeToEdit) {
       this.newRecipe = false;
       this.recipeData = { ...this.recipeToEdit };
-      this.renderAvatar(this.recipeData.imageURL);
+      this.renderAvatar(this.recipeData.imageUrl);
       this.columnDefs = this.prepareGridPrepColumns();
-      this.rowPrepData.length = 0;
+      this.rowPrepData = [];
+      this.cdr.markForCheck();
       this.prepService.getPreparationsByRecipe(this.recipeData.id).subscribe(prep => {
                            prep.map((prepa) => {
                             this.rowPrepData.push({ ...prepa, userName: !prepa.user ? '' :
                                                     (prepa.user?.name + ' ' + prepa.user?.lastName) });
-                            this.rowPrepData = [ ...this.rowPrepData ];
-                            this.cdr.markForCheck();
                            });
+                           this.rowPrepData = [ ...this.rowPrepData ];
+                           this.cdr.markForCheck();
       });
     } else {
+      this.rowPrepData = [];
       this.resetForm();
     }
 
@@ -174,7 +176,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
     reader.onload = () => {
       this.renderAvatar(reader.result);
       this.imageAvatarFile = reader.result;
-      this.recipeData.imageURL = this.imageAvatarFile;
+      this.recipeData.imageUrl = this.imageAvatarFile;
      // this.saveProfilePhoto(this.imageAvatarFile);
     };
     reader.readAsDataURL($event.target.files[0]);
@@ -194,7 +196,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
       id: '0',
       name: '',
       description: '',
-      imageURL: '',
+      imageUrl: '',
     };
     if (form != null) {
       form.form.reset();

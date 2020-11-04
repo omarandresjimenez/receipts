@@ -9,6 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 import { UserSessionService } from 'src/app/core/services/session.service';
 import { UserService } from '../../pages/user/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 
@@ -25,11 +26,11 @@ constructor(private userService: UserService,
             private userSession: UserSessionService,
             private cdr: ChangeDetectorRef,
             private toast: ToastrService,
+            private router: Router,
             ) { }
 
 public ngOnInit(): void {
-  this.userData$ = this.userSession.userSession$;
-
+  this.userData$ = this.userService.getUser(this.userSession.getCurrentUser().id);
 }
 
 public ngOnDestroy(): void {
@@ -40,6 +41,7 @@ public onSubmit(data: UserModel) {
   this.userService.updateUser(data).subscribe((res) => {
     if (res) {
       this.toast.success('Datos actualizados');
+      this.router.navigateByUrl('/');
     }
   });
 }

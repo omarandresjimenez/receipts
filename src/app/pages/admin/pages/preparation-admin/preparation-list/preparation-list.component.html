@@ -1,4 +1,4 @@
-<div style="height: 200px; box-sizing: border-box;">
+<div style="height: 300px; box-sizing: border-box;">
   <ag-grid-angular
     #preparationGrid
     style="width: 100%; height: 100%;"
@@ -8,6 +8,8 @@
     [columnDefs]="columnDefs"
     [rowData]="rowData"
     [rowSelection]="'single'"
+    [pagination]="true"
+    [paginationPageSize]="100"
     (selectionChanged)="onSelectRow($event)"
     (gridReady)="onGridReady($event)"
   ></ag-grid-angular>
