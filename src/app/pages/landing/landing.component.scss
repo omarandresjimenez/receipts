@@ -3,6 +3,8 @@
 body{
 	background: url('/assets/imgs/bg-landing.jpg') top center no-repeat;
 	background-size: cover;
+	display: table;
+    width: 100%;
 }
 
 
@@ -10,7 +12,7 @@ body{
 a{ color: inherit !important; }
 
 .top-bar{
-	padding: 20px 0px;
+	padding: 0px 0px;
 	color: white;
 }
 
@@ -40,15 +42,30 @@ a{ color: inherit !important; }
 	height: 100px;
 	background-image: url('/assets/imgs/divider-paper.png');
 	background-size: contain;
-	margin-top: -50px;
+	top: -50px;
+}
+
+.divider-paper-white.top{
+	top: 50px;
 }
 
 
 section.services{
-	margin-top: 40px;
-	background-image: url('/assets/imgs/pattern-circle.ong');
+	margin-top: 0px;
+	background-image: url('/assets/imgs/pattern-circle.png');
+	background-size: contain;
 	background-repeat: repeat;
 	background-color: white;
+	padding: 60px 0px 120px;
+}
+
+section.services h2{
+	font-style: normal;
+	font-weight: 800;
+	font-size: 60px;
+	line-height: 94.5%;
+	color: #58698F;
+	max-width: 656px;
 }
 
 
@@ -68,6 +85,32 @@ section.stories .title-stories{
 
 section.stories .stories-content {
 	margin-bottom: 40px;
+}
+
+section.about{
+	background-color: #564BD3;
+	padding-bottom: 300px;
+	color: white;
+}
+
+section.about h4{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 98.5%;
+
+	text-align: center;
+	letter-spacing: -0.04em;
+
+	color: #FFFFFF;
+}
+
+section.about p{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 155%;
+	color: #FFFFFF;
 }
 
 
