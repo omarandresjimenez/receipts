@@ -42,14 +42,42 @@ a{ color: inherit !important; }
 
 
 
-.card{ margin-bottom: 24px; border:none !important; position: relative; color: white; padding: 100px 20px 20px; }
+.card{ margin-bottom: 24px; border:none !important; position: relative; color: white; }
+
+.card .card-img-overlay{
+	position: relative;
+	padding: 100px 20px 20px; 
+}
+
+.card h5{
+	font-style: normal;
+	font-weight: 800;
+	font-size: 32px;
+	line-height: 111%;
+	font-family: 'Ubuntu', sans-serif;
+	/* or 36px */
+
+
+	color: #FFFFFF;
+}
+
+.card p{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 155%;
+	/* or 28px */
+
+
+	color: #FFFFFF;
+}
 
 .card.recepies{
 	background: url('/assets/imgs/recepies-bg.jpg') no-repeat bottom center;
 	background-size: cover;
 }
 
-.card.recepies{
+.card.map{
 	background: url('/assets/imgs/map-bg.jpg') no-repeat bottom center;
 	background-size: cover;
 }
@@ -154,17 +182,29 @@ section.winners{
 	max-width: 90%;
 	margin: auto;
 	background-color: white;
-	margin-top: -100px;
+	margin-top: -150px;
 	position: relative;
 	z-index: 10;
 }
 
+section.winners h4{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 28.2793px;
+	line-height: 129.5%;
+	/* or 37px */
+
+	letter-spacing: -0.04em;
+
+	color: #393D5E;
+}
+
 
 footer{
-	padding: 220px 0px 120px;
+	padding: 260px 0px 120px;
 	background-color: #2E3468;
 	color: white;
-	margin-top: -100px;
+	margin-top: -200px;
 }
 
 footer i{ font-size: 30px; color: rgba(255,255,255,1);}
