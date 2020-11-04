@@ -66,6 +66,7 @@
             <mat-option *ngFor="let rec of authorList$ | async" [value]="rec.name + ' ' + rec.lastName" (onSelectionChange)="selectAuthor($event, rec.id)">
               <img class="option-img" aria-hidden [src]="rec.imageUrl" height="25">
               <span>{{rec.name + ' ' + rec.lastName}}</span>
+              <small>Región: <b>{{rec.regionName}}</b></small>
             </mat-option>
           </mat-autocomplete>
       </div>
