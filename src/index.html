@@ -11,32 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link rel="preload" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <!-- SwiperJS -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script>
-    var mySwiper = new Swiper('.swiper-container.stories-slider', {
-      // Optional parameters
-      direction: 'vertical',
-      loop: true,
-
-      // If we need pagination
-      pagination: {
-        el: '.swiper-pagination',
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-
-      // And if we need scrollbar
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-    })
-  </script>
+ 
    <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178246746-1"></script>
 <script>
@@ -52,5 +27,32 @@
 </head>
 <body class="mat-typography">
   <app-root></app-root>
+
+   <!-- SwiperJS -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   <script>
+     var mySwiper = new Swiper('.swiper-container.stories-slider', {
+       // Optional parameters
+       direction: 'vertical',
+       loop: true,
+ 
+       // If we need pagination
+       pagination: {
+         el: '.swiper-pagination',
+       },
+ 
+       // Navigation arrows
+       navigation: {
+         nextEl: '.swiper-button-next',
+         prevEl: '.swiper-button-prev',
+       },
+ 
+       // And if we need scrollbar
+       scrollbar: {
+         el: '.swiper-scrollbar',
+       },
+     })
+   </script>
 </body>
 </html>
