@@ -3,6 +3,8 @@
 body{
 	background: url('/assets/imgs/bg-landing.jpg') top center no-repeat;
 	background-size: cover;
+	display: table;
+    width: 100%;
 }
 
 
@@ -10,23 +12,82 @@ body{
 a{ color: inherit !important; }
 
 .top-bar{
-	padding: 20px 0px;
+	padding: 0px 0px;
 	color: white;
+	background-color: white;
 }
 
 .top-bar li{
 	padding: 10px 10px;
 }
 
+.top-bar li a{
+	color: #58698F;
+}
+
+.login_btn {
+    color: #000;
+    background-color: #ffdf00;
+    width: 120px;
+    padding: 10px 15px;
+    box-shadow: 0 10px 30px -10px rgba(255,223,0,.61);
+    margin: 10px;
+    border-radius: 30px;
+    border: none;
+}
+
+.login_btn:hover{
+	background-color: #ffbc00;
+}
+
+a:hover{ text-decoration: none !important;}
+
+.card{ margin-bottom: 24px; border:none !important; position: relative; color: white; }
+
+.card .card-img-overlay{
+	position: relative;
+	padding: 160px 45px 45px; 
+}
+
+.card h5{
+	font-style: normal;
+	font-weight: 800;
+	font-size: 32px;
+	line-height: 111%;
+	font-family: 'Ubuntu', sans-serif;
+	/* or 36px */
 
 
-.card{ margin-bottom: 24px; border:none !important; position: relative; }
+	color: #FFFFFF;
+}
+
+.card p{
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 155%;
+	/* or 28px */
+
+
+	color: #FFFFFF;
+}
+
+.card.recepies{
+	background: url('/assets/imgs/recepies-bg.jpg') no-repeat bottom center;
+	background-size: cover;
+}
+
+.card.map{
+	background: url('/assets/imgs/map-bg.jpg') no-repeat bottom center;
+	background-size: cover;
+}
 
 .hover-card{
-	background-color: rgba(7, 232, 255, 1);
+	background-color: #343F6A;
 	opacity: 0;
-	position:
-	absolute;
+	left: 0px;
+	top: 0px;
+	position:absolute;
 	width: 100%;
 	height: 100%;
 	transition: all ease-in-out .2s;
@@ -34,14 +95,40 @@ a{ color: inherit !important; }
 
 .card:hover .hover-card{ opacity: 0.3; }
 
+.divider-paper-white{
+	width: 100%;
+	position: relative;
+	height: 100px;
+	background: url('/assets/imgs/divider-paper.png') no-repeat center center;
+	background-size: cover;
+	top: -50px;
+}
+
+.divider-paper-white.top{
+	top: 50px;
+}
+
 
 section.services{
-	margin-top: 40px;
+	margin-top: 0px;
+	background-color: white;
+	padding: 60px 0px 120px;
+}
+
+section.services h2{
+	font-style: normal;
+	font-weight: 800;
+	font-size: 50px;
+	line-height: 94.5%;
+	margin-bottom: 40px;
+	color: #58698F;
+	max-width: 656px;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 
 section.stories{
-	padding: 120px 0px 200px;
+	padding: 50px 0px 100px;
 }
 
 section.stories .title-stories{
@@ -58,11 +145,74 @@ section.stories .stories-content {
 	margin-bottom: 40px;
 }
 
+section.about{
+	background-color: #564BD3;
+	padding-bottom: 300px;
+	color: white;
+	padding: 120px 0px 300px;
+}
+
+section.about h4{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 98.5%;
+
+	text-align: center;
+	letter-spacing: -0.04em;
+
+	color: #FFFFFF;
+}
+
+section.about figure{
+	text-align: center;
+    margin-bottom: 50px;
+    margin-top: -10px;
+}
+
+section.about p{
+	font-style: normal;
+	font-size: 16px;
+	line-height: 30px;
+    font-weight: 500;
+	color: #FFFFFF;
+}
+
+section.winners{
+	padding: 60px 30px;
+	max-width: 90%;
+	margin: auto;
+	background-color: white;
+	margin-top: -150px;
+	position: relative;
+	z-index: 10;
+}
+
+section.winners h4{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 28.2793px;
+	line-height: 129.5%;
+	/* or 37px */
+
+	letter-spacing: -0.04em;
+
+	color: #393D5E;
+}
+
+section.winners p{
+	margin-bottom: 40px;
+}
+
+section.winners img{
+	margin-bottom: 20px;
+}
 
 footer{
-	padding: 120px 0px 120px;
-	background-color: rgba(0,0,0,0.4);
+	padding: 290px 0px 120px;
+	background-color: #2E3468;
 	color: white;
+	margin-top: -240px;
 }
 
 footer i{ font-size: 30px; color: rgba(255,255,255,1);}
@@ -76,11 +226,21 @@ footer p{
 	margin: auto;
 	font-weight: 300;
 	line-height: 25px;
-	opacity: .4;
+	opacity: .6;
 }
 
 footer .logo-footer{
 	padding: 10px 0px 40px;
+}
+
+
+.swiper-container.stories-slider {
+    width: 100%;
+    height: 600px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: white;
 }
 
 

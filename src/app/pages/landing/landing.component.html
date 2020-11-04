@@ -21,43 +21,28 @@
 	<section class="services">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-12">
+					<h2>Explora a Colombia y su herencia culinaria</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 d-flex align-items-stretch">
 					<a  routerLink='../container/catalog'>
-						<div class="card bg-dark text-white">
+						<div class="card bg-dark recepies text-white">
 							<div class="hover-card"></div>
-							<img class="card-img" src="assets/imgs/card-item-2.jpg" alt="Card image">
 							<div class="card-img-overlay">
-								<h5 class="card-title"></h5>
-								<p class="card-text"></p>
+								<h5 class="card-title">Recetas</h5>
+								<p class="card-text">Recetas, historias, preparaciones y utencilios de nuestra Herencia Gastronómica.</p>
 								<p class="card-text"></p>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="col-lg-4">
-					<div class="card bg-dark text-white">
-						<img class="card-img" src="assets/imgs/card-item.jpg" alt="Card image">
+				<div class="col-lg-6 d-flex align-items-stretch">
+					<div class="card bg-dark map text-white">
 						<div class="card-img-overlay">
-							<h5 class="card-title"></h5>
-							<p class="card-text"></p>
-							<p class="card-text"></p>
-						</div>
-					</div>
-					<div class="card bg-dark text-white">
-						<img class="card-img" src="assets/imgs/card-item-1.jpg" alt="Card image">
-						<div class="card-img-overlay">
-							<h5 class="card-title"></h5>
-							<p class="card-text"></p>
-							<p class="card-text"></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="card bg-dark text-white">
-						<img class="card-img" src="assets/imgs/card-item-3.jpg" alt="Card image">
-						<div class="card-img-overlay">
-							<h5 class="card-title"></h5>
-							<p class="card-text"></p>
+							<h5 class="card-title">Explora a Colombia</h5>
+							<p class="card-text">Descubre a Colombia, sus regiones, historias y recetas.</p>
 							<p class="card-text"></p>
 						</div>
 					</div>
@@ -65,13 +50,36 @@
 			</div>
 		</div>
 	</section>
+	<div class="divider-paper-white"></div>
 	<section class="stories">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
 					<h2 class="title-stories">
 						Nuevas historias
 					</h2>
+				</div>
+				<div class="col-lg-12">
+					<!-- Slider main container -->
+					<div class="swiper-container stories-slider">
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper">
+							<!-- Slides -->
+							<div class="swiper-slide">Slide 1</div>
+							<div class="swiper-slide">Slide 2</div>
+							<div class="swiper-slide">Slide 3</div>
+							...
+						</div>
+						<!-- If we need pagination -->
+						<div class="swiper-pagination"></div>
+
+						<!-- If we need navigation buttons -->
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+
+						<!-- If we need scrollbar -->
+						<div class="swiper-scrollbar"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -85,6 +93,52 @@
 				<div class="col-lg-12">
 					<div class="text-center">
 						<img src="assets/imgs/nav-slider.png" width="150" height="auto" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="divider-paper-white top"></div>
+	<section class="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>Acerca de</h4>
+					<figure><img src="assets/imgs/logo-fullcolor-hrz.png" alt="" width="265"></figure>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+				</div>
+				<div class="col-lg-6">
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="winners">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-6 text-center">
+					<h4>Ganadores convocatoria <b>RetoLab MinCultura 2020</b></h4>
+					<p>GastroHerencia Colombia fue el ganador de la Convocatoria RetoLab 2020 (Ecopetrol, MinCultura, MinTransporte) en la caregoría de MinCultura.</p>
+				</div>
+				<div class="col-lg-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-4 text-center">
+							<img src="assets/imgs/retolab-logo.png" width="74" alt="">
+						</div>
+						<div class="col-lg-4 text-center">
+							<img src="assets/imgs/appsco-logo.png" width="181" alt="">
+						</div>
+						<div class="col-lg-4 text-center">
+							<img src="assets/imgs/mincultura-logo.png" width="230" alt="">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -116,5 +170,7 @@
 			</div>
 		</div>
 	</footer>	
+
+	
 </body>
 </html>
