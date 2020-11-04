@@ -41,7 +41,7 @@ export class UserService {
     return this.service.updateUser(userInfo);
   }
 
-  public getUser(id: string) {
+  public getUser(id: string): Observable<UserModel> {
     return this.service.getUser(id);
   }
 

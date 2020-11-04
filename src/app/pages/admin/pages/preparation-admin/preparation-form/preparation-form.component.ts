@@ -8,11 +8,12 @@ import { PreparationService } from '../../preparation-admin/services/admin.servi
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { UserSessionService } from 'src/app/core/services/session.service';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
-import { forkJoin, Observable, Subscription } from 'rxjs';
+import { combineLatest, forkJoin, Observable, of, Subscription } from 'rxjs';
 import { delay, merge, switchMap } from 'rxjs/operators';
 import { RecipeCatalogService } from 'src/app/pages/catalog/services/recipe-catalog.service';
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from '../../user/services/user.service';
+import { CitiesService } from 'src/app/core/api/cities.service';
 
 
 
@@ -64,6 +65,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   constructor(
               private service: PreparationService,
               private recipeServie: RecipeCatalogService,
+              private cityService: CitiesService,
               private userService: UserService,
               private toast: ToastrService,
               private sessionService: UserSessionService,
@@ -101,15 +103,20 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
                                   return this.recipeServie.searchRecipesBasic(res);
                                 })
                               );
-    this.authorList$ = this.authorControl.valueChanges
+    this.authorControl.valueChanges
                               .pipe(
                                 delay(500),
                                 switchMap((res: string) => {
-                                  return this.userService.getUsersByTypeActor(this.ID_TRADITIONAL_COOKER, res).pipe(
-                                    // tslint:disable-next-line: deprecation
-                                    merge(this.userService.getUsersByTypeActor(this.ID_CHEF, res)));
+                                  return combineLatest([this.userService.getUsersByTypeActor(this.ID_TRADITIONAL_COOKER, res),
+                                                        this.userService.getUsersByTypeActor(this.ID_CHEF, res)])
+
                                 })
-                              );
+                              ).subscribe(([authors1, authors2]: [UserModel[], UserModel[]]) => {
+                                this.authorList$ =  of([ ...authors1, ...authors2 ]);
+                                this.cdr.markForCheck();
+                              });
+
+
     this.subs = this.service.getIngredients().subscribe(ing => {
        this.listIngredients = ing;
     });
@@ -118,7 +125,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
       this.listTools = tool;
    });
 
-    this.regions$ = this.service.getRegions();
+    this.regions$ = this.cityService.getRegions();
 
   }
 

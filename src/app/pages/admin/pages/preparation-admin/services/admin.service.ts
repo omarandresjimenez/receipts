@@ -52,8 +52,4 @@ export class PreparationService {
   public createTool(toolInfo: ItemChip): Observable<ItemChip> {
     return this.service.createTool(toolInfo);
   }
-
-  public getRegions(): Observable<Region[]> {
-    return this.service.getRegions();
-  }
 }

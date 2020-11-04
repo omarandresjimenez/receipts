@@ -62,22 +62,22 @@ export class AdminApiService extends AppHttpErrorHandler  {
           name: item.name,
           imageURL: item.imageURL ? item.imageURL : null,
           description: item.description,
-          preparations: item.preparations.map((x: any) => {
-            return {
-              id: x.id,
-              active: x.active,
-              name : x.name,
-              description: x.description,
-              imageURL: x.imageURL ? x.imageURL : null,
-              rating: x.rating ? x.rating : 0 ,
-              region: x.region,
-              author: x.autor ? x.author : {  id: 1, name: ''},
-              user: x.user ? x.user : {  id: 1, name: ''},
-              ingredients: x.ingredients,
-              tools: x.tools,
-              recipeId: x.recipeId ? x.recipeId : 1,
-            };
-          }),
+          // preparations: item.preparations.map((x: any) => {
+          //   return {
+          //     id: x.id,
+          //     active: x.active,
+          //     name : x.name,
+          //     description: x.description,
+          //     imageURL: x.imageURL ? x.imageURL : null,
+          //     rating: x.rating ? x.rating : 0 ,
+          //     region: x.region,
+          //     author: x.autor ? x.author : {  id: 1, name: ''},
+          //     user: x.user ? x.user : {  id: 1, name: ''},
+          //     ingredients: x.ingredients,
+          //     tools: x.tools,
+          //     recipeId: x.recipeId ? x.recipeId : 1,
+          //   };
+          // }),
       };
       return obj;
     })),

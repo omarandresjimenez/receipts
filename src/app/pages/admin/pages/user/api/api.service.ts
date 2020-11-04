@@ -46,7 +46,15 @@ export class ApiService extends AppHttpErrorHandler  {
     .pipe(
       catchError((err) => this.handleError(err)),
       map((user) => {
-        return { ...user, role: 'admin', city: user.cityId, state: user.city?.departmentId, birthDate: user.birthDate?.substring(0, 10) };
+        return { ...user, role: 'admin', city: user.city.id,
+                    state: user.city?.department.id,
+                    birthDate: user.birthDate?.substring(0, 10),
+                    actorTypeId: user.actorType.id,
+                    actorTypeName: user.actorType.name,
+                    cityName: user.city.name,
+                    stateName: user.city.department?.name,
+                    regionName: user.city.department?.regionId
+                  };
       })
       );
   }
@@ -80,8 +88,7 @@ export class ApiService extends AppHttpErrorHandler  {
       id: userModel.id,
       name: userModel.name,
       lastName: userModel.lastName,
-      password: userModel.password,
-      role: userModel.role,
+      password: userModel.password ? userModel.password : null,
       cityId: userModel.city,
       email: userModel.email,
       active: userModel.active,
@@ -124,32 +131,35 @@ export class ApiService extends AppHttpErrorHandler  {
   }
 
 
-  public getUser(id: string): Observable<UserModel> | Observable<any> | any {
-      return of({
-        name: 'Antonio',
-        lastName: 'Aguilar',
-        identification: '101870900',
-        phone: '323456589',
-        active: true,
-        imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
-        email: 'antonio@hotmail.com',
-        cityId: '5001',
-        state: '5',
-        role: 'user',
-        age: 43,
-        cityName: 'Medellin',
-        stateName: 'Antioquia',
-        regionName: 'Caribe',
-        creationDate: '2020/10/28TTT',
-        establishment: 'Restaurante caribe',
-        actorTypeName: 'Cocinero',
-      });
+  public getUser(id: string): Observable<UserModel> {
+      // return of({
+      //   name: 'Antonio',
+      //   lastName: 'Aguilar',
+      //   identification: '101870900',
+      //   phone: '323456589',
+      //   active: true,
+      //   imageUrl: 'http://static.tvmaze.com/uploads/images/medium_portrait/20/50079.jpg',
+      //   email: 'antonio@hotmail.com',
+      //   cityId: '5001',
+      //   state: '5',
+      //   role: 'user',
+      //   age: 43,
+      //   cityName: 'Medellin',
+      //   stateName: 'Antioquia',
+      //   regionName: 'Caribe',
+      //   creationDate: '2020/10/28TTT',
+      //   establishment: 'Restaurante caribe',
+      //   actorTypeName: 'Cocinero',
+      // });
       return this.http.get<UserModel>(this.BASEURL + 'user/' + id);
    }
 
   public getUsersByTypeActor(idActorType: string, search: string): Observable<UserModel[]> | Observable<any[]> {
     // return this.getUsers();
-    return this.http.get<UserModel[]>(this.BASEURL + 'user/getUsersbyActorType/' + idActorType + '/' + search);
+    if (!search || search.length < 3) {
+      return of([]);
+    }
+    return this.http.get<UserModel[]>(this.BASEURL + 'user/' + idActorType + '/search/' + search);
   }
 
   public getUsers(): Observable<UserModel[]> | Observable<any[]> {
@@ -199,10 +209,31 @@ export class ApiService extends AppHttpErrorHandler  {
 //         return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
 //     } ))
 // );
-     return this.http.get<UserModel[]>(this.BASEURL + 'user').pipe(
+     return this.http.get<any[]>(this.BASEURL + 'user').pipe(
       catchError((err) => this.handleError(err)),
       map((users: any[]) => users.map((user: any) => {
-            return { ...user, city: user.cityId, creationDate: user.creationDate.substring(0, 10) };
+            return {
+                  name: user.name,
+                  lastName: user.lastName,
+                  identification: user.identification,
+                  email: user.email,
+                  id: user.id,
+                  imageUrl: user.imageUrl,
+                  age: user.age,
+                  cityId: user.city.id,
+                  establishment: user.establishment,
+                  state: user.city?.department.id,
+                  birthDate: user.birthDate?.substring(0, 10),
+                  actorTypeId: user.actorType.id,
+                  actorTypeName: user.actorType.name,
+                  cityName: user.city.name,
+                  stateName: user.city.department?.name,
+                  regionName: user.city.department.regionId,
+                  creationDate: user.creationDate?.substring(0, 10),
+                  role: user.role,
+                  active: user.active,
+                  phone: user.phone,
+             };
         } ))
     );
  }

@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import { Observable } from 'rxjs';
 
-import { State, City } from '../models/models';
+import { State, City, Region } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,10 @@ export class CitiesService  {
 
   public getCities(stateId?: string): Observable<City[]> {
     return this.http.get<City[]>(this.BASEURL + 'City/departmentToSearch/' + stateId);
+  }
+
+  public getRegions(): Observable<Region[]> {
+    return this.http.get<Region[]>(this.BASEURL + 'region/');
   }
 
 }

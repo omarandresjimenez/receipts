@@ -56,7 +56,7 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   public signUp: UserModel = { name: '', lastName: '', password: '', birthDate: null, phone: '', identification: '',
-                               confirmPassword: '', email: '', state: '', city: '', imageUrl: '', actorTypeId: '', establishment: '',
+                               confirmPassword: '', email: '', state: '', city: '', imageUrl: null, actorTypeId: '', establishment: '',
                                active: false, emailValidated: false,  role: 'user', shouldChangePassword: true };
 
   @Output()
@@ -95,6 +95,7 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
     }
     if (this.isAuthor) {
       this.signUp.actorTypeId = this.ID_TYPEAUTHOR_COOKER;
+      this.signUp.email = (Math.random() * 10000).toString() + '@cocinerotradicional';
     }
 
   }
@@ -143,7 +144,7 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
 
   private resetForm() {
     this.signUp = { name: '', lastName: '', password: '', birthDate: null, phone: '', identification: '',
-                    confirmPassword: '', email: '', state: '', city: '', imageUrl: '',
+                    confirmPassword: '', email: '', state: '', city: '', imageUrl: null,
                     actorTypeId: this.isAuthor ? this.ID_TYPEAUTHOR_COOKER : '',
                     establishment: '', active: false, emailValidated: false,  role: 'user', shouldChangePassword: true };
   }

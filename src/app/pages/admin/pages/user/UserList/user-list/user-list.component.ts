@@ -1,11 +1,14 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, Inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Observable, Subscription } from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 import { UserModel } from 'src/app/core/models/userModel';
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
+import { Region } from 'src/app/core/models/models';
+import { CitiesService } from 'src/app/core/api/cities.service';
+import { UserModule } from '../../user.module';
 
 
 @Component({
@@ -15,7 +18,8 @@ import { ModalService } from 'src/app/share/widgets/modal/modal.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListComponent implements OnInit, OnDestroy {
-  public users$: Observable<[UserModel]>;
+  public users$: Observable<UserModel[]>;
+  public regions$: Observable<Region[]>;
 
 
   public gridApi;
@@ -31,17 +35,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   constructor(@Inject(DOCUMENT)
               private document: Document,
               private service: UserService,
+              private cityService: CitiesService,
               private toast: ToastrService,
               private modal: ModalService,
               private cdr: ChangeDetectorRef ) { }
 
 
   ngOnInit(): void {
-    this.initGridOptions();
-    this.subs = this.service.getUsers().subscribe((users) => {
-      this.columnDefs = this.prepareGridColumns();
-      this.rowData = users;
-    });
+    this.regions$ = this.cityService.getRegions();
   }
 
   ngOnDestroy(): void {
@@ -131,6 +132,19 @@ export class UserListComponent implements OnInit, OnDestroy {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.initGridOptions();
+    this.columnDefs = this.prepareGridColumns();
+    this.subs = combineLatest([this.service.getUsers(), this.regions$]).subscribe(
+                 ([ users, regions ]: [ UserModule[], Region[] ]) => {
+                 this.rowData = users.map((u: UserModel) => {
+                                 return {
+                                  ...u,
+                                  regionName: regions.find(r => +r.id === + u.regionName).name,
+                                 };
+                                });
+
+                 this.cdr.markForCheck();
+    });
   }
 
 

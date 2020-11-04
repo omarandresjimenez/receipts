@@ -156,10 +156,6 @@ export class PreparationApiService extends AppHttpErrorHandler  {
   }
 
 
-  public getRegions(): Observable<Region[]> {
-    return this.http.get<Region[]>(this.BASEURL + 'region/').pipe(
-      catchError((err) => this.handleError(err))
-    );
-  }
+
 
 }

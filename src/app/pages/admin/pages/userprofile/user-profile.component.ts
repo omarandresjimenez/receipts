@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy,
     ChangeDetectorRef, Output, Input, EventEmitter } from '@angular/core';
 
 
-import { UserModel } from '../../../../core/models/userModel';
+import { UserModel } from 'src/app/core/models/userModel';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { UserSessionService } from '../../../../core/services/session.service';
+import { UserSessionService } from 'src/app/core/services/session.service';
 import { UserService } from '../../pages/user/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,6 +20,7 @@ changeDetection: ChangeDetectionStrategy.OnPush,
 export class UserProfileComponent implements OnInit, OnDestroy {
 public userData$: Observable<UserModel>;
 
+
 constructor(private userService: UserService,
             private userSession: UserSessionService,
             private cdr: ChangeDetectorRef,
@@ -28,6 +29,7 @@ constructor(private userService: UserService,
 
 public ngOnInit(): void {
   this.userData$ = this.userSession.userSession$;
+
 }
 
 public ngOnDestroy(): void {
