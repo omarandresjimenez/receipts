@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastNoAnimation,
         ToastNoAnimationModule,
         ToastrService} from 'ngx-toastr';
+
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -41,6 +44,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    NgxUsefulSwiperModule,
     CoreModule,
     SignUpFormModule,
     HeaderModule,
