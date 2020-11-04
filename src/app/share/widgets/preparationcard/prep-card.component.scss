@@ -58,7 +58,19 @@ $darkBackground: #5b5f97;
     margin-bottom: 20px;
   }
 
+  .chip {
+    padding: 7px 15px;
+    border-radius: 16px;
+    background-color: rgba(0,0,0,0.1);
+    margin-right: 12px;
+    display: flex;
+  }
 
+  .chip span {
+    text-align: center;
+    color: rgba(0,0,0,0.87);
+    font-size: 13px;
+  }
   
   button {
     width: 40%;

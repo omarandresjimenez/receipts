@@ -18,8 +18,8 @@
         [avatarName]="preparation.author?.name + ' ' + preparation.author?.lastName"></app-avatar>
     </span><BR>
 
-    <b>Ingredientes: </b> <span class="list" *ngFor="let i of preparation.ingredients">{{ i.name }}</span><BR>
-    <b>Utensilios: </b> <span class="list" *ngFor="let u of preparation.tools">{{ u.name }}</span><BR>
+    <b>Ingredientes: </b> <div class="chip" *ngFor="let i of preparation.ingredients"><span  >{{ i.name }}</span></div><BR>
+    <b>Utensilios: </b> <div class="chip" *ngFor="let u of preparation.tools"><span  >{{ u.name }}</span></div><BR>
     <label class="c_checkbox by-store-checkbox">
       <div class="c_checkbox-label">Activo: </div>
       <div class="c_checkbox-toggle">
