@@ -34,9 +34,21 @@ a{ color: inherit !important; }
 
 .card:hover .hover-card{ opacity: 0.3; }
 
+.divider-paper-white{
+	width: 100%;
+	position: relative;
+	height: 100px;
+	background-image: url('/assets/imgs/divider-paper.png');
+	background-size: contain;
+	margin-top: -50px;
+}
+
 
 section.services{
 	margin-top: 40px;
+	background-image: url('/assets/imgs/pattern-circle.ong');
+	background-repeat: repeat;
+	background-color: white;
 }
 
 
