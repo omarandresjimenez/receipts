@@ -2,20 +2,17 @@
     <div class="card-content">
         <div class="card-img">
             <img [src]="card.imageURL" alt="">
-            <span><h4>{{ card.name | limitTo: '15'}}</h4></span>
+            <!-- <span><h4>{{ card.name | limitTo: '15'}}</h4></span> -->
         </div>
         <div class="card-desc">
+            <div class="stars">
+                <span class="fa fa-star checked fa-color"></span>
+                <span class="review-no" [style.padding.px]="10">{{ card.rating }} ranking</span>
+            </div>
             <h3>{{ card.name }}</h3>
             <div class="rating">
-                <div class="stars">
-                    <span class="fa fa-star checked fa-color"></span>
-                    <span class="review-no" [style.padding.px]="10">{{ card.rating }} ranking</span>
-                    <button (click)="onSelect(card.id)" class="btn-card">Detalle</button>
-                </div>
-
+                <button (click)="onSelect(card.id)" class="btn-card">Detalle</button>
             </div>
-           
-               
         </div>
     </div>
 

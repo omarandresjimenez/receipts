@@ -16,7 +16,7 @@ section{
 }
 
 .fa-color {
-  color: yellow;
+  color: #5959D2;
 }
 
 .card-content {
@@ -59,16 +59,17 @@ section{
         font-size: 12px;
         margin:0;
         padding:10px 5px;
-         line-height: 0;
+        line-height: 0;
+        color: #6E798C;
 }
 .card-desc {
 	padding: 1.25rem;
 }
 
 .card-desc h3 {
-	color: #000000;
+	color: #081F32;
     font-weight: 600;
-    font-size: 1.5em;
+    font-size: 20px;
     line-height: 1.3em;
     margin-top: 0;
     margin-bottom: 5px;
@@ -84,16 +85,16 @@ section{
 	margin: 0px;
 	margin-bottom: 20px;
 	padding: 0;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
 }
 .btn-card{
-	background-color: #1abc9c;
+	background-color: #5959D2;
     box-shadow: 0px 6px 17px -10px rgba(0,0,0,0.5);
     padding: 10px 20px;
     letter-spacing: 2px;
     font-size: .81rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    margin: 0;
+    margin: 10px 0 0 0;
     border: 0;
     border-radius: 40px;
     cursor: pointer;
@@ -103,7 +104,7 @@ section{
     color: #fff;
 }
 .btn-card:hover {
-    background: orange;
+    background: #4444FF;
 }
 a.btn-card {
     text-decoration: none;
