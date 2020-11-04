@@ -228,7 +228,7 @@ export class ApiService extends AppHttpErrorHandler  {
                   actorTypeName: user.actorType.name,
                   cityName: user.city.name,
                   stateName: user.city.department?.name,
-                  regionName: user.city.department.regionId,
+                  regionName: user.city.department.region?.id,
                   creationDate: user.creationDate?.substring(0, 10),
                   role: user.role,
                   active: user.active,

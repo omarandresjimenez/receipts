@@ -21,6 +21,10 @@ export class PreparationService {
     return this.service.getPreparationsByUser(userId);
   }
 
+  public getPreparationsByRecipe(recipeId: string): Observable<Preparation[]> {
+    return this.service.getPreparationsByRecipe(recipeId);
+  }
+
   public notifyNewpreparation(rec: Preparation): void {
     this.newpreparationAdded.next(rec);
   }

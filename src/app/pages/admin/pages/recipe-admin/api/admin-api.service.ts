@@ -55,12 +55,12 @@ export class AdminApiService extends AppHttpErrorHandler  {
   }
 
   public getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.BASEURL + 'recipe').pipe(
+    return this.http.get<any[]>(this.BASEURL + 'recipe').pipe(
       map((res) => res.map((item) => {
       const obj: Recipe = {
           id:  item.id,
           name: item.name,
-          imageURL: item.imageURL ? item.imageURL : null,
+          imageURL: item.imageUrl ? item.imageUrl : null,
           description: item.description,
           // preparations: item.preparations.map((x: any) => {
           //   return {

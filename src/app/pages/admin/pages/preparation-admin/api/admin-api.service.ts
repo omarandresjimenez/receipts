@@ -24,55 +24,16 @@ export class PreparationApiService extends AppHttpErrorHandler  {
    }
 
   public getPreparationsByUser(userId: string): Observable<Preparation[]> {
-    // return of([
-    //    {
-    //       id: '1',
-    //       recipe: {
-    //          id: '1',
-    //          name: 'Ajiaco Santafereno',
-    //       },
-    //       active: true,
-    //       name : 'Ajiaco Santafereno',
-    //       description: 'Ajiaco tipico region Centro... bla',
-    //       imageURL: 'http://gastroherencia/images/ajaicosant.jpg',
-    //       cookingTechnique: 'tecnica de cocina',
-    //       preparationType:  'tipo preparacion',
-    //       rating: 3.4,
-    //       region:  {
-    //                      id: '1',
-    //                       name: 'andina',
-    //                    },
-    //       ingredients: [
-    //         {
-    //           id: '1',
-    //           name: 'Pollo',
-    //         }
-    //      ],
-    //        tools: [
-    //         {
-    //            id: '1',
-    //            name: 'Olla de Ajiaco'
-    //         }
-    //       ],
-    //       user: {
-    //         id: '1',
-    //         name: 'Pedro',
-    //         lastName: 'Perez',
-    //         imageUrl: ''
-    //       },
-    //       author: {
-    //         id: '1',
-    //         name: 'Maria',
-    //         lastName: 'Lopez',
-    //         imageUrl: ''
-    //       }
-    //  }
-    // ]);
     return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getPreparationsByUser/' + userId).pipe(
       catchError((err) => this.handleError(err))
     );
   }
 
+  public getPreparationsByRecipe(recipeId: string): Observable<Preparation[]> {
+    return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getPreparationsByRecipe/' + recipeId).pipe(
+      catchError((err) => this.handleError(err))
+    );
+  }
 
   public createPreparation(preparationModel: Preparation): Observable<string> {
     const params = {

@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 import { Region } from 'src/app/core/models/models';
-import { CitiesService } from 'src/app/core/api/cities.service';
+
 import { UserModule } from '../../user.module';
 
 
@@ -35,14 +35,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   constructor(@Inject(DOCUMENT)
               private document: Document,
               private service: UserService,
-              private cityService: CitiesService,
+              // private cityService: CitiesService,
               private toast: ToastrService,
               private modal: ModalService,
               private cdr: ChangeDetectorRef ) { }
 
 
   ngOnInit(): void {
-    this.regions$ = this.cityService.getRegions();
+   //  this.regions$ = this.cityService.getRegions();
   }
 
   ngOnDestroy(): void {
@@ -134,16 +134,17 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.gridColumnApi = params.columnApi;
     this.initGridOptions();
     this.columnDefs = this.prepareGridColumns();
-    this.subs = combineLatest([this.service.getUsers(), this.regions$]).subscribe(
-                 ([ users, regions ]: [ UserModule[], Region[] ]) => {
-                 this.rowData = users.map((u: UserModel) => {
-                                 return {
-                                  ...u,
-                                  regionName: regions.find(r => +r.id === + u.regionName).name,
-                                 };
-                                });
-
-                 this.cdr.markForCheck();
+    // this.subs = combineLatest([this.service.getUsers(), this.regions$]).subscribe(
+    //              ([ users, regions ]: [ UserModule[], Region[] ]) => {
+    //              this.rowData = users.map((u: UserModel) => {
+    //                              return {
+    //                               ...u,
+    //                               regionName: regions.find(r => +r.id === + u.regionName).name,
+    //                              };
+    //                             });
+    this.subs = this.service.getUsers().subscribe( users => {
+      this.rowData = users;
+      this.cdr.markForCheck();
     });
   }
 

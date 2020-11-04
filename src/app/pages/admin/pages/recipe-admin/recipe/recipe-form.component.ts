@@ -4,14 +4,13 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { AdminService } from '../../recipe-admin/services/admin.service';
-import { Preparation, Recipe } from '../../../../../core/models/models';
+import { Preparation, Recipe } from 'src/app/core/models/models';
 import { DOCUMENT } from '@angular/common';
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 import { UserService } from '../../user/services/user.service';
-import { combineLatest, from, of } from 'rxjs';
-import { map, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
-import { UserModel } from 'src/app/core/models/UserModel';
+
+import { PreparationService } from '../../preparation-admin/services/admin.service';
 
 
 @Component({
@@ -30,7 +29,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
 
   public defaultColDef;
   public columnDefs: ColumnsGrid[];
-  public rowPrepData: Preparation[];
+  public rowPrepData: Preparation[] = [];
 
   public selectedPrep: Preparation;
 
@@ -38,6 +37,7 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
               private document: Document,
               private service: AdminService,
               private userService: UserService,
+              private prepService: PreparationService,
               private toast: ToastrService,
               private modal: ModalService,
               private cdr: ChangeDetectorRef,
@@ -57,33 +57,15 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
       this.recipeData = { ...this.recipeToEdit };
       this.renderAvatar(this.recipeData.imageURL);
       this.columnDefs = this.prepareGridPrepColumns();
-      this.rowPrepData = this.recipeData.preparations.map((prep) => {
-           return { ...prep, userName: prep.user.name + ' ' + prep.user.lastName };
+      this.rowPrepData.length = 0;
+      this.prepService.getPreparationsByRecipe(this.recipeData.id).subscribe(prep => {
+                           prep.map((prepa) => {
+                            this.rowPrepData.push({ ...prepa, userName: !prepa.user ? '' :
+                                                    (prepa.user?.name + ' ' + prepa.user?.lastName) });
+                            this.rowPrepData = [ ...this.rowPrepData ];
+                            this.cdr.markForCheck();
+                           });
       });
-      // of(this.recipeData.preparations).pipe(
-      //   switchMap(res => {
-      //     // convert array to observable
-      //     return from(res);
-      //   }),
-      //   mergeMap((prep: Preparation) => {
-      //     return this.userService.getUser(prep.user.id).
-      //        pipe(map((user: UserModel) => {
-      //           prep.userName = user.name + ' ' + user.lastName;
-      //           return prep;
-      //       }));
-      //   }),
-      //   mergeMap((prep: Preparation) => {
-      //     return this.userService.getUser(prep.authorId).
-      //        pipe(map((user: UserModel) => {
-      //           prep.author = user;
-      //           return prep;
-      //       }));
-      //   }),
-      //   toArray(),
-      // ).subscribe((res: Preparation[]) => {
-      //   this.rowPrepData = res;
-      //   this.cdr.markForCheck();
-      // });
     } else {
       this.resetForm();
     }
@@ -169,7 +151,6 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
         this.resetForm();
       });
     } else {
-       
         this.service.updateRecipe(this.recipeData).subscribe((res: boolean) => {
           this.toast.success('Receta modificada exitosamente');
           this.service.notifyNewRecipe(this.recipeData);

@@ -93,7 +93,6 @@ export class ChipAutocompleteComponent implements OnChanges, OnInit {
 
   private _filter(value: string): ItemChip[] {
     const filterValue = value.toLowerCase();
-
     return this.listItems.filter(item => item.name.toLowerCase().indexOf(filterValue) >= 0);
   }
 }
