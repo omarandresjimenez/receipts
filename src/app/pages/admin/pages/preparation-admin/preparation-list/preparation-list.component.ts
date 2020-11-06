@@ -85,9 +85,9 @@ export class PreparationListComponent implements OnInit, OnDestroy {
     return [
       { field: 'id', hide: true },
       { field: 'recipeName', headerName: 'Receta', width: '220' },
-      { field: 'name', headerName: 'Nombre', width: '220' },
+      { field: 'name', headerName: 'Nombre Preparacion', width: '220' },
       { field: 'description', headerName: 'Descripción', width: '350' },
-      { field: 'cookingTechnique', headerName: 'Técnica de cocina usada', width: '200' },
+      { field: 'carrierCommunity', headerName: 'Comunidad portadora', width: '200' },
       { field: 'preparationType', headerName: 'Tipo preparación', width: '200' },
       { field: 'userName', headerName: 'Autor preparación', width: '200' },
       { field: 'active', headerName: 'Activo', width: '100',
@@ -122,7 +122,7 @@ export class PreparationListComponent implements OnInit, OnDestroy {
                       this.columnDefs = this.prepareGridColumns();
                       this.rowData = preparations.map((prep) => {
                         return { ...prep, userName: prep.author.name + ' ' + prep.author.lastName,
-                                 recipeName: prep.recipe.name, cookingTechnique: prep.cookingTechnique.name };
+                                 recipeName: prep.recipe.name };
                       });
                       this.cdr.markForCheck();
                     });

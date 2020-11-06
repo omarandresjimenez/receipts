@@ -17,6 +17,7 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
                     modName: string;
                     modRegion: string;
                     modAuthor: string;
+                    modAuthor_imageUrl: string;
                     modImage: string;
                     modRating: string;
                     modIngredients: string[];
@@ -46,6 +47,7 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
                      modName: prep.name,
                      modRegion: prep.region?.name,
                      modAuthor: prep.author?.name + ' ' + prep.author?.lastName,
+                     modAuthor_imageUrl: prep.author?.imageUrl,
                      modImage: prep.imageUrl,
                      modSteps: prep.preparationSteps,
                      modRating: prep.rating?.toString(),

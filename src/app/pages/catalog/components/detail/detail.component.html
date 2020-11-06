@@ -39,7 +39,7 @@
                                                 <span  class="review-no" style="padding: 10px;"> ranking</span>
                                                 </div>
                                             <h3 class="prep-title">{{ prep.name }}</h3>
-                                            <h5 class="autor-title">Autor: {{ prep.author?.name  + prep.author?.lastName}}</h5>
+                                            <h5 class="autor-title">Autor: {{ prep.author?.name  + ' ' + prep.author?.lastName}}</h5>
                                             <button class="btn-gh-secondary btn-prep">Ver Preparación</button>
                                         </div>
                                     </div>
@@ -66,7 +66,10 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4">
-                        <h5 class="title-autor-preparation">Autor: {{ modInfo.modAuthor }}</h5>
+                        <h5 class="title-autor-preparation">Autor: 
+                            <app-avatar  [avatarName]="modInfo.modAuthor" [avatarImage]="modInfo.modAuthor_imageUrl" *ngIf="modInfo.modAuthor_imageUrl"></app-avatar>
+                           <span *ngIf="!modInfo.modAuthor_imageUrl"> {{ modInfo.modAuthor }}</span>
+                        </h5>
                     </div>
                     <div class="col-lg-4">
                         <h5 class="title-region-preparation">Región: {{ modInfo.modRegion }}</h5>
