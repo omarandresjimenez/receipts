@@ -56,34 +56,41 @@
     </div>
 </div>
 <app-jwmodal id="custom-modal-1">
-    <div class="container" [style.marginTop.px]="100">
+    <div class="container" [style.marginTop.px]="0">
         <div class="card">
             <div class="container-fliud">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header-preparation">
+                            <div class="overlay-header" id="pic-{{card.id}}"><img [src]="modImage" class="mainimg"/></div>
+                            <div class="content-header-preparation">
+                                <h3 class="product-title">{{ modName }}</h3> 
+                                <br>
+                                <h5>Autor: {{ modAuthor }}</h5>
+                                <h5>Región: {{ modRegion }}</h5>
+                                <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
+            
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="review-no">{{modRating }} rating</span>
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="wrapper row">
                     <div class="preview col-md-6">
     
                         <div class="preview-pic tab-content">
-                           
-                            <div class="tab-pane active" id="pic-{{card.id}}"><img [src]="modImage" class="mainimg"/></div>
     
                         </div>
     
     
                     </div>
                     <div class="details col-md-6">
-                        <h3 class="product-title">{{ modName }}</h3> 
-                        <br>
-                        <h5>Autor: {{ modAuthor }}</h5>
-                        <h5>Región: {{ modRegion }}</h5>
-                        <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
-     
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="review-no">{{modRating }} rating</span>
-                            </div>
-    
-                        </div>
                         <br>
                         <div class="container" *ngIf="modIngredients">
                             <div class="row">
