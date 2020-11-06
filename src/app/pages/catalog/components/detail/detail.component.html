@@ -57,7 +57,7 @@
 </div>
 <app-jwmodal id="custom-modal-1">
     <div class="header-preparation">
-        <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
+        <i class='fas fa-times-circle back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
         <div class="overlay-header"></div>
         <div id="pic-{{card.id}}"><img [src]="modImage" class="mainimg"/></div>
         <div class="content-header-preparation">
@@ -103,20 +103,12 @@
         <div class="card">
             <div class="container-fliud">
                 <div class="wrapper row">
-                    <div class="preview col-md-6">
-    
-                        <div class="preview-pic tab-content">
-    
-                        </div>
-    
-    
-                    </div>
                     <div class="details col-md-6">
                         <br>
                         <div class="container" *ngIf="modIngredients">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="heading-6  text-left">Ingredientes</h3>
+                                    <h3 class="title-content-preparation text-left">Ingredientes</h3>
                                     <hr class="mx-auto">
                                
 
@@ -137,7 +129,7 @@
                         <div class="container" *ngIf="modTools">
                             <div class="row">
                                 <div class="col-12 ">
-                                    <h3 class="heading-6  text-left">Herramientas</h3>
+                                    <h3 class="title-content-preparation text-left">Herramientas</h3>
                                     <hr class="mx-auto">
                                
 
@@ -155,6 +147,19 @@
                             </div>
                         </div>
                         
+                    </div>
+                    <div class="preview col-md-6">
+                        <h3 class="title-content-preparation text-left">Preparación</h3>
+                        <p class="p-content-preparation">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                            <br>
+                            Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+                            <br>
+                            Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
+                            <br>
+                            Praesent dapibus, neque id cursus faucibus, tortor neque egestas auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+                            <br>
+                            Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</p>
                     </div>
                 </div>
             </div>

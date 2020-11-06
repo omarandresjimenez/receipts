@@ -100,15 +100,16 @@ a.btn-gh-secondary {
 
 .back {
   font-size:36px;
-  color: green;
+  color: white;
   position: absolute;
-  top: 3px;
+  top: 20px;
   right: 20px;
   cursor: pointer;
+  z-index: 3;
 }
 
 .details{
-  padding: 40px;
+  padding: 20px;
 }
 
 .card-content {
@@ -119,6 +120,8 @@ a.btn-gh-secondary {
     overflow: hidden;
     width: 260px;
 }
+
+
 
 .card-img {
 	position: relative;
@@ -160,6 +163,30 @@ a.btn-gh-secondary {
 
 .fa-color {
   color: #5959D2;
+}
+
+.title-content-preparation{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  /* identical to box height, or 125% */
+
+
+  color: #393D5E;
+}
+
+.p-content-preparation{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 31px;
+  /* or 195% */
+
+
+  color: #697978;
 }
 
 .product-title {
@@ -214,16 +241,16 @@ a.btn-gh-secondary {
 
 .star-rating__stars {
   position: relative;
-  height: 3rem;
-  width: 15rem;
-  background: url('/assets/off.svg');
-  background-size: 3rem 3rem;
+  height: 1.5rem;
+  width: 7.5rem;
+  background: url(/assets/off.svg);
+  background-size: 1.5rem 1.5rem;
 }
 
 .star-rating__label {
   position: absolute;
   height: 100%;
-  background-size: 3rem 3rem;
+  background-size: 1.5rem 1.5rem;
 }
 
 .star-rating__input {
@@ -308,7 +335,7 @@ a.btn-gh-secondary {
 .header-preparation{
   width: 100%;
   height: auto;
-  padding: 100px 0px 30px;
+  padding: 100px 40px 30px;
   overflow: hidden;
   position: relative;
   background-color: rgba(0,0,0,1);
@@ -316,15 +343,16 @@ a.btn-gh-secondary {
 
 .header-preparation .overlay-header{
   width: 100%;
-  height: auto;
+  height: 100%;
   position: absolute;
   left: 0px;
   top: 0px;
   background: rgb(2,0,36);
   background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,1) 100%);
+  z-index: 2;
 }
 
-.header-preparation .overlay-header img{
+.header-preparation img{
   width: 100%;
   height: auto;
   opacity: 0.7;
