@@ -109,7 +109,7 @@ a.btn-gh-secondary {
 }
 
 .details, .preparation{
-  padding: 20px;
+  padding: 40px;
 }
 
 .card{
@@ -368,26 +368,38 @@ a.btn-gh-secondary {
   position: relative;
   z-index: 10;
   color: white;
+}
+
+.title-autor-preparation, .title-region-preparation{
+  padding: 5px 0px 5px 35px;
+  background-size: contain;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 15.2668px;
+  font-size: 16px;
   line-height: 18px;
 
   color: #FFFFFF;
 }
 
+.star-rating__title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+
+  color: #FFFFFF;
+}
 
 .title-autor-preparation{
-  padding-left: 60px;
+  padding-left: 30px;
   background: url('/assets/imgs/icons/chef.png') no-repeat center left;
-  background-size: 40px;
 }
 
 .title-region-preparation{
-  padding-left: 60px;
   background: url('/assets/imgs/icons/place.png') no-repeat center left;
-  background-size: 40px;
+  background-size: contain;
 }
 
 
