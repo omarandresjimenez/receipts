@@ -29,6 +29,8 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       map((preps: any[]) => preps.map((prep: any) => {
         return  { ...prep,
           active: prep.isActive,
+          creationDate: prep.createdDate?.substring(0, 10),
+          rating: prep.ratingAvg,
         };
       })
     ));
@@ -40,6 +42,8 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       map((preps: any[]) => preps.map((prep: any) => {
         return  { ...prep,
           active: prep.isActive,
+          creationDate: prep.createdDate?.substring(0, 10),
+          rating: prep.ratingAvg,
         };
       })
     ));

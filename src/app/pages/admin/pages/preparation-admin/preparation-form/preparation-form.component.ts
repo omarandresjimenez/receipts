@@ -150,7 +150,6 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
 
   public loadCities(stateId): void {
-    console.log(stateId);
     this.cities$ = this.cityService.getCities(stateId.value);
   }
 

@@ -32,6 +32,7 @@ export interface Preparation {
   forSale?: boolean;
   preparationSteps?: string;
   region?: Region;
+  creationDate?: string;
 
 }
 
