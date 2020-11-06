@@ -171,7 +171,7 @@ a.btn-gh-secondary {
 
 .title-content-preparation{
   padding: 5px 0px 5px 60px;
-  background-size: contain;
+  background-size: contain !important;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -384,7 +384,7 @@ a.btn-gh-secondary {
 
 .title-autor-preparation, .title-region-preparation{
   padding: 5px 0px 5px 35px;
-  background-size: contain;
+  background-size: contain !important;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
   font-weight: bold;
