@@ -1,53 +1,49 @@
 <div class="section-container">
-    <div class="container" [style.marginTop.px]="100">
+    <div class="container" [style.marginTop.px]="50">
+        <div class="row nav-recepie">
+            <div class="col-md-2">
+                <button (click)="onBack()" class="btn-gh-secondary">Volver</button>
+            </div>
+        </div>
         <div class="card">
             <div class="container-fliud">
-                <div class="wrapper row">
-                    <div class="preview col-md-6">
-    
-                        <div class="preview-pic tab-content">
-                           
-                            <div class="tab-pane active" id="pic-{{card.id}}"><img [src]="card.imageUrl" class="mainimg"/></div>
-    
+                <div class="row">
+                    <div class="col-lg-12 header-recepie-container">
+                        <div class="header-recepie-card active" id="pic-{{card.id}}">
+                            <h3 class="title-recepie"><span>Receta:</span><br>{{ card.name }}</h3>
+                            <img [src]="card.imageUrl" class="mainimg"/>
                         </div>
-    
-    
+                        <div class="texture-gastroh"></div>
                     </div>
-                    <div class="details col-md-6">
-                        <h3 class="product-title">{{ card.name }}</h3> 
-                        <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onBack()"></i>
-                       
-    
+                </div>
+                <div class="wrapper row">
+                    <div class="details col-md-12">
                         <div class="container" *ngIf="card.preparations">
                             <div class="row">
                                 <div class="col-12 ">
-                                    <h3 class="heading-6  text-left">Preparaciones</h3>
-                                    <hr class="mx-auto">
-                               
+                                    <h3 class="preparation-title text-left">Preparaciones</h3>
+                                    <h4 class="preparation-description">Descubre todas las <b>preparaciones únicas de las cocinas colombianas</b> basadas en esta receta.</h4>
 
-
-
-                                <div class="card-content" *ngFor="let prep of card.preparations"
-                                     (click)="onModalOpen(prep)" [style.cursor]="'pointer'">
-                                    <div class="card-img">
-                                        <img [src]="prep.imageUrl" alt="">
-                                        
-                                    </div>
-                                    <div class="card-desc">
-                                        <div  class="stars">
-                                            <span class="fa fa-star checked fa-color">{{ prep.raiting }}</span>
-                                             <span  class="review-no" style="padding: 10px;"> ranking</span>
-                                            </div>
-                                        <h3>{{ prep.name }}</h3>
-                                        <h5>Autor: {{ prep.author?.name  + prep.author?.lastName}}</h5>
-                                        <h5>Región: {{ prep.region?.name }}</h5>
-
-                              
-                                       
-                                           
+                                    <div class="card-content" *ngFor="let prep of card.preparations"
+                                        (click)="onModalOpen(prep)" [style.cursor]="'pointer'">
+                                        <div class="card-img">
+                                            <img [src]="prep.imageUrl" alt="">
+                                            
+                                        </div>
+                                        <div class="descr-region">
+                                            <h5><b>Región: </b>{{ prep.region?.name }}</h5>
+                                        </div>
+                                        <div class="card-desc">
+                                            <div  class="stars">
+                                                <span class="fa fa-star checked fa-color">{{ prep.raiting }}</span>
+                                                <span  class="review-no" style="padding: 10px;"> ranking</span>
+                                                </div>
+                                            <h3 class="prep-title">{{ prep.name }}</h3>
+                                            <h5 class="autor-title">Autor: {{ prep.author?.name  + prep.author?.lastName}}</h5>
+                                            <button class="btn-gh-secondary btn-prep">Ver Preparación</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
                             </div>
@@ -60,76 +56,22 @@
     </div>
 </div>
 <app-jwmodal id="custom-modal-1">
-    <div class="container" >
-        <div class="card">
-            <div class="container-fliud">
-                <div class="wrapper row">
-                    <div class="preview col-md-6">
-    
-                        <div class="preview-pic tab-content">
-                           
-                            <div class="tab-pane active" id="pic-{{card.id}}"><img [src]="modImage" class="mainimg"/></div>
-    
-                        </div>
-    
-    
+    <ng-container *ngIf="modInfo">
+    <div class="header-preparation">
+        <i class='fas fa-times-circle back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
+        <div class="overlay-header"></div>
+        <div id="pic-{{card.id}}"><img [src]="modInfo.modImage" class="mainimg"/></div>
+        <div class="content-header-preparation">
+            <h3 class="product-title"><span>Preparación:</span><br/>{{ modInfo.modName }}</h3> 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h5 class="title-autor-preparation">Autor: {{ modInfo.modAuthor }}</h5>
                     </div>
-                    <div class="details col-md-6">
-                        <h3 class="product-title">{{ modName }}</h3> 
-                        <br>
-                        <h5>Autor: {{ modAuthor }}</h5>
-                        <h5>Región: {{ modRegion }}</h5>
-                        <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onCloseModal('custom-modal-1')"></i>
-     
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="review-no">{{modRating }} rating</span>
-                            </div>
-    
-                        </div>
-                        <br>
-                        <div class="container" *ngIf="modIngredients">
-                            <div class="row">
-                                <div class="col-12 ">
-                                    <h3 class="heading-6  text-left">Ingredientes</h3>
-                                    <hr class="mx-auto">
-                               
-
-
-
-                                <div class="card-content" *ngFor="let ing of modIngredients">
-                                   
-                                    <div class="card-desc">
-                                        <h5>{{ ing }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container" *ngIf="modTools">
-                            <div class="row">
-                                <div class="col-12 ">
-                                    <h3 class="heading-6  text-left">Herramientas</h3>
-                                    <hr class="mx-auto">
-                               
-
-
-
-                                <div class="card-content" *ngFor="let tool of modTools">
-                                   
-                                    <div class="card-desc">
-                                        <h5>{{ tool }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            </div>
-                        </div>
+                    <div class="col-lg-4">
+                        <h5 class="title-region-preparation">Región: {{ modInfo.modRegion }}</h5>
+                    </div>
+                    <div class="col-lg-4">
                         <fieldset class="star-rating">
                             <legend class="star-rating__title">Valoración:</legend>
                             <div class="star-rating__stars">
@@ -145,12 +87,81 @@
                               <label class="star-rating__label" for="rating-5" aria-label="Five"></label>
                               <div class="star-rating__focus"></div>
                             </div>
-                          </fieldset>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <!-- <div class="rating">
+                <div class="stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="review-no">{{modRating }} rating</span>
+                </div>
+
+            </div> -->
+            
+        </div>
+    </div>
+    <div class="container" [style.marginTop.px]="0">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="details col-md-6">
+                        <div class="container" *ngIf="modInfo.modIngredients">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="title-content-preparation food text-left">Ingredientes</h3>
+                                    <hr class="mx-auto">
+                               
+
+
+
+                                <div class="card-content" *ngFor="let ing of modInfo.modIngredients">
+                                   
+                                    <div class="card-desc">
+                                        <h5>{{ ing }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="container" *ngIf="modInfo.modTools">
+                            <div class="row">
+                                <div class="col-12 ">
+                                    <h3 class="title-content-preparation tools text-left">Herramientas</h3>
+                                    <hr class="mx-auto">
+                               
+
+
+
+                                <div class="card-content" *ngFor="let tool of modInfo.modTools">
+                                   
+                                    <div class="card-desc">
+                                        <h5>{{ tool }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="preparation col-md-6">
+                        <h3 class="title-content-preparation preparation text-left">Preparación</h3>
+                        <p class="p-content-preparation">
+                            {{ modInfo.modSteps }}    
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    </ng-container>
 </app-jwmodal>

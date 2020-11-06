@@ -1,8 +1,46 @@
+
+.jw-modal{
+  z-index: 10002;
+}
+
+.jw-modal-body{
+  margin-top: 100px;
+}
+
+.jw-modal-background{
+  z-index: 10001;
+}
+
+
+.btn-gh-secondary{
+	background-color: #5959D2;
+    box-shadow: 0px 6px 17px -10px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    font-size: .81rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin: 0px 0 0 0;
+    border: 0;
+    border-radius: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #fff;
+}
+.btn-gh-secondary:hover {
+    background: #4444FF;
+}
+a.btn-gh-secondary {
+    text-decoration: none;
+    color: #fff;
+}
+
 .section-container{
   background: url('/assets/bg-catalog.jpg') top center repeat-y;
   background-size: 100% auto;
   min-height: 100vh;
-  padding: 50px 0px;
+  padding: 100px 0px;
 }
 
 .section-container .container{
@@ -62,15 +100,20 @@
 
 .back {
   font-size:36px;
-  color: green;
+  color: white;
   position: absolute;
-  top: 3px;
+  top: 20px;
   right: 20px;
   cursor: pointer;
+  z-index: 3;
 }
 
-.details{
+.details, .preparation{
   padding: 40px;
+}
+
+.card{
+  border: none !important;
 }
 
 .card-content {
@@ -79,8 +122,10 @@
     box-shadow: 0 46px 48px -35px rgb(0 0 0 / 97%);
     border-radius: 10px;
     overflow: hidden;
-    width: 200px;
+    width: 260px;
 }
+
+
 
 .card-img {
 	position: relative;
@@ -124,14 +169,62 @@
   color: #5959D2;
 }
 
+.title-content-preparation{
+  padding: 5px 0px 5px 60px;
+  background-size: contain !important;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  /* identical to box height, or 125% */
+
+
+  color: #393D5E;
+}
+
+.title-content-preparation.food{
+  background: url('/assets/imgs/icons/food.png') no-repeat center left;
+}
+.title-content-preparation.tools{
+  background: url('/assets/imgs/icons/kitchen-utensils.png') no-repeat center left;
+}
+.title-content-preparation.preparation{
+  background: url('/assets/imgs/icons/preparation.png') no-repeat center left;
+}
+
+.p-content-preparation{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 31px;
+  /* or 195% */
+
+
+  color: #697978;
+}
+
 .product-title {
-	color: #000000;
-    font-weight: 600;
-    font-size: 1.5em;
-    line-height: 1.3em;
-    margin-top: 0;
-    margin-bottom: 5px;
-    padding: 0;
+	font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  /* identical to box height, or 125% */
+
+
+  color: #FFFFFF;
+}
+
+.product-title span{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15.2668px;
+  line-height: 18px;
+
+  color: #FFFFFF;
 }
 
 .card-desc p {
@@ -164,16 +257,16 @@
 
 .star-rating__stars {
   position: relative;
-  height: 5rem;
-  width: 25rem;
-  background: url('/assets/off.svg');
-  background-size: 5rem 5rem;
+  height: 1.5rem;
+  width: 7.5rem;
+  background: url(/assets/off.svg);
+  background-size: 1.5rem 1.5rem;
 }
 
 .star-rating__label {
   position: absolute;
   height: 100%;
-  background-size: 5rem 5rem;
+  background-size: 1.5rem 1.5rem;
 }
 
 .star-rating__input {
@@ -226,4 +319,230 @@
   bottom: -.25em;
   left: -.25em;
   outline: 0.25rem solid lightblue;
+}
+
+
+
+.header-recepie-container{
+  position: relative;
+}
+
+
+
+.header-recepie-card{
+  width: 100%;
+  height: auto;
+  padding: 50px 0px;
+  overflow: hidden;
+  position: relative;
+  background-color: rgba(0,0,0,1);
+}
+
+.header-recepie-card img{
+  width: 100%;
+  height: auto;
+  opacity: 0.7;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+
+.header-preparation{
+  width: 100%;
+  height: auto;
+  padding: 100px 40px 30px;
+  overflow: hidden;
+  position: relative;
+  background-color: rgba(0,0,0,1);
+}
+
+.header-preparation .overlay-header{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,1) 100%);
+  z-index: 2;
+}
+
+.header-preparation img{
+  width: 100%;
+  height: auto;
+  opacity: 0.7;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.header-preparation .content-header-preparation{
+  position: relative;
+  z-index: 10;
+  color: white;
+}
+
+.title-autor-preparation, .title-region-preparation{
+  padding: 5px 0px 5px 35px;
+  background-size: contain !important;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+
+  color: #FFFFFF;
+}
+
+.title-autor-preparation{
+  background: url('/assets/imgs/icons/chef.png') no-repeat center left;
+}
+
+.title-region-preparation{
+  background: url('/assets/imgs/icons/place.png') no-repeat center left;
+}
+
+
+.nav-recepie{
+  margin-bottom: 16px;
+}
+
+
+.star-rating__title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+
+  color: #FFFFFF;
+}
+
+.descr-region{
+  padding: 5px 15px;
+
+  background: #626284;
+  border-radius: 2px;
+  color: white;
+  display: table;
+  position: relative;
+  right: 0px;
+  margin-top: -15px;
+  z-index: 5;
+  float: right;
+}
+
+.descr-region h5{
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 13px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+}
+
+.title-recepie{
+  position: relative;
+  z-index: 10;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 35px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.title-recepie span{
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.prep-title{
+  margin: 0px 0px 8px;
+  padding: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 21px;
+  /* or 107% */
+
+
+  /* Heading text */
+
+  color: #081F32;
+}
+
+.preparation-title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  margin-bottom: 8px;
+  /* identical to box height, or 125% */
+
+
+  color: #393D5E;
+}
+
+.description-title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 31px;
+  /* identical to box height, or 195% */
+
+
+  color: #697978;
+}
+
+.autor-title{
+  margin-bottom: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+
+
+  color: #6262BB;
+}
+
+.texture-gastroh{
+  width: 100%;
+  height: 75px;
+  background: url('/assets/imgs/texture-gastroh.png') no-repeat top center;
+  background-size: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10;
+}
+
+.btn-prep{
+  margin:0px;
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0px;
+  /* identical to box height */
+
+  text-align: center;
+  text-transform: none;
+
+  color: #FFFFFF;
 }

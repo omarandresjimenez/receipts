@@ -13,13 +13,16 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
   constructor(private modalservice: ModalService,
               private cdr: ChangeDetectorRef ) { }
 
-   modName: string;
-   modRegion: string;
-   modAuthor: string;
-   modImage: string;
-   modRating: string;
-   modIngredients: string[];
-   modTools: string[];
+   public modInfo: {
+                    modName: string;
+                    modRegion: string;
+                    modAuthor: string;
+                    modImage: string;
+                    modRating: string;
+                    modIngredients: string[];
+                    modTools: string[];
+                    modSteps: string;
+                   };
 
    @Input()
    public card: Recipe;
@@ -38,15 +41,19 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
      this.backCatalog.emit(true);
    }
 
-   onModalOpen(prep: Preparation): any {
-     this.modName = prep.name;
-     this.modRegion = prep.region?.name;
-     this.modAuthor = prep.author?.name + ' ' + prep.author?.lastName;
-     this.modImage = prep.imageUrl;
-     this.modRating = prep.rating?.toString();
-     this.modIngredients =  prep.ingredients.map(i => i.name);
-     this.modTools =  prep.tools.map(t => t.name);
+   onModalOpen(prep: Preparation): void {
+     this.modInfo = {
+                     modName: prep.name,
+                     modRegion: prep.region?.name,
+                     modAuthor: prep.author?.name + ' ' + prep.author?.lastName,
+                     modImage: prep.imageUrl,
+                     modSteps: prep.preparationSteps,
+                     modRating: prep.rating?.toString(),
+                     modIngredients:  prep.ingredients.map(i => i.name),
+                     modTools: prep.tools.map(t => t.name),
+                     };
      this.modalservice.open('custom-modal-1');
+     this.cdr.markForCheck();
    }
 
    onCloseModal(modal) {

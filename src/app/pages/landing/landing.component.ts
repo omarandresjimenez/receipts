@@ -49,8 +49,7 @@ slideData = [
 config: SwiperOptions = {
   pagination: { 
     el: '.swiper-pagination', 
-    clickable: true,
-    type: 'progressbar' 
+    clickable: true
   },
   autoHeight: true,
   allowTouchMove: true,
