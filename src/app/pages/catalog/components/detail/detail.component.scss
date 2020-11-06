@@ -1,5 +1,26 @@
-*{
-  font-family: 'Ubuntu', sans-serif;
+
+.btn-gh-secondary{
+	background-color: #5959D2;
+    box-shadow: 0px 6px 17px -10px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    font-size: .81rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin: 10px 0 0 0;
+    border: 0;
+    border-radius: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #fff;
+}
+.btn-gh-secondary:hover {
+    background: #4444FF;
+}
+a.btn-gh-secondary {
+    text-decoration: none;
+    color: #fff;
 }
 
 .section-container{
@@ -256,6 +277,77 @@
   background: #626284;
   border-radius: 2px;
   color: white;
+  display: table;
+  position: relative;
+  right: 0px;
+  margin-top: -15px;
+  z-index: 5;
+  float: right;
+}
+
+.descr-region h5{
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 13px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+}
+
+.title-recepie{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 25px;
+
+  color: #FFFFFF;
+}
+
+.prep-title{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 21px;
+  /* or 107% */
+
+
+  /* Heading text */
+
+  color: #081F32;
+}
+
+.preparation-title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  /* identical to box height, or 125% */
+
+
+  color: #393D5E;
+}
+
+.description-title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 31px;
+  /* identical to box height, or 195% */
+
+
+  color: #697978;
 }
 
 .autor-title{

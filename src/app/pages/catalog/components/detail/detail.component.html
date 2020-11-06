@@ -1,11 +1,11 @@
 <div class="section-container">
     <div class="container" [style.marginTop.px]="100">
         <div class="row">
-            <div class="col">
-                <i class='fas fa-arrow-alt-circle-left back' title="Volver" (click)="onBack()"></i>
+            <div class="col-md-2">
+                <button (click)="onBack()" class="btn-gh-secondary">Detalle</button>
             </div>
             <div class="col">
-                <h3>Receta: {{ card.name }}</h3>
+                <h3 class="title-recepie">Receta: {{ card.name }}</h3>
             </div>
         </div>
         <div class="card">
@@ -23,8 +23,8 @@
                         <div class="container" *ngIf="card.preparations">
                             <div class="row">
                                 <div class="col-12 ">
-                                    <h3 class="heading-3  text-left">Preparaciones</h3>
-                                    <h4>Descubre todas las <b>preparaciones únicas de las cocinas colombianas</b> basadas en esta receta.</h4>
+                                    <h3 class="preparation-title text-left">Preparaciones</h3>
+                                    <h4 class="preparation-description">Descubre todas las <b>preparaciones únicas de las cocinas colombianas</b> basadas en esta receta.</h4>
 
                                     <div class="card-content" *ngFor="let prep of card.preparations"
                                         (click)="onModalOpen(prep)" [style.cursor]="'pointer'">
@@ -33,16 +33,16 @@
                                             
                                         </div>
                                         <div class="descr-region">
-                                            <h5>Región: {{ prep.region?.name }}</h5>
+                                            <h5><b>Región: </b>{{ prep.region?.name }}</h5>
                                         </div>
                                         <div class="card-desc">
                                             <div  class="stars">
                                                 <span class="fa fa-star checked fa-color">{{ prep.raiting }}</span>
                                                 <span  class="review-no" style="padding: 10px;"> ranking</span>
                                                 </div>
-                                            <h3>{{ prep.name }}</h3>
+                                            <h3 class="prep-title">{{ prep.name }}</h3>
                                             <h5 class="autor-title">Autor: {{ prep.author?.name  + prep.author?.lastName}}</h5>
-
+                                            <button class="btn-gh-secondary">Ver Preparación</button>
                                         </div>
                                     </div>
                                 </div>
