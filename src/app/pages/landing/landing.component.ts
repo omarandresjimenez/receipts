@@ -47,7 +47,11 @@ slideData = [
 ]
 
 config: SwiperOptions = {
-  pagination: { el: '.swiper-pagination', clickable: true },
+  pagination: { 
+    el: '.swiper-pagination', 
+    clickable: true,
+    type: 'progressbar' 
+  },
   autoHeight: true,
   allowTouchMove: true,
   autoplay: {
@@ -56,13 +60,13 @@ config: SwiperOptions = {
   },
   breakpoints: {
     1024: {
-      slidesPerView: 4
+      slidesPerView: 1
     },
     500: {
-      slidesPerView: 3
+      slidesPerView: 1
     },
     400: {
-      slidesPerView: 2
+      slidesPerView: 1
     },
     300: {
       slidesPerView: 1
