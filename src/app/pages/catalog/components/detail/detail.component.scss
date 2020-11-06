@@ -170,6 +170,8 @@ a.btn-gh-secondary {
 }
 
 .title-content-preparation{
+  padding: 5px 0px 5px 60px;
+  background-size: contain;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -179,6 +181,16 @@ a.btn-gh-secondary {
 
 
   color: #393D5E;
+}
+
+.title-content-preparation.food{
+  background: url('/assets/imgs/icons/food.png') no-repeat center left;
+}
+.title-content-preparation.tools{
+  background: url('/assets/imgs/icons/kitchen-utensils.png') no-repeat center left;
+}
+.title-content-preparation.preparation{
+  background: url('/assets/imgs/icons/preparation.png') no-repeat center left;
 }
 
 .p-content-preparation{
@@ -382,6 +394,20 @@ a.btn-gh-secondary {
   color: #FFFFFF;
 }
 
+.title-autor-preparation{
+  background: url('/assets/imgs/icons/chef.png') no-repeat center left;
+}
+
+.title-region-preparation{
+  background: url('/assets/imgs/icons/place.png') no-repeat center left;
+}
+
+
+.nav-recepie{
+  margin-bottom: 16px;
+}
+
+
 .star-rating__title{
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
@@ -391,22 +417,6 @@ a.btn-gh-secondary {
 
   color: #FFFFFF;
 }
-
-.title-autor-preparation{
-  padding-left: 30px;
-  background: url('/assets/imgs/icons/chef.png') no-repeat center left;
-}
-
-.title-region-preparation{
-  background: url('/assets/imgs/icons/place.png') no-repeat center left;
-  background-size: contain;
-}
-
-
-.nav-recepie{
-  margin-bottom: 16px;
-}
-
 
 .descr-region{
   padding: 5px 15px;
