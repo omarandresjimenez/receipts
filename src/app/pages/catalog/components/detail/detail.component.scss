@@ -6,7 +6,7 @@
     letter-spacing: 2px;
     font-size: .81rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    margin: 10px 0 0 0;
+    margin: 0px 0 0 0;
     border: 0;
     border-radius: 40px;
     cursor: pointer;
@@ -104,7 +104,7 @@ a.btn-gh-secondary {
     box-shadow: 0 46px 48px -35px rgb(0 0 0 / 97%);
     border-radius: 10px;
     overflow: hidden;
-    width: 200px;
+    width: 260px;
 }
 
 .card-img {
@@ -271,6 +271,11 @@ a.btn-gh-secondary {
 }
 
 
+.nav-recepie{
+  margin-bottom: 16px;
+}
+
+
 .descr-region{
   padding: 5px 15px;
 
@@ -311,7 +316,7 @@ a.btn-gh-secondary {
 }
 
 .prep-title{
-  margin: 0px;
+  margin: 0px 0px 8px;
   padding: 0px;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
@@ -332,6 +337,7 @@ a.btn-gh-secondary {
   font-weight: bold;
   font-size: 27.7578px;
   line-height: 35px;
+  margin-bottom: 8px;
   /* identical to box height, or 125% */
 
 
@@ -351,6 +357,7 @@ a.btn-gh-secondary {
 }
 
 .autor-title{
+  margin-bottom: 10px;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -371,4 +378,18 @@ a.btn-gh-secondary {
   bottom: 0px;
   left: 0px;
   z-index: 10;
+}
+
+.btn-prep{
+  margin:0px;
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #FFFFFF;
 }
