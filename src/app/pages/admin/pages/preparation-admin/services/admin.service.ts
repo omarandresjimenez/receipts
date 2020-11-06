@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 
 
 
-import { Ingredient, ItemChip, Preparation, Region, Tool } from 'src/app/core/models/models';
+import { CookingTechnique, Ingredient, ItemChip, Preparation, Region, Tool } from 'src/app/core/models/models';
 import { PreparationApiService } from '../api/admin-api.service';
 
 @Injectable({
@@ -55,5 +55,13 @@ export class PreparationService {
 
   public createTool(toolInfo: ItemChip): Observable<ItemChip> {
     return this.service.createTool(toolInfo);
+  }
+
+  public getCookingTechniques(): Observable<CookingTechnique[]> {
+    return this.service.getCookingTechniques();
+  }
+
+  public createCookingTechnique(dataInfo: ItemChip): Observable<ItemChip> {
+    return this.service.createIngredient(dataInfo);
   }
 }

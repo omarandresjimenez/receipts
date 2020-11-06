@@ -27,7 +27,7 @@ export class PreparationListComponent implements OnInit, OnDestroy {
 
   public defaultColDef: any;
   public columnDefs: ColumnsGrid[];
-  public rowData: Preparation[];
+  public rowData: any[];
   private subs: Subscription;
   constructor(@Inject(DOCUMENT)
               private document: Document,
@@ -122,7 +122,7 @@ export class PreparationListComponent implements OnInit, OnDestroy {
                       this.columnDefs = this.prepareGridColumns();
                       this.rowData = preparations.map((prep) => {
                         return { ...prep, userName: prep.author.name + ' ' + prep.author.lastName,
-                                 recipeName: prep.recipe.name };
+                                 recipeName: prep.recipe.name, cookingTechnique: prep.cookingTechnique.name };
                       });
                       this.cdr.markForCheck();
                     });

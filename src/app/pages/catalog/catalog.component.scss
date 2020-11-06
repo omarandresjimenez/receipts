@@ -18,7 +18,14 @@ section{
     display: block;
 }
 
-
+.messages {
+    font-size: 1.2rem;
+    font-family: 'Caveat Brush', cursive;
+    transform: rotate(-1deg);
+    display: block;
+    text-align: center;
+    color: #fff;
+}
 
 .box-search{
     margin: auto;

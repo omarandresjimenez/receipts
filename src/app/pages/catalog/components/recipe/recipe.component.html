@@ -5,10 +5,7 @@
             <!-- <span><h4>{{ card.name | limitTo: '15'}}</h4></span> -->
         </div>
         <div class="card-desc">
-            <div class="stars">
-                <span class="fa fa-star checked fa-color"></span>
-                <span class="review-no" [style.padding.px]="10">{{ card.rating }} ranking</span>
-            </div>
+           
             <h3>{{ card.name }}</h3>
             <div class="rating">
                 <button (click)="onSelect(card.id)" class="btn-card">Detalle</button>

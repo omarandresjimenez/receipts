@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { AppHttpErrorHandler } from 'src/app/core/utils/errorHandler';
-import { Ingredient, ItemChip, Preparation, Region, Tool } from 'src/app/core/models/models';
+import { CookingTechnique, Ingredient, ItemChip, Preparation, Region, Tool } from 'src/app/core/models/models';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
@@ -51,13 +51,18 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       name: preparationModel.name,
       image: preparationModel.imageUrl,
       description: preparationModel.description,
-      cookingTechnique: preparationModel.cookingTechnique,
       preparationType: preparationModel.preparationType,
       preparationIngredientsIds: preparationModel.ingredients.map(p  => p.id),
       preparationToolsIds: preparationModel.tools.map(t  => t.id),
       authorId: +preparationModel.author.id,
       userId: +preparationModel.user.id,
-      regionId: +preparationModel.region.id,
+      cityId: +preparationModel.city.id,
+      cookingTechniqueId: preparationModel.cookingTechnique.id,
+      source: preparationModel.source,
+      carrierCommunity: preparationModel.carrierCommunity,
+      forSale: preparationModel.forSale,
+      preparationSteps: preparationModel.preparationSteps,
+
     };
     return this.http.post<string>(this.BASEURL + 'preparation', params).pipe(
       catchError((err) => this.handleError(err))
@@ -72,13 +77,17 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       name: preparationModel.name,
       image: !preparationModel.imageUrl?.startsWith('data') ? null : preparationModel.imageUrl,
       description: preparationModel.description,
-      cookingTechnique: preparationModel.cookingTechnique,
       preparationType: preparationModel.preparationType,
       preparationIngredientsIds: preparationModel.ingredients.map(p  => p.id),
       preparationToolsIds: preparationModel.tools.map(t  => t.id),
       authorId: +preparationModel.author.id,
       userId: +preparationModel.user.id,
-      regionId: preparationModel.region.id,
+      cityId: +preparationModel.city.id,
+      cookingTechniqueId: preparationModel.cookingTechnique.id,
+      source: preparationModel.source,
+      carrierCommunity: preparationModel.carrierCommunity,
+      forSale: preparationModel.forSale,
+      preparationSteps: preparationModel.preparationSteps,
     };
     return this.http.put<boolean>(this.BASEURL + 'preparation/' + preparationModel.id, params).pipe(
       catchError((err) => this.handleError(err))
@@ -101,6 +110,24 @@ export class PreparationApiService extends AppHttpErrorHandler  {
   public getTools(): Observable<Tool[]> {
 
     return this.http.get<Tool[]>(this.BASEURL + 'tool/').pipe(
+      catchError((err) => this.handleError(err))
+    );
+  }
+
+  public getCookingTechniques(): Observable<CookingTechnique[]> {
+
+    return this.http.get<Tool[]>(this.BASEURL + 'cookingTechnique/').pipe(
+      catchError((err) => this.handleError(err))
+    );
+  }
+
+  public createCookingTechnique(dataInfo: ItemChip): Observable<ItemChip> {
+    const params = {
+      name: dataInfo.name,
+      description: dataInfo.description,
+     };
+    // return of({ ...ingredientInfo, id: '1' });
+    return this.http.post<ItemChip>(this.BASEURL + 'cookingTechnique', params).pipe(
       catchError((err) => this.handleError(err))
     );
   }

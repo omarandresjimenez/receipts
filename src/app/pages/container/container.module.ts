@@ -11,7 +11,7 @@ import { SearchbarComponent } from '../catalog/components/searchbar/searchbar.co
 import { ContainerComponent } from './container.component';
 
 import { CatalogComponent } from '../catalog/catalog.component';
-import { ModalComponent } from '../catalog/components/modal/modal.component';
+import { DetailRecipeComponent } from '../catalog/components/detail/detail.component';
 import { ShareModule } from '../../share/share.module';
 import { HeaderModule } from 'src/app/share/widgets/header/header.module';
 
@@ -23,7 +23,7 @@ import { HeaderModule } from 'src/app/share/widgets/header/header.module';
     CatalogComponent,
     RecipeComponent,
     SearchbarComponent,
-    ModalComponent,
+    DetailRecipeComponent,
   ],
   imports: [
     CommonModule,

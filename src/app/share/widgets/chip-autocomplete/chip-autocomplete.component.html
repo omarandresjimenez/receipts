@@ -17,7 +17,7 @@
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         >
     </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" >
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-option *ngFor="let item of filteredItems | async" [value]="item.name" (onSelectionChange)="selectItem($event, item)">
         {{item.name}}
       </mat-option>

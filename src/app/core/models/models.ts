@@ -17,21 +17,33 @@ export interface Preparation {
   description: string;
   active: boolean;
   ingredients?: Ingredient[];
-  cookingTechnique?: string;
   preparationType?: string;
   tools?: Tool[];
-  region?: Region;
+  city?: City;
   user: UserModel;
   author?: UserModel;
   recipe?: Recipe;
   rating?: number;
   userName?: string;
   recipeName?: string;
+  cookingTechnique?: CookingTechnique;
+  source?: string;
+  carrierCommunity?: string;
+  forSale?: boolean;
+  preparationSteps?: string;
+  region?: Region;
+
 }
 
 export interface Ingredient {
   id: string;
   name: string;
+}
+
+export interface CookingTechnique {
+  id: string;
+  name: string;
+  description?: string;
 }
 
 export interface Tool {

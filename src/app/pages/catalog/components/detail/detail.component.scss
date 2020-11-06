@@ -6,7 +6,7 @@
 }
 
 .section-container .container{
-  margin-top: 20px;
+ // margin-top: 20px;
 }
 
 .blog .card {
@@ -120,7 +120,11 @@
 	padding: 1.25rem;
 }
 
-.card-desc h3 {
+.fa-color {
+  color: #5959D2;
+}
+
+.product-title {
 	color: #000000;
     font-weight: 600;
     font-size: 1.5em;

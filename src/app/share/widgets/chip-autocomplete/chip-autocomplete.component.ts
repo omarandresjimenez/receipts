@@ -1,10 +1,10 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, tap} from 'rxjs/operators';
 import { ItemChip } from 'src/app/core/models/models';
 
 
@@ -15,6 +15,7 @@ import { ItemChip } from 'src/app/core/models/models';
   selector: 'app-chip-autocomplete',
   templateUrl: 'chip-autocomplete.component.html',
   styleUrls: ['chip-autocomplete.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChipAutocompleteComponent implements OnChanges, OnInit {
   visible = true;
@@ -45,7 +46,7 @@ export class ChipAutocompleteComponent implements OnChanges, OnInit {
   public itemsSelected = new EventEmitter<ItemChip[]>();
 
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -55,6 +56,7 @@ export class ChipAutocompleteComponent implements OnChanges, OnInit {
 
     if (changes.listItems) {
       this.filteredItems = this.itemCtrl.valueChanges.pipe(
+        tap(s => console.log(s)),
         // tslint:disable-next-line: deprecation
         startWith(null),
         map((word: string | null) => word ? this._filter(word) : this.listItems.slice()));
@@ -71,22 +73,22 @@ export class ChipAutocompleteComponent implements OnChanges, OnInit {
     if (index >= 0) {
       this.items.splice(index, 1);
       this.itemsSelected.emit(this.items);
+      this.cdr.markForCheck();
     }
   }
 
 
-//   selected(event: MatAutocompleteSelectedEvent): void {
-//     this.items.push(event.option.viewValue);
-//     this.itemInput.nativeElement.value = '';
-//     this.itemCtrl.setValue(null);
-//   }
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.itemInput.nativeElement.value = '';
+    this.itemCtrl.setValue(null);
+    this.itemInput.nativeElement.blur();
+    this.cdr.markForCheck();
+  }
 
   selectItem($event, item: ItemChip) {
       if ($event.isUserInput &&
         this.items.indexOf(item) < 0) {
         this.items.push(item);
-        this.itemInput.nativeElement.value = '';
-        this.itemCtrl.setValue(null);
         this.itemsSelected.emit(this.items);
       }
   }

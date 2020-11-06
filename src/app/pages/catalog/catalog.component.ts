@@ -50,7 +50,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
     // this.sub = this.serviceCatalog.getCastMovie(id).subscribe((res) => {
     //    this.casts.length = 0;
     //    this.casts = res;
-          this.catalogView = false;
           this.cardInfo = this.recipeCatalog$.find((card) => card.id === id);
           this.sub = combineLatest([  this.serviceCatalog.getPreparationsByRecipe(this.cardInfo.id), this.serviceCatalog.recipeImages$]).
               subscribe(([ res, images ]: [ Preparation[], string[]]) => {
@@ -58,6 +57,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
                                               return { ...prep, imageUrl : prep.imageUrl ?
                                                        prep.imageUrl : images[ Math.floor(Math.random() * 10) ] };
                                               });
+                this.catalogView = false;
                 this.cdr.markForCheck();
               });
     //   });

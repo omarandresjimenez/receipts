@@ -15,10 +15,13 @@
             <app-recipe [card]="recipe" (selectedCard)="onSelectCard($event)"></app-recipe>
            
             </div>
+            <span class="messages" *ngIf="!recipeCatalog$.length">
+                No se encontraron Recetas con su criterio de Búsqueda
+             </span>   
         </div>
     </div>
 </section>
-<app-modal [card]="cardInfo" (backCatalog)="onBack()" *ngIf="!catalogView && cardInfo"></app-modal>
+<app-detail-recipe [card]="cardInfo" (backCatalog)="onBack()" *ngIf="!catalogView && cardInfo"></app-detail-recipe>
 
   
   

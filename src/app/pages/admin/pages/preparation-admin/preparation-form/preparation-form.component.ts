@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { ItemChip, Preparation, Recipe, Region } from 'src/app/core/models/models';
+import { City, CookingTechnique, ItemChip, Preparation, Recipe, Region, State } from 'src/app/core/models/models';
 import { PreparationService } from '../../preparation-admin/services/admin.service';
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { UserSessionService } from 'src/app/core/services/session.service';
@@ -14,6 +14,7 @@ import { RecipeCatalogService } from 'src/app/pages/catalog/services/recipe-cata
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from '../../user/services/user.service';
 import { CitiesService } from 'src/app/core/api/cities.service';
+import { APP_CONFIG } from 'src/app/core/app-config';
 
 
 
@@ -45,7 +46,9 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   public selectedPrep: Preparation;
   public recipeList$: Observable<Recipe[]>;
   public authorList$: Observable<UserModel[]>;
-  public regions$: Observable<Region[]>;
+  public deps$: Observable<State[]>;
+  public cities$: Observable<City[]>;
+  public cookingTechniques$: Observable<CookingTechnique[]>;
 
   public listIngredients: ItemChip[] = [];
   public initialListIngredients: ItemChip[] = [];
@@ -57,10 +60,12 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   public typeElement: string;
 
 
-  private subs: Subscription;
+  private subs: Subscription[] = [];
+  private set sub(sub: Subscription) { this.subs.push(sub); }
 
-  private readonly ID_TRADITIONAL_COOKER = '5';
-  private readonly ID_CHEF = '1';
+  private readonly ID_TRADITIONAL_COOKER = APP_CONFIG.ID_TRADITIONAL_COOKER;
+  private readonly ID_CHEF = APP_CONFIG.ID_CHEF;
+  private readonly ID_CARRIER_AUTHOR = APP_CONFIG.ID_CARRIER_AUTHOR;
 
   constructor(
               private service: PreparationService,
@@ -85,17 +90,17 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
    }
 
   ngOnDestroy(): void {
-    if (this.subs) {
-      this.subs.unsubscribe();
-    }
+    this.subs.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 
   ngOnInit(): void {
 
-    this.preparationData  = { id: '', name: '', description: '', imageUrl: '', region: { id: '', name: ' '},
+    this.preparationData  = { id: '', name: '', description: '', imageUrl: '', city: { id: '', name: '', idState: ''},
                               active: true, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
-                              cookingTechnique: '', preparationType: '', tools: [], ingredients: [],
-                              recipe: this.recipe };
+                              cookingTechnique: { id: '', name: '' }, preparationType: '', tools: [], ingredients: [],
+                              recipe: this.recipe, source: '',  preparationSteps: '', forSale: false, carrierCommunity: ''};
     this.recipeList$ = this.recipeControl.valueChanges
                               .pipe(
                                 delay(500),
@@ -103,7 +108,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
                                   return this.recipeServie.searchRecipesBasic(res);
                                 })
                               );
-    this.authorControl.valueChanges
+    this.sub = this.authorControl.valueChanges
                               .pipe(
                                 delay(500),
                                 switchMap((res: string) => {
@@ -117,15 +122,16 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
                               });
 
 
-    this.subs = this.service.getIngredients().subscribe(ing => {
+    this.sub = this.service.getIngredients().subscribe(ing => {
        this.listIngredients = ing;
     });
 
-    this.subs = this.service.getTools().subscribe(tool => {
+    this.sub = this.service.getTools().subscribe(tool => {
       this.listTools = tool;
    });
 
-    this.regions$ = this.cityService.getRegions();
+    this.deps$ = this.cityService.getStates();
+    this.cookingTechniques$ = this.service.getCookingTechniques();
 
   }
 
@@ -143,14 +149,26 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
 
 
-
+  public loadCities(stateId): void {
+    console.log(stateId);
+    this.cities$ = this.cityService.getCities(stateId.value);
+  }
 
   public onSubmit() {
     if (this.newpreparation) {
-      if (!this.preparationData.recipe?.id || !this.preparationData.author?.id) {
-        this.toast.warning('por favor sdeleccione la Receta o Autor del listado disponible');
+      if (!this.preparationData.recipe?.id) {
+        this.toast.warning('por favor seleccione la Receta del listado disponible');
         return false;
       }
+      if (!this.preparationData.author?.id && !this.preparationData.carrierCommunity) {
+        this.toast.warning('por favor Ingrese la Comunidad Portadora o el Autor portador de la preparación');
+        return false;
+      }
+
+      if (!this.preparationData.author?.id) {
+        this.preparationData.author.id = this.ID_CARRIER_AUTHOR;
+      }
+
       this.service.createPreparation(this.preparationData).subscribe((res: string) => {
         this.toast.success('Preparación creada exitosamente');
         this.service.notifyNewpreparation( { ...this.preparationData, id: res });
@@ -202,7 +220,17 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
   public onAddNewElement(type: string): void {
      this.typeElement = type;
-     this.titleNewElement = type === 'I' ? 'Crear nuevo Ingrediente' : 'Crear nuevo utensilio';
+     switch (type) {
+       case 'I':
+         this.titleNewElement = 'Crear nuevo Ingrediente';
+         break;
+       case 'U':
+         this.titleNewElement = 'Crear nuevo Utensilio';
+         break;
+       case 'C':
+         this.titleNewElement = 'Crear nueva Técnica de Cocción';
+         break;
+     }
      this.modal.open('newElementModal');
      this.cdr.markForCheck();
   }
@@ -233,16 +261,23 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
       return;
     }
     if (this.typeElement === 'I') {
-      this.subs = this.service.createIngredient(item).subscribe(res => {
+      this.sub = this.service.createIngredient(item).subscribe(res => {
         if (res) {
           this.listIngredients = [ ...this.listIngredients, res ];
           this.toast.success('Ingrediente creado');
         }
       });
-    } else {
-      this.subs = this.service.createTool(item).subscribe(res => {
+    } else if (this.typeElement === 'U') {
+      this.sub = this.service.createTool(item).subscribe(res => {
         if (res) {
           this.listTools.push(res);
+          this.toast.success('Utensilio creado');
+        }
+      });
+    }  else {
+      this.sub = this.service.createCookingTechnique(item).subscribe(res => {
+        if (res) {
+          this.cookingTechniques$ = this.service.getCookingTechniques();
           this.toast.success('Utensilio creado');
         }
       });
@@ -289,10 +324,10 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
     this.authorControl.setValue(null);
 
 
-    this.preparationData = { id: '', name: '', description: '', imageUrl: '', region: {id: '', name: ''},
-    active: false, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
-    cookingTechnique: '', preparationType: '', tools: [], ingredients: [],
-    recipe: this.recipe };
+    this.preparationData = {  id: '', name: '', description: '', imageUrl: '', city: { id: '', name: '', idState: ''},
+                              active: false, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
+                              cookingTechnique: { id: '', name: '' }, preparationType: '', tools: [], ingredients: [],
+                              recipe: this.recipe, source: '',  preparationSteps: '', forSale: false, carrierCommunity: '' };
     if (form != null) {
       form.form.reset();
     }

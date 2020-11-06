@@ -38,8 +38,13 @@ export class RecipeApiService  extends AppHttpErrorHandler {
 
   public getPreparationsByRecipe(recipeId: string): Observable<Preparation[]> {
     return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getPreparationsByRecipe/' + recipeId).pipe(
-      catchError((err) => this.handleError(err))
-    );
+      catchError((err) => this.handleError(err)),
+      map((preps: any[]) => preps.map((prep: any) => {
+        return  { ...prep,
+                  region: prep.city?.department?.region,
+        };
+      })
+    ));
   }
 
   public  getRandomImages(): Observable<any[]> {

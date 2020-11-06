@@ -40,6 +40,12 @@ bootstrap-autocomplete {
   margin-top: -30px;
 }
 
+.subcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 small {
   margin-left: 20px;
 }
