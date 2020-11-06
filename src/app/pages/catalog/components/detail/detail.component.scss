@@ -1,3 +1,7 @@
+*{
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .section-container{
   background: url('/assets/bg-catalog.jpg') top center repeat-y;
   background-size: 100% auto;
@@ -226,4 +230,53 @@
   bottom: -.25em;
   left: -.25em;
   outline: 0.25rem solid lightblue;
+}
+
+
+
+.header-recepie-container{
+  position: relative;
+}
+
+.header-recepie-card{
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.header-recepie-card img{
+  width: 100%;
+  height: auto;
+}
+
+
+.descr-region{
+  padding: 5px 15px;
+
+  background: #626284;
+  border-radius: 2px;
+  color: white;
+}
+
+.autor-title{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+
+
+  color: #6262BB;
+}
+
+.texture-gastroh{
+  width: 100%;
+  height: 75px;
+  background: url('/assets/imgs/texture-gastroh.png') no-repeat top center;
+  background-size: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10;
 }
