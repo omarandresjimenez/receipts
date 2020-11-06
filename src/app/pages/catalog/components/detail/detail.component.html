@@ -64,8 +64,12 @@
             <h3 class="product-title"><span>Preparación:</span><br/>{{ modName }}</h3> 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4"><h5>Autor: {{ modAuthor }}</h5></div>
-                    <div class="col-lg-4"><h5>Región: {{ modRegion }}</h5></div>
+                    <div class="col-lg-4">
+                        <h5 class="title-autor-preparation">Autor: {{ modAuthor }}</h5>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="title-region-preparation">Región: {{ modRegion }}</h5>
+                    </div>
                     <div class="col-lg-4">
                         <fieldset class="star-rating">
                             <legend class="star-rating__title">Valoración:</legend>
@@ -104,7 +108,6 @@
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="details col-md-6">
-                        <br>
                         <div class="container" *ngIf="modIngredients">
                             <div class="row">
                                 <div class="col-12">
@@ -148,17 +151,17 @@
                         </div>
                         
                     </div>
-                    <div class="preview col-md-6">
+                    <div class="preparation col-md-6">
                         <h3 class="title-content-preparation text-left">Preparación</h3>
                         <p class="p-content-preparation">
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-                            <br>
+                            <br><br>
                             Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
-                            <br>
+                            <br><br>
                             Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
-                            <br>
+                            <br><br>
                             Praesent dapibus, neque id cursus faucibus, tortor neque egestas auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
-                            <br>
+                            <br><br>
                             Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</p>
                     </div>
                 </div>
