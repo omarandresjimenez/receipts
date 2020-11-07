@@ -561,7 +561,20 @@ h4.preparation-type{
   /* identical to box height */
 
 
-  color: rgba(0,0,0,0.1);
+  background-color: rgb(237 236 255);
+}
+
+.divider-paper-white{
+	width: 100%;
+	position: relative;
+	height: 80px;
+	background: url('/assets/imgs/divider-paper.png') no-repeat center center;
+	background-size: 100% 100%;
+	top: -45px;
+}
+
+.list-items-preparations li{
+  list-style-type: circle;
 }
 
 
