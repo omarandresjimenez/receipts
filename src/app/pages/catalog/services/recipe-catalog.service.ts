@@ -50,4 +50,7 @@ export class RecipeCatalogService {
     return this.service.getPreparationsByRecipe(recipeId);
   }
 
+  public ratePreparation(authorId: number, preparationId: string, comment: string, rating: number): Observable<boolean> {
+    return this.service.ratePreparation(authorId, preparationId, comment, rating);
+  }
 }

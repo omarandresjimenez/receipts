@@ -163,7 +163,7 @@
           <div class="bg-white customfield">
             <select class="form-control" name="cookingTechnique" [(ngModel)]="preparationData.cookingTechnique.id"
               style="width: 100%;" title="Seleccione la Tecnica de coccion" #cookingTechnique="ngModel" required>
-              <option value="">--Seleccione una técnica de cocción--</option>
+              <option value="" selected>--Seleccione una técnica de cocción--</option>
 
               <option *ngFor="let cookingTechnique of cookingTechniques$ | async" [value]="cookingTechnique.id"
                 [title]="cookingTechnique.description">
@@ -290,4 +290,8 @@
       title="Crear Autor"></app-signup-form>
 
   </div>
+</app-jwmodal>
+<app-jwmodal id="messageModal">
+  <i class='fas fa-times-circle back' title="Volver" (click)="onCloseModal('messageModal')"></i>
+  <h4 class="message" ><b>Su preparación se registró correctamente y esta en proceso de validación, el administradpr del sistema la revisará y publicará muy pronto.  Gracias</b></h4>
 </app-jwmodal>

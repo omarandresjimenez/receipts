@@ -87,6 +87,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
    ngAfterViewInit(): void {
     // this.recipeControl = this.form.controls?.recipe;
+  
    }
 
   ngOnDestroy(): void {
@@ -96,6 +97,8 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngOnInit(): void {
+
+
 
     this.preparationData  = { id: '', name: '', description: '', imageUrl: '', city: { id: '', name: '', idState: ''},
                               active: true, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
@@ -170,12 +173,14 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
       this.service.createPreparation(this.preparationData).subscribe((res: string) => {
         this.toast.success('Preparación creada exitosamente');
+        this.modal.open('messageModal');
         this.service.notifyNewpreparation( { ...this.preparationData, id: res });
         this.resetForm();
       });
     } else {
         this.service.updatePreparation(this.preparationData).subscribe((res: boolean) => {
           this.toast.success('Preparación modificada exitosamente');
+          this.modal.open('messageModal');
           this.service.notifyNewpreparation(this.preparationData);
           this.resetForm();
       });
@@ -252,6 +257,10 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   public onCancelAuthor() {
     this.modal.close('newAuthorModal');
     this.cdr.markForCheck();
+  }
+
+  public onCloseModal(modal) {
+    this.modal.close(modal);
   }
 
   public onSaveElement(item: ItemChip): void {

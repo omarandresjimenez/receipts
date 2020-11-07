@@ -9,11 +9,12 @@ import { ModalService } from 'src/app/share/widgets/modal/modal.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailRecipeComponent implements OnInit, OnChanges {
-
+  public showComments = false;
   constructor(private modalservice: ModalService,
               private cdr: ChangeDetectorRef ) { }
 
    public modInfo: {
+                    modId: string;
                     modName: string;
                     modRegion: string;
                     modAuthor: string;
@@ -23,15 +24,34 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
                     modIngredients: string[];
                     modTools: string[];
                     modSteps: string;
+                    modCarrier: string;
+                    modCooking: string;
+                    modSale: boolean;
+                    modType: string;
+                    modSource: string;
                    };
+
+    public rating: {
+                   rating: number;
+                   comments: string;
+                  } = { rating: 0, comments: ''};
+
+    public rated = false;
 
    @Input()
    public card: Recipe;
 
+   @Input()
+   public userId: string;
+
    @Output()
    public backCatalog = new EventEmitter<boolean>();
 
+   @Output()
+   public ratePreparation = new EventEmitter<{ id: string, comments: string, rating: number }>();
+
    ngOnInit(): void {
+     this.showComments = !!this.userId;
    }
 
    ngOnChanges(): void {
@@ -44,22 +64,36 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
 
    onModalOpen(prep: Preparation): void {
      this.modInfo = {
+                     modId: prep.id,
                      modName: prep.name,
                      modRegion: prep.region?.name,
                      modAuthor: prep.author?.name + ' ' + prep.author?.lastName,
                      modAuthor_imageUrl: prep.author?.imageUrl,
                      modImage: prep.imageUrl,
                      modSteps: prep.preparationSteps,
+                     modCarrier: prep.carrierCommunity,
+                     modCooking: prep.cookingTechnique.name,
+                     modSale: prep.forSale,
+                     modType: prep.preparationType,
+                     modSource: prep.source,
                      modRating: prep.rating?.toString(),
                      modIngredients:  prep.ingredients.map(i => i.name),
                      modTools: prep.tools.map(t => t.name),
                      };
+     this.rating = { rating: 0, comments: ''};
      this.modalservice.open('custom-modal-1');
      this.cdr.markForCheck();
    }
 
    onCloseModal(modal) {
     this.modalservice.close(modal);
+   }
+
+   onComment() {
+     this.ratePreparation.emit({ id: this.modInfo.modId, comments: this.rating.comments, rating: this.rating.rating });
+     this.showComments = false;
+     this.rated = true;
+     this.cdr.markForCheck();
    }
 
 }

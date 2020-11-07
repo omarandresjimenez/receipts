@@ -4,6 +4,8 @@ import { Observable, Subscription, combineLatest } from 'rxjs';
 import { Recipe, Preparation } from 'src/app/core/models/models';
 import { map } from 'rxjs/operators';
 import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
+import { UserSessionService } from 'src/app/core/services/session.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,18 +17,21 @@ import { prepareEventListenerParameters } from '@angular/compiler/src/render3/vi
 export class CatalogComponent implements OnInit, OnDestroy {
   public recipeCatalog$: Recipe[];
 
-
+  public currentUserId: string;
   public cardInfo: Recipe = null;
   public catalogView = true;
   private subs: Subscription[] = [];
   private set sub(sub: Subscription) { this.subs.push(sub); }
 
-  constructor(private serviceCatalog: RecipeCatalogService, private cdr: ChangeDetectorRef) { }
+  constructor(private serviceCatalog: RecipeCatalogService,
+              private userSession: UserSessionService,
+              private toast: ToastrService,
+              private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.serviceCatalog.searchRecipes('');
     this.serviceCatalog.getRecipesImages();
-
+    this.currentUserId = this.userSession.getCurrentUser()?.id;
     this.sub =
     combineLatest([  this.serviceCatalog.recipeCatalog$, this.serviceCatalog.recipeImages$]).
        subscribe(([ res, images ]: [ Recipe[], string[]]) => {
@@ -67,5 +72,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.catalogView = true;
     this.cardInfo = null;
     // this.casts.length = 0;
+  }
+
+  onRatePreparation($rateObj): void {
+     this.serviceCatalog.ratePreparation(+this.currentUserId, $rateObj.id, $rateObj.comments, $rateObj.rating)
+        .subscribe();
+     this.toast.success('Gracias por su valoración');
   }
 }

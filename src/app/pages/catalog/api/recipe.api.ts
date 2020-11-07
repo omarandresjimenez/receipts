@@ -42,9 +42,23 @@ export class RecipeApiService  extends AppHttpErrorHandler {
       map((preps: any[]) => preps.map((prep: any) => {
         return  { ...prep,
                   region: prep.city?.department?.region,
+                  rating: prep.ratingAvg,
         };
       })
     ));
+  }
+
+  public ratePreparation(authorId: number, preparationId: string, comment: string, rating: number): Observable<boolean> {
+    const params = {
+      score: rating,
+      description: comment,
+      preparationId,
+      authorId,
+      userId: authorId,
+    };
+    return this.http.post<boolean>(this.BASEURL + 'rating/', params).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
   public  getRandomImages(): Observable<any[]> {

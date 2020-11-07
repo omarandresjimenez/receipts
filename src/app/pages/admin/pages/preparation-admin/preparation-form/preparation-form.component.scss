@@ -50,6 +50,32 @@ small {
   margin-left: 20px;
 }
 
+.back {
+  font-size:36px;
+  color: blue;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+h4.message{
+  display: block;
+  width: auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+
+  background-color: rgb(237 236 255);
+}
 .photo-upload {
     max-width: 150px;
   
