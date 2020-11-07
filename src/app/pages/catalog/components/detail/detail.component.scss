@@ -546,3 +546,29 @@ a.btn-gh-secondary {
 
   color: #FFFFFF;
 }
+
+
+h4.preparation-type{
+  display: block;
+  width: auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+
+  color: rgba(0,0,0,0.1);
+}
+
+
+.info-preparation-aditional{
+  padding: 80px 40px;
+  color: white;
+  background-color: #5959d2;
+}
+
+.info-preparation-aditional *{ color: white; }

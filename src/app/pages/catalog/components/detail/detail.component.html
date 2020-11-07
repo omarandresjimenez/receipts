@@ -117,16 +117,21 @@
                                 <div class="col-12">
                                     <h3 class="title-content-preparation food text-left">Ingredientes</h3>
                                     <hr class="mx-auto">
+                                    <ol>
+                                        <li *ngFor="let ing of modInfo.modIngredients">
+                                            <p class="p-content-preparation"><b>{{ ing }}</b></p>
+                                        </li>
+                                    </ol>
                                
 
 
 
-                                <div class="card-content" *ngFor="let ing of modInfo.modIngredients">
+                                <!-- <div class="card-content" *ngFor="let ing of modInfo.modIngredients">
                                    
                                     <div class="card-desc">
                                         <h5>{{ ing }}</h5>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 
@@ -138,16 +143,18 @@
                                 <div class="col-12 ">
                                     <h3 class="title-content-preparation tools text-left">Herramientas</h3>
                                     <hr class="mx-auto">
-                               
+                                    <ol>
+                                        <li *ngFor="let tool of modInfo.modTools">
+                                            <p class="p-content-preparation"><b>{{ tool }}</b></p>
+                                        </li>
+                                    </ol>
 
-
-
-                                <div class="card-content" *ngFor="let tool of modInfo.modTools">
+                                <!-- <div class="card-content" *ngFor="let tool of modInfo.modTools">
                                    
                                     <div class="card-desc">
-                                        <h5>{{ tool }}</h5>
+                                        
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 
@@ -157,6 +164,7 @@
                     </div>
                     <div class="preparation col-md-6">
                         <h3 class="title-content-preparation preparation text-left">Preparación</h3>
+                        <h4 class="preparation-type"><b>Tipo de preparación:</b> Lorem ipsum dolor sit amet.</h4>
                         <p class="p-content-preparation">
                             {{ modInfo.modSteps }}    
                         </p>
@@ -165,6 +173,23 @@
             </div>
         </div>
     </div>
-
+    <div class="info-preparation-aditional">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="title-content-preparation white-text">Comunidad Portadora</h3>
+                    <p class="p-content-preparation">
+                        Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="title-content-preparation white-text">Fuente de Información</h3>
+                    <p class="p-content-preparation">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     </ng-container>
 </app-jwmodal>
