@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 
 
-import { Recipe } from 'src/app/core/models/models';
+import { Preparation, Recipe } from 'src/app/core/models/models';
 import { AdminApiService } from '../api/admin-api.service';
 
 @Injectable({
@@ -43,6 +43,10 @@ export class AdminService {
 
   public deletePreparation(id: string): Observable<boolean> {
     return this.service.deletePreparation(id);
+  }
+
+  public getInactivePreparations(): Observable<Preparation[]> {
+    return this.service.getInactivePreparations();
   }
 
 }

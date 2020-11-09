@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { AppHttpErrorHandler } from 'src/app/core/utils/errorHandler';
-import {  Recipe } from 'src/app/core/models/models';
+import {  Preparation, Recipe } from 'src/app/core/models/models';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
@@ -70,12 +70,25 @@ export class AdminApiService extends AppHttpErrorHandler  {
     );
   }
 
+  public getInactivePreparations(): Observable<Preparation[]> {
+    return this.http.get<Preparation[]>(this.BASEURL + 'preparation/getInactivePreparations/').pipe(
+      catchError((err) => this.handleError(err)),
+      map((preps: any[]) => preps.map((prep: any) => {
+        return  { ...prep,
+          active: prep.isActive,
+          creationDate: prep.createdDate?.substring(0, 10),
+          rating: prep.ratingAvg,
+        };
+      })
+    ));
+  }
+
+
   public updateAdminPreparation(idPrep: string, active: boolean): Observable<boolean> {
     const params = {
-      id: idPrep,
-      active,
+      isActive: active,
     };
-    return this.http.put<boolean>(this.BASEURL + 'preparation/updateAdmin/' + idPrep, params).pipe(
+    return this.http.put<boolean>(this.BASEURL + 'preparation/updatePreparationByAdmin/' + idPrep, params).pipe(
       catchError((err) => this.handleError(err))
     );
   }

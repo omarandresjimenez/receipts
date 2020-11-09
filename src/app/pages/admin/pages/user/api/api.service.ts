@@ -71,7 +71,7 @@ export class ApiService extends AppHttpErrorHandler  {
       name: userModel.name,
       lastName: userModel.lastName,
       password: userModel.password ? userModel.password : null,
-      cityId: userModel.city,
+      cityId: +userModel.city,
       email: userModel.email,
       active: userModel.active,
       identification: userModel.identification,
@@ -80,7 +80,7 @@ export class ApiService extends AppHttpErrorHandler  {
       image: !userModel.imageUrl?.startsWith('data') ? null : userModel.imageUrl,
       shouldChangePassword: true,
       emailValidated: false,
-      actorTypeId: userModel.actorTypeId,
+      actorTypeId: +userModel.actorTypeId,
       establishment: userModel.establishment,
     };
     return this.http.put<boolean>(this.BASEURL + 'user/' + userModel.id, params).pipe(

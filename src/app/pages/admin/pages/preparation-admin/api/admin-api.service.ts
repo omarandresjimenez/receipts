@@ -61,12 +61,12 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       authorId: +preparationModel.author.id,
       userId: +preparationModel.user.id,
       cityId: +preparationModel.city.id,
-      cookingTechniqueId: preparationModel.cookingTechnique.id,
+      cookingTechniqueId: +preparationModel.cookingTechnique.id,
       source: preparationModel.source,
       carrierCommunity: preparationModel.carrierCommunity,
       forSale: preparationModel.forSale,
       preparationSteps: preparationModel.preparationSteps,
-
+      isActive: false,
     };
     return this.http.post<string>(this.BASEURL + 'preparation', params).pipe(
       catchError((err) => this.handleError(err))
@@ -87,11 +87,12 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       authorId: +preparationModel.author.id,
       userId: +preparationModel.user.id,
       cityId: +preparationModel.city.id,
-      cookingTechniqueId: preparationModel.cookingTechnique.id,
+      cookingTechniqueId: +preparationModel.cookingTechnique.id,
       source: preparationModel.source,
       carrierCommunity: preparationModel.carrierCommunity,
       forSale: preparationModel.forSale,
       preparationSteps: preparationModel.preparationSteps,
+      isActive: false,
     };
     return this.http.put<boolean>(this.BASEURL + 'preparation/' + preparationModel.id, params).pipe(
       catchError((err) => this.handleError(err))

@@ -1,0 +1,20 @@
+<div style="height: 100%; box-sizing: border-box;">
+  <ag-grid-angular
+    #userGrid
+    style="width: 100%; height: 100%;"
+    id="userGrid"
+    class="ag-theme-alpine"
+    [defaultColDef]="defaultColDef"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    [rowSelection]="'single'"
+    [pagination]="true"
+    [paginationPageSize]="100"
+    (selectionChanged)="onSelectRow($event)"
+    (gridReady)="onGridReady($event)"
+  ></ag-grid-angular>
+</div>
+
+<app-jwmodal id="usercard">
+    <app-user-card [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
+</app-jwmodal>

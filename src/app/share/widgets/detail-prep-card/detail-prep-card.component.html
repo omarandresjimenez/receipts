@@ -1,0 +1,160 @@
+    <ng-container *ngIf="modInfo">
+        <div class="header-preparation">
+            <i class='fas fa-times-circle back' title="Volver" (click)="onCloseModal()"></i>
+            <div class="overlay-header"></div>
+            <div id="pic"><img [src]="modInfo.modImage" class="mainimg" /></div>
+            <div class="content-header-preparation">
+                <h3 class="product-title"><span>Preparación:</span><br />{{ modInfo.modName }}</h3>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h5 class="title-autor-preparation">Autor:
+                                <app-avatar [avatarName]="modInfo.modAuthor" [avatarImage]="modInfo.modAuthor_imageUrl" style="color: white"
+                                    *ngIf="modInfo.modAuthor_imageUrl"></app-avatar>
+                                <span *ngIf="!modInfo.modAuthor_imageUrl"> {{ modInfo.modAuthor }}</span>
+                            </h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <h5 class="title-region-preparation">Región: {{ modInfo.modRegion }}</h5>
+                        </div>
+                        <div class="col-lg-4">
+                            <fieldset class="star-rating">
+                                <legend class="star-rating__title">Valoración:</legend>
+                                <span class="fa fa-star checked fa-color" *ngFor="let n of [ 1, 2, 3, 4, 5 ]" [style.display]="n <= modInfo.modRating ? 'inline-block' : 'none'"></span>
+                                <span *ngIf="!modInfo.modRating">Sin Valoración</span>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="rating">
+                <div class="stars">
+                    <span class="fa fa-star checked"></span>
+                    <span class="review-no">{{modRating }} rating</span>
+                </div>
+
+            </div> -->
+
+            </div>
+        </div>
+        <div class="container" [style.marginTop.px]="0">
+            <div class="card">
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="details col-md-6">
+                            <div class="container" *ngIf="modInfo.modIngredients">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="title-content-preparation food text-left">Ingredientes</h3>
+                                        <hr class="mx-auto">
+                                        <ol>
+                                            <li *ngFor="let ing of modInfo.modIngredients">
+                                                <p class="p-content-preparation"><b>{{ ing }}</b></p>
+                                            </li>
+                                        </ol>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container" *ngIf="modInfo.modTools">
+                                <div class="row">
+                                    <div class="col-12 ">
+                                        <h3 class="title-content-preparation tools text-left">Herramientas</h3>
+                                        <hr class="mx-auto">
+                                        <ol class="list-items-preparations">
+                                            <li *ngFor="let tool of modInfo.modTools">
+                                                <p class="p-content-preparation"><b>{{ tool }}</b></p>
+                                            </li>
+                                        </ol>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="preparation col-md-6">
+                            <h3 class="title-content-preparation preparation text-left">Preparación</h3>
+                            <h4 class="preparation-type"><b>Tipo de preparación:</b> {{ modInfo.modType }}</h4>
+                            <h4 class="preparation-type"><b>Técnica de cocción:</b> {{ modInfo.modCooking }}</h4>
+                            <p class="p-content-preparation">
+                                {{ modInfo.modSteps }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider-paper-white"></div>
+        <div class="info-preparation-aditional">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4 class="title-content-preparation white-text">Comunidad Portadora</h4>
+                        <p class="p-content-preparation">
+                            {{ modInfo.modCarrier }}
+                        </p>
+                    </div>
+                  
+                <div class="col-lg-4">
+                    <h4 class="title-content-preparation white-text">Fuente de Información</h4>
+                    <p class="p-content-preparation">
+                        {{ modInfo.modSource }}
+                    </p>
+                </div>
+                <div class="col-lg-4">
+                    <div *ngIf="showComments">
+                        <div class="form-group" >
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-white">
+                                        <i class="fas fa-font" [class.green-icon]="true"></i>
+                                    </div>
+                                </div>
+                                <textarea name="source" #source="ngModel" [(ngModel)]="rating.comments" style="color: black;"
+                                    class="form-control" placeholder="Comentarios" rows="3" maxlength="200"></textarea>
+                      </div>
+                   </div>
+                
+                    <fieldset class="star-rating" (change)="onComment()" >
+                        <legend class="star-rating__title">Calificar esta preparación:</legend>
+                        <div class="star-rating__stars">
+                            <input class="star-rating__input" type="radio" name="rating" value="1" id="rating-1"
+                                [(ngModel)]="rating.rating" />
+                            <label class="star-rating__label" for="rating-1" aria-label="One"></label>
+                            <input class="star-rating__input" type="radio" name="rating" value="2" id="rating-2"
+                                [(ngModel)]="rating.rating" />
+                            <label class="star-rating__label" for="rating-2" aria-label="Two"></label>
+                            <input class="star-rating__input" type="radio" name="rating" value="3" id="rating-3"
+                                [(ngModel)]="rating.rating" />
+                            <label class="star-rating__label" for="rating-3" aria-label="Three"></label>
+                            <input class="star-rating__input" type="radio" name="rating" value="4" id="rating-4"
+                                [(ngModel)]="rating.rating" />
+                            <label class="star-rating__label" for="rating-4" aria-label="Four"></label>
+                            <input class="star-rating__input" type="radio" name="rating" value="5" id="rating-5"
+                                [(ngModel)]="rating.rating" />
+                            <label class="star-rating__label" for="rating-5" aria-label="Five"></label>
+                            <div class="star-rating__focus"></div>
+                        </div>
+                    </fieldset>
+                    </div>
+                    <fieldset class="star-rating" *ngIf="!showComments && !rated">
+                        <legend class="star-rating__title">Valoración:</legend>
+                        <span class="fa fa-star checked fa-color" *ngFor="let n of [ 1, 2, 3, 4, 5 ]" [style.display]="n <= modInfo.modRating ? 'inline-block' : 'none'"></span>
+                        <span *ngIf="!modInfo.modRating">Sin Valoración</span>
+                    </fieldset>
+                    <span *ngIf="rated">Gracias por su Valoración</span>
+               
+            </div>
+            </div>
+
+        </div>
+        </div>
+        
+    </ng-container>

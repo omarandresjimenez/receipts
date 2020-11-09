@@ -11,71 +11,6 @@
   z-index: 10001;
 }
 
-.nav-recepie{
-  margin-bottom: 16px;
-}
-
-
-.header-recepie-card{
-  width: 100%;
-  height: auto;
-  padding: 50px 0px;
-  overflow: hidden;
-  position: relative;
-  background-color: rgba(0,0,0,1);
-}
-
-.header-recepie-card img{
-  width: 100%;
-  height: auto;
-  opacity: 0.7;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-
-
-.header-recepie-container{
-  position: relative;
-}
-
-
-
-
-
-.header-preparation{
-  width: 100%;
-  height: auto;
-  padding: 100px 40px 30px;
-  overflow: hidden;
-  position: relative;
-  background-color: rgba(0,0,0,1);
-}
-
-.header-preparation .overlay-header{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(0,0,0,1) 100%);
-  z-index: 2;
-}
-
-.header-preparation img{
-  width: 100%;
-  height: auto;
-  opacity: 0.7;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.header-preparation .content-header-preparation{
-  position: relative;
-  z-index: 10;
-  color: white;
-}
 
 .btn-gh-secondary{
 	background-color: #5959D2;
@@ -238,6 +173,158 @@ app-avatar {
 
 .fa-color {
   color: #5959D2;
+}
+
+.title-content-preparation{
+  padding: 5px 0px 5px 60px;
+  background-size: contain !important;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  /* identical to box height, or 125% */
+
+
+  color: #393D5E;
+}
+
+.title-content-preparation.food{
+  background: url('/assets/imgs/icons/food.png') no-repeat center left;
+}
+.title-content-preparation.tools{
+  background: url('/assets/imgs/icons/kitchen-utensils.png') no-repeat center left;
+}
+.title-content-preparation.preparation{
+  background: url('/assets/imgs/icons/preparation.png') no-repeat center left;
+}
+
+.p-content-preparation{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 31px;
+  /* or 195% */
+
+
+  color: #697978;
+}
+
+.product-title {
+	font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 27.7578px;
+  line-height: 35px;
+  /* identical to box height, or 125% */
+
+
+  color: #FFFFFF;
+}
+
+.product-title span{
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15.2668px;
+  line-height: 18px;
+
+  color: #FFFFFF;
+}
+
+.card-desc p {
+	color: #747373;
+    font-size: 14px;
+	font-weight: 400;
+	font-size: 1em;
+	line-height: 1.5;
+	margin: 0px;
+	margin-bottom: 20px;
+	padding: 0;
+	font-family: 'Raleway', sans-serif;
+}
+.btn-card{
+	background-color: #1abc9c;
+    box-shadow: 0px 6px 17px -10px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    font-size: .81rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin: 0;
+    border: 0;
+    border-radius: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #fff;
+}
+
+.star-rating__stars {
+  position: relative;
+  height: 1.5rem;
+  width: 7.5rem;
+  background: url(/assets/off.svg);
+  background-size: 1.5rem 1.5rem;
+}
+
+.star-rating__label {
+  position: absolute;
+  height: 100%;
+  background-size: 1.5rem 1.5rem;
+}
+
+.star-rating__input {
+  margin: 0;
+  position: absolute;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.star-rating__stars .star-rating__label:nth-of-type(1) {
+  z-index: 5;
+  width: 20%;
+}
+
+.star-rating__stars .star-rating__label:nth-of-type(2) {
+  z-index: 4;
+  width: 40%;
+}
+
+.star-rating__stars .star-rating__label:nth-of-type(3) {
+  z-index: 3;
+  width: 60%;
+}
+
+.star-rating__stars .star-rating__label:nth-of-type(4) {
+  z-index: 2;
+  width: 80%;
+}
+
+.star-rating__stars .star-rating__label:nth-of-type(5) {
+  z-index: 1;
+  width: 100%;
+}
+
+.star-rating__input:checked + .star-rating__label,
+.star-rating__input:focus + .star-rating__label,
+.star-rating__label:hover {
+  background-image: url('/assets/on.svg');
+}
+
+.star-rating__label:hover ~ .star-rating__label {
+  background-image: url('/assets/off.svg');
+}
+
+.star-rating__input:focus ~ .star-rating__focus {
+  position: absolute;
+  top: -.25em;
+  right: -.25em;
+  bottom: -.25em;
+  left: -.25em;
+  outline: 0.25rem solid lightblue;
 }
 
 

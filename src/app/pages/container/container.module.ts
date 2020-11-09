@@ -13,7 +13,7 @@ import { ContainerComponent } from './container.component';
 import { CatalogComponent } from '../catalog/catalog.component';
 import { DetailRecipeComponent } from '../catalog/components/detail/detail.component';
 import { ShareModule } from '../../share/share.module';
-import { HeaderModule } from 'src/app/share/widgets/header/header.module';
+import { DetailPreparationModule } from 'src/app/share/widgets/detail-prep-card/detail-prep-card.module';
 
 
 
@@ -30,6 +30,7 @@ import { HeaderModule } from 'src/app/share/widgets/header/header.module';
     ContainerRoutingModule,
     FormsModule,
     ShareModule,
+    DetailPreparationModule,
   ],
   providers: [],
   bootstrap: []
