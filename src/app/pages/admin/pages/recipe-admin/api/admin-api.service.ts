@@ -27,7 +27,7 @@ export class AdminApiService extends AppHttpErrorHandler  {
   public createRecipe(recipeModel: Recipe): Observable<boolean> {
     const params = {
       name: recipeModel.name,
-      image: recipeModel.imageUrl,
+      image: recipeModel.imageUrl ? recipeModel.imageUrl : null,
       description: recipeModel.description,
       preparations: [],
     };
