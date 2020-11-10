@@ -25,9 +25,14 @@
         <i class='fas fa-times-circle close-button-modal' title="Volver" (click)="closeModal('usercard')"></i>
           <app-user-card *ngIf="selectedUser" [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
       </app-jwmodal>
+      
       <app-jwmodal id="prepcard">
-        
-        <app-detail-prep-card *ngIf="selectedPrep" [prep]="selectedPrep" [userId]="userId"   (closeButton)="closeModal('prepcard')"></app-detail-prep-card>
+        <i class='fas fa-times-circle close-button-modal' title="Volver" (click)="closeModal('prepcard')"></i>
+        <app-prep-card  *ngIf="selectedPrep" [preparation]="selectedPrep" (updatePrep)="onSavePrep($event)" (deletePrep)="onDelete($event)"></app-prep-card>
+         
+      </app-jwmodal>
+      <app-jwmodal id="viewcard"> 
+        <app-detail-prep-card *ngIf="selectedPrep" [prep]="selectedPrep" [userId]="userId"   (closeButton)="closeModal('viewcard')"></app-detail-prep-card>
       </app-jwmodal>
       
     </div>

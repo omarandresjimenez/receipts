@@ -65,12 +65,12 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
       { field: '', headerName: '',
         cellRenderer: (params) => {
           const span = this.document.createElement('span');
-          span.innerHTML = '<i class="fas fa-edit" alt="Editar Preparacion"></i>';
+          span.innerHTML = '<i class="fas fa-eye" alt="Ver Preparacion"></i>';
           span.className = 'link';
           span.addEventListener('click', (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.onEditPrep(params?.data);
+            this.onViewPrep(params?.data);
           });
           return span;
        },
@@ -79,12 +79,12 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
       { field: '', headerName: '',
       cellRenderer: (params) => {
         const span = this.document.createElement('span');
-        span.innerHTML = '<i class="far fa-trash-alt fa-lg text-danger" ></i>';
+        span.innerHTML = '<i class="fas fa-edit" alt="Editar Preparacion"></i>';
         span.className = 'link';
         span.addEventListener('click', (event) => {
           event.preventDefault();
           event.stopPropagation();
-          this.onDeletePrep(params?.data.id);
+          this.onEditPrep(params?.data);
         });
         return span;
      },
@@ -138,6 +138,12 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
     this.cdr.markForCheck();
   }
 
+  onViewPrep($event) {
+    this.selectedPrep = $event;
+    this.openModal('viewcard');
+    this.cdr.markForCheck();
+  }
+
   onClickUser($event) {
     this.serviceUser.getUser($event.id).subscribe(u => {
       this.selectedUser = u;
@@ -174,12 +180,14 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
   }
 
   onSavePrep(prep: Preparation) {
+    if (prep.active) {
     this.service.updateAdminPreparation(prep.id, prep.active).subscribe((res) => {
       this.toast.success('Preparación Activada');
       this.rowData = this.rowData.filter(p => p.id !== prep.id);
       this.closeModal('prepcard');
       this.cdr.markForCheck();
     });
+  }
   }
 
   onGridReady(params) {
