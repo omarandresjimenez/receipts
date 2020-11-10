@@ -11,7 +11,7 @@ $darkBackground: #5b5f97;
 }
 
 #login-container {
-  height: 450px;
+  height: 350px;
   width: 350px;
   padding: 20px;
   border-radius: 5px;
@@ -19,21 +19,19 @@ $darkBackground: #5b5f97;
   position: relative;
   box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
   .profile-img {
-    height: 100px;
-    width: 100px;
-    background: url('https://images.unsplash.com/photo-1504933350103-e840ede978d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80');
+
     background-size: cover;
     background-position: center;
     position: absolute;
-    top: -25px;
-    left: -25px;
+    top: 1px;
+    left: 1px;
     border-radius: 50%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
   }
   h2 {
     font-family: 'Sriracha', arial, sans-serif;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 20px;
     color: $otherAccent;
   }
