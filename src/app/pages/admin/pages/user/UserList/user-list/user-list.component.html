@@ -16,5 +16,6 @@
 </div>
 
 <app-jwmodal id="usercard">
+  <i class='fas fa-times-circle close-button-modal' title="Volver" (click)="closeModal('usercard')"></i>
     <app-user-card [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
 </app-jwmodal>

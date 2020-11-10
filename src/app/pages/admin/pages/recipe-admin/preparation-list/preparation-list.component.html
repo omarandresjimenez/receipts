@@ -22,9 +22,11 @@
       </div>
       
       <app-jwmodal id="usercard">
+        <i class='fas fa-times-circle close-button-modal' title="Volver" (click)="closeModal('usercard')"></i>
           <app-user-card *ngIf="selectedUser" [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
       </app-jwmodal>
       <app-jwmodal id="prepcard">
+        
         <app-detail-prep-card *ngIf="selectedPrep" [prep]="selectedPrep" [userId]="userId"   (closeButton)="closeModal('prepcard')"></app-detail-prep-card>
       </app-jwmodal>
       

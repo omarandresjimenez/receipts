@@ -62,5 +62,6 @@
   </form>
 
   <app-jwmodal id="prepcard">
+    <i class='fas fa-times-circle close-button-modal' title="Volver" (click)="closeModal('prepcard')"></i>
     <app-prep-card [preparation]="selectedPrep" (updatePrep)="onSavePrep($event)" (deletePrep)="onDeletePreparation($event)"></app-prep-card>
 </app-jwmodal>
