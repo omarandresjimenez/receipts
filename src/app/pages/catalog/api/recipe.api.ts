@@ -50,7 +50,7 @@ export class RecipeApiService  extends AppHttpErrorHandler {
 
   public ratePreparation(authorId: number, preparationId: string, comment: string, rating: number): Observable<boolean> {
     const params = {
-      score: rating,
+      score: +rating,
       description: comment,
       preparationId,
       authorId,

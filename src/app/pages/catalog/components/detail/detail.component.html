@@ -58,7 +58,5 @@
     </div>
 </div>
 <app-jwmodal id="custom-modal-1">
-    <ng-container *ngIf="prep">
-        <app-detail-prep-card  [prep]="prep" [userId]="userId"  (ratePreparation)="onComment($event)"  (closeButton)="onCloseModal('custom-modal-1')"></app-detail-prep-card>
-    </ng-container>
+        <app-detail-prep-card *ngIf="prep" [prep]="prep" [userId]="userId"  (ratePreparation)="onComment($event)"  (closeButton)="onCloseModal('custom-modal-1')"></app-detail-prep-card>
 </app-jwmodal>

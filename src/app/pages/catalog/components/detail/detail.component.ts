@@ -52,7 +52,7 @@ export class DetailRecipeComponent implements OnInit, OnChanges {
    }
 
    onComment(objRating: any) {
-     this.ratePreparation.emit({ id: objRating.modId, comments: objRating.comments, rating: objRating.rating });
+     this.ratePreparation.emit({ id: objRating.id, comments: objRating.comments, rating: objRating.rating });
      this.cdr.markForCheck();
    }
 

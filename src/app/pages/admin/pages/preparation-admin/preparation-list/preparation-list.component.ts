@@ -9,6 +9,7 @@ import { Preparation } from 'src/app/core/models/models';
 import { PreparationService } from '../../preparation-admin/services/admin.service';
 import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { UserSessionService } from 'src/app/core/services/session.service';
+import { UserModel } from 'src/app/core/models/UserModel';
 
 
 
@@ -50,7 +51,7 @@ export class PreparationListComponent implements OnInit, OnDestroy {
   onDelete(id: string) {
     if (confirm('Esta seguro de eliminar esta preparación?')) {
       this.service.deletePreparation(id).subscribe((res) => {
-        this.toast.success('Receta eliminada!');
+        this.toast.success('Preparación eliminada!');
         this.rowData = this.rowData.filter((rec) => rec.id !== id);
         this.cdr.markForCheck();
       });

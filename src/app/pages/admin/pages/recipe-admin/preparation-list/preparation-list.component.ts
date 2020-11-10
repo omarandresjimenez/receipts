@@ -16,7 +16,7 @@ import { ModalService } from 'src/app/share/widgets/modal/modal.service';
   styleUrls: ['./preparation-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PreparationListAdminActivation implements OnInit, OnDestroy {
+export class PreparationListAdminActivationComponent implements OnInit, OnDestroy {
   public gridApi;
   public gridColumnApi;
 
