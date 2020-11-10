@@ -1,15 +1,14 @@
-import { newArray } from '@angular/compiler/src/util';
+
 import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { disableDebugTools } from '@angular/platform-browser';
 import { UserModel } from 'src/app/core/models/userModel';
 
 @Component({
   selector: 'app-user-card',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss'],
+  templateUrl: './user-card.component.html',
+  styleUrls: ['./user-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserFormComponent implements OnInit, OnChanges {
+export class UserCardComponent implements OnInit, OnChanges {
 
   constructor() { }
 

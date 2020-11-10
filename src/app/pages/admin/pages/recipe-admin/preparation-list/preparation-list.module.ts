@@ -7,6 +7,9 @@ import { AgGridModule } from 'ag-grid-angular';
 
 import { PreparationListAdminActivationComponent } from './preparation-list.component';
 import { PreparationListAdminRoutingModule } from './preparation-list.routing.module';
+import { DetailPreparationModule } from 'src/app/share/widgets/detail-prep-card/detail-prep-card.module';
+import { AppModalModule } from 'src/app/share/widgets/modal/modal.module';
+import { AppUserCardModule } from 'src/app/share/widgets/user-card/user-card.module';
 
 
 
@@ -17,6 +20,9 @@ import { PreparationListAdminRoutingModule } from './preparation-list.routing.mo
   imports: [
     CommonModule,
     PreparationListAdminRoutingModule,
+    DetailPreparationModule,
+    AppModalModule,
+    AppUserCardModule,
     FormsModule,
     AgGridModule.withComponents([]),
   ],

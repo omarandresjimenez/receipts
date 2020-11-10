@@ -6,6 +6,8 @@ import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
+import { UserModel } from 'src/app/core/models/UserModel';
+import { UserService } from '../../user/services/user.service';
 
 
 
@@ -22,15 +24,17 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
 
   public defaultColDef: any;
   public columnDefs: ColumnsGrid[];
-  public rowData: Preparation[];
+  public rowData: any[] = [];
 
   public selectedPrep: Preparation;
+  public selectedUser: UserModel;
+  public userId: string;
 
   private subs: Subscription;
   constructor(@Inject(DOCUMENT)
               private document: Document,
               private service: AdminService,
-              // private cityService: CitiesService,
+              private serviceUser: UserService,
               private toast: ToastrService,
               private modal: ModalService,
               private cdr: ChangeDetectorRef ) { }
@@ -72,19 +76,33 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
        },
        width: '60px', filter: '', floatingFilter: false
       },
+      { field: '', headerName: '',
+      cellRenderer: (params) => {
+        const span = this.document.createElement('span');
+        span.innerHTML = '<i class="far fa-trash-alt fa-lg text-danger" ></i>';
+        span.className = 'link';
+        span.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.onDeletePrep(params?.data.id);
+        });
+        return span;
+     },
+     width: '60px', filter: '', floatingFilter: false
+    },
       { field: 'id', hide: true },
       { field: 'recipeName', headerName: 'Receta', width: '220' },
       { field: 'name', headerName: 'Nombre Preparacion', width: '220' },
       { field: 'description', headerName: 'Descripción', width: '350' },
-      { field: '', headerName: '',
+      { field: 'Usuario Registro', headerName: '',
           cellRenderer: (params) => {
             const span = this.document.createElement('span');
-            span.innerHTML = params.data?.User?.name  + ' ' + params.data?.User?.lastName;
+            span.innerHTML = params.data?.user?.name  + ' ' + params.data?.user?.lastName;
             span.className = 'link';
             span.addEventListener('click', (event) => {
               event.preventDefault();
               event.stopPropagation();
-              this.onClickUser(params?.data.User);
+              this.onClickUser(params?.data.user);
             });
             return span;
         },
@@ -99,16 +117,19 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
 
   onSelectRow($event) {
       const selectedRows = this.gridApi?.getSelectedRows();
+      this.userId = selectedRows[0]?.user?.id;
       // console.log(selectedRows);
   }
 
   onDeletePrep(prepId: string) {
-    this.service.deletePreparation (prepId).subscribe((res) => {
+    if (confirm('ESta seguro de eliminar esta Preparación')){
+      this.service.deletePreparation (prepId).subscribe((res) => {
         this.toast.success('Preparación eliminada');
         this.rowData = this.rowData.filter((p) => p.id !== prepId);
         this.closeModal('prepcard');
         this.cdr.markForCheck();
       });
+    }
   }
 
   onEditPrep($event) {
@@ -118,9 +139,38 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
   }
 
   onClickUser($event) {
-    this.selectedPrep = $event;
-    this.openModal('prepcard');
-    this.cdr.markForCheck();
+    this.serviceUser.getUser($event.id).subscribe(u => {
+      this.selectedUser = u;
+      this.openModal('usercard');
+      this.cdr.markForCheck();
+    });
+  }
+
+  onDeleteUser(userId: string) {
+    this.serviceUser.deleteUser(userId).subscribe((res) => {
+        this.toast.success('Usuario eliminado');
+        this.rowData = this.rowData.filter((prep) => prep.user.id !== userId);
+        this.closeModal('usercard');
+        this.cdr.markForCheck();
+      });
+  }
+
+  onDelete(id: string) {
+    if (confirm('Esta seguro de eliminar esta preparación?')) {
+      this.service.deletePreparation(id).subscribe((res) => {
+        this.toast.success('Preparación eliminada!');
+        this.rowData = this.rowData.filter((rec) => rec.id !== id);
+        this.cdr.markForCheck();
+      });
+    }
+  }
+
+  onSaveUser(user: UserModel) {
+    this.serviceUser.updateUserAdmin(user.id, user.role, user.active).subscribe((res) => {
+      this.toast.success('Usuario actualizado');
+      this.closeModal('usercard');
+      this.cdr.markForCheck();
+    });
   }
 
   onSavePrep(prep: Preparation) {
@@ -137,8 +187,13 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
     this.gridColumnApi = params.columnApi;
     this.initGridOptions();
     this.columnDefs = this.prepareGridColumns();
-    this.subs = this.service.getInactivePreparations().subscribe( preps => {
-      this.rowData = preps;
+    this.subs = this.service.getInactivePreparations().subscribe(prep => {
+      prep.map((prepa) => {
+       this.rowData.push({ ...prepa, authorName: !prepa.author ? '' :
+                               (prepa.author?.name + ' ' + prepa.author?.lastName),
+                               recipeName: prepa.recipe?.name });
+      });
+      this.rowData = [ ...this.rowData ];
       this.cdr.markForCheck();
     });
   }

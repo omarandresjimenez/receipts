@@ -29,6 +29,13 @@ const routes: Routes = [{
       canActivate: [ AdminGuard ],
     },
     {
+      path: 'admin-preparation-list',
+      loadChildren: () => import('../admin/pages/recipe-admin/preparation-list/preparation-list.module').
+                    then((m) => m.PreparationListAdminModule),
+      canLoad: [ AdminGuard ],
+      canActivate: [ AdminGuard ],
+    },
+    {
       path: 'profile',
       loadChildren: () => import('../admin/pages/userprofile/user-profile.module').then((m) => m.UserProfileModule),
       canLoad: [ LoggedInGuard ],

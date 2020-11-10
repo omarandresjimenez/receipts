@@ -7,3 +7,10 @@
   }
 
 }
+
+.grid {
+  display: inline-block;
+  height: calc(80vh - 10px);
+  max-width: 98%;
+  margin-left: 10px;
+}

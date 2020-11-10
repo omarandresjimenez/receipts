@@ -14,6 +14,8 @@ import { PreparationFormComponent } from './preparation-form/preparation-form.co
 import { ShareModule } from 'src/app/share/share.module';
 import { ChipAutocompleteModule } from 'src/app/share/widgets/chip-autocomplete/chip-autocomplete.module';
 import { NewElementFormModule } from 'src/app/share/widgets/newelementform/new-element.module';
+import { DetailPreparationModule } from 'src/app/share/widgets/detail-prep-card/detail-prep-card.module';
+
 
 
 
@@ -32,6 +34,7 @@ import { NewElementFormModule } from 'src/app/share/widgets/newelementform/new-e
     MatAutocompleteModule,
     ChipAutocompleteModule,
     NewElementFormModule,
+    DetailPreparationModule,
     AgGridModule.withComponents([]),
   ],
   providers: [],

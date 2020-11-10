@@ -1,24 +1,36 @@
-<div style="height: 100%; box-sizing: border-box;">
-  <ag-grid-angular
-    #userGrid
-    style="width: 100%; height: 100%;"
-    id="userGrid"
-    class="ag-theme-alpine"
-    [defaultColDef]="defaultColDef"
-    [columnDefs]="columnDefs"
-    [rowData]="rowData"
-    [rowSelection]="'single'"
-    [pagination]="true"
-    [paginationPageSize]="100"
-    (selectionChanged)="onSelectRow($event)"
-    (gridReady)="onGridReady($event)"
-  ></ag-grid-angular>
+<div class="jumbtron" [style.marginTop.px]="20">
+  <h1 class="display-4 text-center">Administracion Preparaciones Inactivas</h1>
+  <hr>
+  <div class="row" >
+    
+    <div class="col-md-12  grid" >
+      <div style="height: 100%; box-sizing: border-box;">
+        <ag-grid-angular
+          #userGrid
+          style="width: 100%; height: 100%;"
+          id="userGrid"
+          class="ag-theme-alpine"
+          [defaultColDef]="defaultColDef"
+          [columnDefs]="columnDefs"
+          [rowData]="rowData"
+          [rowSelection]="'single'"
+          [pagination]="true"
+          [paginationPageSize]="100"
+          (selectionChanged)="onSelectRow($event)"
+          (gridReady)="onGridReady($event)"
+        ></ag-grid-angular>
+      </div>
+      
+      <app-jwmodal id="usercard">
+          <app-user-card *ngIf="selectedUser" [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
+      </app-jwmodal>
+      <app-jwmodal id="prepcard">
+        <app-detail-prep-card *ngIf="selectedPrep" [prep]="selectedPrep" [userId]="userId"   (closeButton)="closeModal('prepcard')"></app-detail-prep-card>
+      </app-jwmodal>
+      
+    </div>
+  </div>
 </div>
 
-<app-jwmodal id="usercard">
-    <app-user-card *ngIf="selectedUser" [user]="selectedUser" (updateUser)="onSaveUser($event)" (deleteUser)="onDeleteUser($event)"></app-user-card>
-</app-jwmodal>
-<app-jwmodal id="prepcard">
-  <app-detail-prep-card *ngIf="selectedPrep" [prep]="selectedPrep" [userId]="userId"  (ratePreparation)="onComment($event)"  (closeButton)="onCloseModal('prepcard')"></app-detail-prep-card>
-</app-jwmodal>
+
 
