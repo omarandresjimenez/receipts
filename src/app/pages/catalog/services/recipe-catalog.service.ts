@@ -53,4 +53,8 @@ export class RecipeCatalogService {
   public ratePreparation(authorId: number, preparationId: string, comment: string, rating: number): Observable<boolean> {
     return this.service.ratePreparation(authorId, preparationId, comment, rating);
   }
+
+  public getRatingPreparation(idPrep: string): Observable<number> {
+    return this.service.getRatingPreparation(idPrep);
+  }
 }

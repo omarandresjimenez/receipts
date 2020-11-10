@@ -24,7 +24,7 @@
                                     <h3 class="preparation-title text-left">Preparaciones</h3>
                                     <h4 class="preparation-description">Descubre todas las <b>preparaciones únicas de
                                             las cocinas colombianas</b> basadas en esta receta.</h4>
-
+                                  <div class="preps">
                                     <div class="card-content" *ngFor="let prep of card.preparations"
                                         (click)="onModalOpen(prep)" [style.cursor]="'pointer'">
                                         <div class="card-img">
@@ -45,6 +45,7 @@
                                             <button class="btn-gh-secondary btn-prep">Ver Preparación</button>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
 
 

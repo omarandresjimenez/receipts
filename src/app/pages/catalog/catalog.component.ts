@@ -52,9 +52,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   onSelectCard(id: string) {
-    // this.sub = this.serviceCatalog.getCastMovie(id).subscribe((res) => {
-    //    this.casts.length = 0;
-    //    this.casts = res;
           this.cardInfo = this.recipeCatalog$.find((card) => card.id === id);
           this.sub = combineLatest([  this.serviceCatalog.getPreparationsByRecipe(this.cardInfo.id), this.serviceCatalog.recipeImages$]).
               subscribe(([ res, images ]: [ Preparation[], string[]]) => {
@@ -65,18 +62,25 @@ export class CatalogComponent implements OnInit, OnDestroy {
                 this.catalogView = false;
                 this.cdr.markForCheck();
               });
-    //   });
   }
 
   onBack() {
     this.catalogView = true;
     this.cardInfo = null;
-    // this.casts.length = 0;
   }
 
   onRatePreparation($rateObj): void {
      this.serviceCatalog.ratePreparation(+this.currentUserId, $rateObj.id, $rateObj.comments, $rateObj.rating)
-        .subscribe();
+        .subscribe(() => {
+          this.serviceCatalog.getRatingPreparation($rateObj.id).subscribe(r => {
+            this.cardInfo.preparations =
+              this.cardInfo.preparations.map((prep: Preparation) => {
+                return { ...prep, rating: prep.id ===  $rateObj.id ? r : prep.rating };
+              });
+            this.cardInfo = { ...this.cardInfo };
+            this.cdr.markForCheck();
+            });
+        });
      this.toast.success('Gracias por su valoración');
   }
 }

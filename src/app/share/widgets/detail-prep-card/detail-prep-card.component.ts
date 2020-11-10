@@ -23,7 +23,7 @@ export class DetailPreparationComponent implements OnInit, OnChanges {
                     modRating: string;
                     modIngredients: string[];
                     modTools: string[];
-                    modSteps: string;
+                    modSteps: string[];
                     modCarrier: string;
                     modCooking: string;
                     modSale: boolean;
@@ -64,9 +64,9 @@ export class DetailPreparationComponent implements OnInit, OnChanges {
       modAuthor: this.prep.author?.name + ' ' + this.prep.author?.lastName,
       modAuthor_imageUrl: this.prep.author?.imageUrl,
       modImage: this.prep.imageUrl,
-      modSteps: this.prep.preparationSteps,
+      modSteps: this.prep.preparationSteps?.replace(/\n/g, '   ').split('   '),
       modCarrier: this.prep.carrierCommunity,
-      modCooking: this.prep.cookingTechnique.name,
+      modCooking: this.prep.cookingTechnique?.name,
       modSale: this.prep.forSale,
       modType: this.prep.preparationType,
       modSource: this.prep.source,
@@ -87,6 +87,7 @@ export class DetailPreparationComponent implements OnInit, OnChanges {
      this.ratePreparation.emit({ id: this.modInfo.modId, comments: this.rating.comments, rating: this.rating.rating });
      this.showComments = false;
      this.rated = true;
+     this.modInfo = { ...this.modInfo, modRating: this.rating.rating.toString()};
      this.cdr.markForCheck();
    }
 

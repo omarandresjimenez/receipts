@@ -71,18 +71,11 @@ export class RecipeApiService  extends AppHttpErrorHandler {
             //      .pipe((res: any) => res.meals[0].strMealThumb);
   }
 
-  private getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
 
-  private getRandomAuthor() {
-    const AUTHORS = ['Pedro Lopez', 'Carmen Gomez', 'Maria Perez', 'Juliana Olarte'];
-    return AUTHORS[this.getRandomInt(0, 3)];
-  }
-
-  private getRandomRegion() {
-    const AUTHORS = ['Atlantica', 'Pacifica', 'Oriental', 'Cundiboyacense'];
-    return AUTHORS[this.getRandomInt(0, 3)];
+  public getRatingPreparation(idPrep: string): Observable<number> {
+    return this.http.get<number>(this.BASEURL + 'rating/avg/' + idPrep).pipe(
+      catchError((err) => this.handleError(err))
+    );
   }
 
 }

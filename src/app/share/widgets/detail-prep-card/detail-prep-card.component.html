@@ -83,8 +83,9 @@
                             <h3 class="title-content-preparation preparation text-left">Preparación</h3>
                             <h4 class="preparation-type"><b>Tipo de preparación:</b> {{ modInfo.modType }}</h4>
                             <h4 class="preparation-type"><b>Técnica de cocción:</b> {{ modInfo.modCooking }}</h4>
-                            <p class="p-content-preparation">
-                                {{ modInfo.modSteps }}
+                            <p class="p-content-preparation" *ngFor="let step of modInfo.modSteps">
+                                {{ step }}
+                                
                             </p>
                         </div>
                     </div>
