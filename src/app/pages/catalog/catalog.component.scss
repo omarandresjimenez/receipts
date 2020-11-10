@@ -34,3 +34,23 @@ section.details-card{
 .box-search{
     margin: auto;
 }
+
+.btn-card{
+	background-color: #5959D2;
+    box-shadow: 0px 6px 17px -10px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    font-size: .81rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin: 10px 0 0 0;
+    border: 0;
+    border-radius: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #fff;
+}
+.btn-card:hover {
+    background: #4444FF;
+}

@@ -17,7 +17,10 @@
             </div>
             <span class="messages" *ngIf="!recipeCatalog$?.length">
                 No se encontraron Recetas con su criterio de Búsqueda
-             </span>   
+             </span>
+             <button class="btn-card" *ngIf="recipeTotal.length > recipeCatalog$?.length" (click)="showMoreRecipes()">
+                   Ver Mas!
+             </button> 
         </div>
     </div>
 </section>
