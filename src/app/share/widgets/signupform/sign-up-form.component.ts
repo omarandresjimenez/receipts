@@ -25,8 +25,6 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
   public cities$: Observable<City[]>;
   public typeActors$: Observable<ActorType[]>;
 
-  public pwderror = false;
-
   public years: number[] = [];
   public months: string[] = [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   public days: number[] = [];
@@ -110,10 +108,6 @@ export class SignUpFormComponent implements OnInit, OnDestroy, OnChanges {
    //  this.sub.unsubscribe();
   }
 
-  public onChange() {
-    this.pwderror = !(this.signUp.password ===  this.signUp.confirmPassword || this.signUp.password === '');
-    this.cdr.markForCheck();
-  }
 
   public onChangeMonth($event) {
     this.days.length = 0;

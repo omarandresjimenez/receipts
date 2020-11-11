@@ -6,6 +6,7 @@ import { RecoverPasswordProcessComponent } from './recover-password-process.comp
 import { RecoverPasswordRoutingModule } from './recover-password.routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { FieldMatchesDirectiveModule } from 'src/app/share/directives/directives.module';
 
 
 
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     RecoverPasswordRoutingModule,
     ToastrModule,
     FormsModule,
+    FieldMatchesDirectiveModule,
   ],
   providers: [],
   bootstrap: []

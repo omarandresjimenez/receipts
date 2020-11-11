@@ -27,16 +27,13 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AppModalModule } from './share/widgets/modal/modal.module';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
     LandingComponent,
+
 
   ],
   imports: [
