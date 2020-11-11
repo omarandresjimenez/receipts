@@ -47,7 +47,7 @@ export class ApiService extends AppHttpErrorHandler  {
       lastName: userModel.lastName,
       password: userModel.password,
       role: userModel.role,
-      cityId: userModel.city,
+      cityId: +userModel.city,
       email: userModel.email,
       active: userModel.active,
       identification: userModel.identification,
@@ -56,7 +56,7 @@ export class ApiService extends AppHttpErrorHandler  {
       image: userModel.imageUrl,
       shouldChangePassword: true,
       emailValidated: false,
-      actorTypeId: userModel.actorTypeId,
+      actorTypeId: +userModel.actorTypeId,
       establishment: userModel.establishment,
 
     };

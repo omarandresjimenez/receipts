@@ -18,6 +18,10 @@ const routes: Routes = [{
       loadChildren: () => import('./pages/valida-mail/valida-email.module').then((m) => m.ValidateMailModule),
     },
     {
+      path: 'recoverpassword',
+      loadChildren: () => import('./pages/recover-password/recover-password.module').then((m) => m.RecoverPasswordModule),
+    },
+    {
       path: 'login',
       component: LoginComponent,
     },

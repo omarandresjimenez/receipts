@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ValidaMailApiService  {
+export class RecoverPasswordApiService  {
   private readonly BASEURL = environment.baseUrlApi;
   constructor(private http: HttpClient) {
    }
 
-  public validaMail(email: string, hash: string): Observable<boolean> {
+  public ChangePaswordMail(email: string, password: string, hash: string): Observable<boolean> {
     const params = {
         email,
+        password,
         hash,
       };
-    return this.http.post<boolean>(this.BASEURL + 'user/emailValidation', params);
+    return this.http.post<boolean>(this.BASEURL + 'user/UpdatePwd', params);
   }
 
 }
