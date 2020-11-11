@@ -7,6 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserSessionService } from 'src/app/core/services/session.service';
+import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private session: UserSessionService,
+              private modalService: ModalService,
               private toast: ToastrService) { }
 
   public ngOnInit(): void {
@@ -38,6 +40,23 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
    this.session.authenticate(this.userLogin);
+  }
+
+  public onSubmitRecover() {
+    this.toast.success('Gracias.. Pronto recibirá un email con instrucciones');
+    this.closeModal('recovercard');
+  }
+
+  public openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  public closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  public onBack() {
+    this.router.navigateByUrl('/');
   }
 
   public signUp() {

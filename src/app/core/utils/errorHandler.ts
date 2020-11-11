@@ -20,7 +20,7 @@ export abstract class AppHttpErrorHandler {
         return of(null);
 
       case (res.status >= 500):
-        this.toast.error('Unexpected server error');
+        this.toast.error('Error inesperado');
         return throwError(res);
 
       case (!!res?.error?.message || !!res?.message):

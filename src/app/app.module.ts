@@ -24,6 +24,7 @@ import { PipesModule } from './share/pipes/pipes.module';
 import { HeaderModule } from './share/widgets/header/header.module';
 import { JwtInterceptor } from './core/utils/jwt.interceptor';
 import { LandingComponent } from './pages/landing/landing.component';
+import { AppModalModule } from './share/widgets/modal/modal.module';
 
 
 
@@ -49,6 +50,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     SignUpFormModule,
     HeaderModule,
     PipesModule,
+    AppModalModule,
     ToastNoAnimationModule.forRoot(),
     BrowserAnimationsModule,
   ],

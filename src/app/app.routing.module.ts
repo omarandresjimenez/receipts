@@ -14,6 +14,10 @@ const routes: Routes = [{
       loadChildren: () => import('./pages/container/container.module').then((m) => m.ContainerModule),
     },
     {
+      path: 'validamail',
+      loadChildren: () => import('./pages/valida-mail/valida-email.module').then((m) => m.ValidateMailModule),
+    },
+    {
       path: 'login',
       component: LoginComponent,
     },
