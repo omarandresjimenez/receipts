@@ -34,3 +34,20 @@ align-content: center;
 	background: url('/assets/imgs/bg-landing.jpg') top center no-repeat;
 	background-size: cover;
 }
+
+.message{
+	display: block;
+	width: auto;
+	padding: 20px;
+	border-radius: 8px;
+	width: 400px;
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 20px;
+	/* identical to box height */
+  
+  
+	background-color: rgb(237 236 255);
+  }

@@ -19,14 +19,14 @@ export abstract class AppHttpErrorHandler {
         this.router.navigate([ '/' ]);
         return of(null);
 
-      case (res.status >= 500):
-        this.toast.error('Error inesperado');
-        return throwError(res);
-
       case (!!res?.error?.message || !!res?.message):
         this.toast.error(res?.error?.message || res?.message);
         return throwError(res);
 
+
+      case (res.status >= 500):
+        this.toast.error('Error inesperado');
+        return throwError(res);
       default:
         return throwError(res);
     }

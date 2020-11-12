@@ -82,7 +82,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   private prepareGridColumns(): ColumnsGrid[] {
     return [
       { field: 'id', hide: true },
-      { field: 'name', headerName: 'Receta', width: '350' },
+      { field: 'name', headerName: 'Receta', width: '400' },
       { field: 'description', headerName: 'Descripcion', width: '350' },
       { field: '', headerName: '',
       cellRenderer: (params) => {

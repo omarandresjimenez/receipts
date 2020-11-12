@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRe
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
+import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 import { UserService } from '../admin/pages/user/services/user.service';
 
 
@@ -14,6 +15,7 @@ import { UserService } from '../admin/pages/user/services/user.service';
 export class SignUpComponent implements OnInit {
     constructor(private router: Router,
                 private route: ActivatedRoute,
+                private modal: ModalService,
                 private dialog: ToastrService,
                 private userService: UserService) { }
 
@@ -29,10 +31,15 @@ export class SignUpComponent implements OnInit {
      if (res) {
       this.dialog.success('Usuario creado');
       this.router.navigate([ '..', 'login' ], { relativeTo: this.route });
+      this.modal.open('messageModal');
      }
    }
    );
 
+  }
+
+  public onCloseModal(id) {
+    this.modal.close(id);
   }
 
   public logAsGuest() {
