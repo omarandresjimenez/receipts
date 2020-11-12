@@ -30,7 +30,6 @@ export class SignUpComponent implements OnInit {
    this.userService.createUser($event).subscribe((res) => {
      if (res) {
       this.dialog.success('Usuario creado');
-      this.router.navigate([ '..', 'login' ], { relativeTo: this.route });
       this.modal.open('messageModal');
      }
    }
@@ -40,6 +39,7 @@ export class SignUpComponent implements OnInit {
 
   public onCloseModal(id) {
     this.modal.close(id);
+    this.router.navigate([ '..', 'login' ], { relativeTo: this.route });
   }
 
   public logAsGuest() {
