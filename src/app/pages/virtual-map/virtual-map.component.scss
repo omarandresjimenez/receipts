@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+.body{
+	background: url(/assets/imgs/bg-landing.jpg) top center no-repeat;
+	background-size: cover;
+	padding: 0;
+	height: 1000px;
+}
+
+footer{
+	padding: 120px 0px 120px;
+	background-color: rgba(0,0,0,0.4);
+	color: white;
+}
+
+footer i{ font-size: 30px; color: rgba(255,255,255,1);}
+footer i:hover{ color: rgba(255, 193, 7, 1);}
+
+footer p{
+	padding: 20px;
+	max-width: 300px;
+	font-size: 11px;
+	letter-spacing: 2px;
+	margin: auto;
+	font-weight: 300;
+	line-height: 25px;
+	opacity: .4;
+}
+
+footer .logo-footer{
+	padding: 10px 0px 40px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - MAPA - - - - - - - - - - - - - - */
+.display-demo-map {
+    background: transparent;
+    border: none;
+    border-width: 3px 0;
+    padding: 3em 0;
+}
+
+
+.section-map{
+	padding: 180px 0px 120px;
+}
+
+.title-section-map h2{
+	display: block;
+	margin: auto;
+	margin-top: 160px;
+	margin-bottom: 15px;
+	max-width: 400px;
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 42.4586px;
+	line-height: 107%;
+	/* or 45px */
+
+	text-align: center;
+
+	color: #FFFFFF;
+}
+
+.title-section-map h2 span{
+	font-family: 'Caveat Brush', sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 65px;
+	line-height: 107%;
+	/* identical to box height, or 73px */
+
+	text-align: center;
+	letter-spacing: -0.015em;
+
+	color: #FFFFFF;
+
+	transform: rotate(-2deg);
+	display: block;
+	position: relative;
+	top: -10px;
+}
+
+.title-section-map p{
+	display: block;
+	margin: auto;
+	max-width: 350px;
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 31px;
+	/* or 195% */
+
+	text-align: center;
+
+	color: #FFFFFF;
+}
+
+
+section.cta-othersection{
+	width: 100%;
+	padding: 120px 30px;
+	position: relative;
+}
+
+section.cta-othersection.recepies{
+	background: url('/assets/imgs/bg-generic-woman.jpg') center center no-repeat;
+	background-size: cover;
+}
+
+section.cta-othersection .overlay{
+	background: rgba(60, 0, 204, 80%);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+section.cta-othersection h3{
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: 800;
+	font-size: 32px;
+	line-height: 111%;
+	/* or 36px */
+
+
+	color: #FFFFFF;
+}
+
+section.cta-othersection p{
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 155%;
+	/* or 28px */
+
+
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+/* - - - - - - - - - - - - - - - - - - - INTERNA REGION - - - - - - - - - - - - - */ 
+
+
+.swiper-button-next, .swiper-button-prev {
+    color: white !important;
+}
+
+
+
+.divider-paper-white {
+    width: 100%;
+    position: relative;
+    height: 80px;
+    background: url(/assets/imgs/divider-paper.png) no-repeat 50%;
+    background-size: 100% 100%;
+    margin-top: -45px;
+    margin-bottom: -35px;
+    z-index: 2;
+}
+
+
+section.intro-department{
+	padding: 120px 30px;
+	background-color: white;
+	color: #393D5E;
+}
+
+section.intro-department .btn-gastro{
+	margin: 30px auto 20px;
+	background-color: #5959D2;
+	color: white !important;
+}
+
+section.intro-department .btn-gastro::before{
+	font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f053"; padding-right: 10px;
+}
+
+
+
+#us-map{
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: auto;
+}
+path{
+	fill: #ffffff !important;
+	stroke: #393D5E !important;
+  	stroke-width:2px;
+  	stroke-linejoin: round;
+}
+path:hover, circle:hover {
+  stroke: #393D5E !important;
+  stroke-width:2px;
+  stroke-linejoin: round;
+  fill: #FFDF00 !important;
+  cursor: pointer;
+}
+#path67 {
+  fill: none !important;
+  stroke: #A9A9A9 !important;
+  cursor: default;
+}
+#info-box {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: #403470;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+#info-box div::before {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f3c5"; padding-right: 10px;
+  }
+
+
+
+  section.cta-othersection p{
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 155%;
+	/* or 28px */
+
+
+	color: #FFFFFF;
+}
+
+.btn-gastro{
+	font-family: 'Ubuntu', sans-serif; 
+	font-weight: bolder;
+	font-size: 16px;
+	background-color: rgba(255, 193, 7, 1);
+	border-radius: 100px;
+	color: black !important;
+	padding: 10px 30px !important;
+	display: table;
+
+}
+
+.btn-gastro:hover{
+	text-decoration: none;
+}

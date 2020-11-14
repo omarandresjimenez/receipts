@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
-body{
-	background: url(../imgs/bg-landing.jpg) top center no-repeat;
+
+.card{ margin-bottom: 24px; border:none !important; position: relative; }
+
+.hover-card{
+	background-color: rgba(7, 232, 255, 1);
+	opacity: 0;
+	position:
+	absolute;
+	width: 100%;
+	height: 100%;
+	transition: all ease-in-out .2s;
+}
+
+.bg{
+	background: url(/assets/imgs/bg-landing.jpg) top center no-repeat;
 	background-size: cover;
 	padding: 0;
-}
-
-*{ font-family: 'Ubuntu', sans-serif; }
-
-a{ color: inherit !important; }
-
-.top-bar{
-	padding: 20px 0px;
-	color: white;
-}
-
-.top-bar li{
-	padding: 10px 10px;
+	height: 100%;
 }
 
 .btn-gastro{
@@ -35,26 +36,6 @@ a{ color: inherit !important; }
 	text-decoration: none;
 }
 
-.logo{
-	width: 228px;
-	height: 44px;
-	background: url(../imgs/logo-fullcolor-hrz.png) center center no-repeat;
-	background-size: contain;
-	text-indent: -9999px;
-	display: block;
-}
-
-.card{ margin-bottom: 24px; border:none !important; position: relative; }
-
-.hover-card{
-	background-color: rgba(7, 232, 255, 1);
-	opacity: 0;
-	position:
-	absolute;
-	width: 100%;
-	height: 100%;
-	transition: all ease-in-out .2s;
-}
 
 .card:hover .hover-card{ opacity: 0.3; }
 
@@ -72,7 +53,7 @@ section.stories .title-stories{
 	width: 261.65px;
 	height: 94.49px;
 	margin: auto;
-	background: url(../imgs/title-nuevashistorias.png) center center no-repeat;
+	background: url(/assets/imgs/title-nuevashistorias.png) center center no-repeat;
 	background-size: contain;
 	text-indent: -9999px;
 	display: block;
@@ -108,121 +89,6 @@ footer .logo-footer{
 }
 
 
-/* - - - - - - - - - - - - - - - - - MAPA - - - - - - - - - - - - - - */
-.display-demo-map {
-    background: transparent;
-    border: none;
-    border-width: 3px 0;
-    padding: 3em 0;
-}
-
-
-.section-map{
-	padding: 180px 0px 120px;
-}
-
-.title-section-map h2{
-	display: block;
-	margin: auto;
-	margin-top: 160px;
-	margin-bottom: 15px;
-	max-width: 400px;
-	font-family: 'Ubuntu', sans-serif;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 42.4586px;
-	line-height: 107%;
-	/* or 45px */
-
-	text-align: center;
-
-	color: #FFFFFF;
-}
-
-.title-section-map h2 span{
-	font-family: 'Caveat Brush', sans-serif;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 65px;
-	line-height: 107%;
-	/* identical to box height, or 73px */
-
-	text-align: center;
-	letter-spacing: -0.015em;
-
-	color: #FFFFFF;
-
-	transform: rotate(-2deg);
-	display: block;
-	position: relative;
-	top: -10px;
-}
-
-.title-section-map p{
-	display: block;
-	margin: auto;
-	max-width: 350px;
-	font-family: 'Ubuntu', sans-serif;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 16px;
-	line-height: 31px;
-	/* or 195% */
-
-	text-align: center;
-
-	color: #FFFFFF;
-}
-
-
-section.cta-othersection{
-	width: 100%;
-	padding: 120px 30px;
-	position: relative;
-}
-
-section.cta-othersection.recepies{
-	background: url('../imgs/bg-generic-woman.jpg') center center no-repeat;
-	background-size: cover;
-}
-
-section.cta-othersection .overlay{
-	background: rgba(60, 0, 204, 80%);
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-}
-
-section.cta-othersection h3{
-	font-family: 'Ubuntu', sans-serif;
-	font-style: normal;
-	font-weight: 800;
-	font-size: 32px;
-	line-height: 111%;
-	/* or 36px */
-
-
-	color: #FFFFFF;
-}
-
-section.cta-othersection p{
-	font-family: 'Ubuntu', sans-serif;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 155%;
-	/* or 28px */
-
-
-	color: #FFFFFF;
-}
-
-
-
-
-
 
 /* - - - - - - - - - - - - - - - - - - - INTERNA REGION - - - - - - - - - - - - - */ 
 
@@ -237,7 +103,7 @@ section.cta-othersection p{
     width: 100%;
     position: relative;
     height: 80px;
-    background: url(../imgs/divider-paper.png) no-repeat 50%;
+    background: url(/assets/imgs/divider-paper.png) no-repeat 50%;
     background-size: 100% 100%;
     margin-top: -45px;
     margin-bottom: -35px;
@@ -545,7 +411,7 @@ section.slider-stories .story-container .author-bg{
 	height: 268.91px;
 	left: 0px;
 	top: 111.27px;
-	background: url(../imgs/stories-components/bg-author.png);
+	background: url(/assets/imgs/stories-components/bg-author.png);
 }
 
 section.slider-stories .story-container .video-bg{
@@ -554,7 +420,7 @@ section.slider-stories .story-container .video-bg{
 	height: 383.23px;
 	left: 200.06px;
 	top: 11.11px;
-	background: url(../imgs/stories-components/video-bg.png);
+	background: url(/assets/imgs/stories-components/video-bg.png);
 }
 
 section.slider-stories .story-container iframe.video-story{
@@ -711,7 +577,7 @@ section.travel-iniciative .title-section h2 span{
 		height: 268.91px;
 		left: 0px;
 		top: 111.27px;
-		background: url(../imgs/stories-components/bg-author.png);
+		background: url(/assets/imgs/stories-components/bg-author.png);
 	}
 
 	section.slider-stories .story-container .video-bg{
@@ -720,7 +586,7 @@ section.travel-iniciative .title-section h2 span{
 		height: 383.23px;
 		left: 0px;
 		top: 21.11px;
-		background: url(../imgs/stories-components/video-bg.png);
+		background: url(/assets/imgs/stories-components/video-bg.png);
 	}
 
 	section.slider-stories .story-container iframe.video-story{

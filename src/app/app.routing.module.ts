@@ -33,6 +33,10 @@ const routes: Routes = [{
       path: 'landing',
       component: LandingComponent,
     },
+    {
+      path: 'virtual-map',
+      loadChildren: () => import('./pages/virtual-map/virtual.module').then((m) => m.VirtualMapModule),
+    },
     { path: '', redirectTo: 'landing', pathMatch: 'full' },
     { path: '**', redirectTo: 'landing', pathMatch: 'full' },
   ],

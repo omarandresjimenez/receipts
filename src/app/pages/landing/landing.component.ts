@@ -44,11 +44,11 @@ slideData = [
     id: 382,
     name: 'Nevada green unleash',
   }
-]
+];
 
 config: SwiperOptions = {
-  pagination: { 
-    el: '.swiper-pagination', 
+  pagination: {
+    el: '.swiper-pagination',
     clickable: true
   },
   autoHeight: true,
