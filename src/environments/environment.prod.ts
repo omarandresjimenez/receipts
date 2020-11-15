@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   baseUrlApi: 'https://ghdistributedservicespreparationv1.azurewebsites.net/api/',
 
 };
