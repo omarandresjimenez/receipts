@@ -6,6 +6,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 import { AndeanRegionComponent } from './andina.component';
 import { AndeanRegionRoutingModule } from './andina.routing.module';
+import { CatalogModule } from 'src/app/pages/catalog/catalog.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { AndeanRegionRoutingModule } from './andina.routing.module';
     CommonModule,
     AndeanRegionRoutingModule,
     NgxUsefulSwiperModule,
+    CatalogModule,
   ],
   providers: [],
   bootstrap: []

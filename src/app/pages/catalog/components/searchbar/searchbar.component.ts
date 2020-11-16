@@ -13,7 +13,8 @@ export class SearchbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSearch(value: string) {
+  onSearch($event, value: string) {
+    $event.preventDefault();
     this.service.searchRecipes(value.trim());
   }
 

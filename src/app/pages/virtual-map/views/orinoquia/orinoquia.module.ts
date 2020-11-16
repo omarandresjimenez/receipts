@@ -6,6 +6,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 import { OrinoquiaRegionComponent } from './orinoquia.component';
 import { OrinoquiaRegionRoutingModule } from './orinoquia.routing.module';
+import { CatalogModule } from 'src/app/pages/catalog/catalog.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { OrinoquiaRegionRoutingModule } from './orinoquia.routing.module';
     CommonModule,
     OrinoquiaRegionRoutingModule,
     NgxUsefulSwiperModule,
+    CatalogModule,
   ],
   providers: [],
   bootstrap: []

@@ -6,6 +6,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 import { AmazoniaRegionComponent } from './amazonia.component';
 import { AmazoniaRegionRoutingModule } from './amazonia.routing.module';
+import { CatalogModule } from 'src/app/pages/catalog/catalog.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { AmazoniaRegionRoutingModule } from './amazonia.routing.module';
     CommonModule,
     AmazoniaRegionRoutingModule,
     NgxUsefulSwiperModule,
+    CatalogModule,
   ],
   providers: [],
   bootstrap: []

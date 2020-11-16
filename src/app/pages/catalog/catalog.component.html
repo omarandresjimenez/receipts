@@ -1,7 +1,7 @@
 
-<section class="details-card"  *ngIf="catalogView">
+<section [ngClass]="regionId ? '' : 'details-card'"  *ngIf="catalogView">
     <div class="container">
-        <div class="row">
+        <div class="row" *ngIf="!regionId">
             <div class="col-lg-12">
                 <h3 class="title-section">Se parte de la Herencia Culinaria <span>de nuestro país</span></h3>
             </div>

@@ -11,6 +11,7 @@ import { SwiperOptions } from 'swiper';
 })
 export class PacificRegionComponent implements OnInit {
   public config: SwiperOptions;
+  public readonly REGION_ID = 5;
     constructor(private router: Router,
                 private route: ActivatedRoute) { }
 

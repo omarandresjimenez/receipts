@@ -6,6 +6,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 import { CaribeanRegionComponent } from './caribe.component';
 import { CaribeanRegionRoutingModule } from './caribe.routing.module';
+import { CatalogModule } from 'src/app/pages/catalog/catalog.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CaribeanRegionRoutingModule } from './caribe.routing.module';
     CommonModule,
     CaribeanRegionRoutingModule,
     NgxUsefulSwiperModule,
+    CatalogModule,
   ],
   providers: [],
   bootstrap: []

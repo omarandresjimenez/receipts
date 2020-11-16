@@ -1,11 +1,11 @@
 <div class="container h-100 w-100" >
-  <form name="form" (submit)="onSearch(txtSearch.value)" class="form">
+  <form name="form"  class="form" (submit)="onSearch($event, txtSearch.value)">
    
    
     <div class="d-flex w-100 h-100">
       <div class="searchbar">
         <input class="search_input" type="text" name="txtSearch" #txtSearch placeholder="Search...">
-        <span   (click)="onSearch(txtSearch.value)" class="search_icon"><i class="fas fa-search"></i></span>
+        <span   (click)="onSearch($event, txtSearch.value)" class="search_icon"><i class="fas fa-search"></i></span>
 
       </div>
     </div>

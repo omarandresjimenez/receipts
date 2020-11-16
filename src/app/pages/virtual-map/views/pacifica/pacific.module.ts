@@ -6,6 +6,7 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 import { PacificRegionComponent } from './pacific.component';
 import { PacificRegionRoutingModule } from './pacific.routing.module';
+import { CatalogModule } from 'src/app/pages/catalog/catalog.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PacificRegionRoutingModule } from './pacific.routing.module';
     CommonModule,
     PacificRegionRoutingModule,
     NgxUsefulSwiperModule,
+    CatalogModule,
   ],
   providers: [],
   bootstrap: []

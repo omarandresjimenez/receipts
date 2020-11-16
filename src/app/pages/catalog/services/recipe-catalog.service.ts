@@ -29,6 +29,13 @@ export class RecipeCatalogService {
       });
   }
 
+  public searchRecipesByRegion(regionId: number): void {
+    this.service.recipeSearchByRegion(regionId).pipe(shareReplay(1)).
+        subscribe((res: Recipe[]) => {
+          this.RecipeCatalog.next(res);
+      });
+  }
+
   public searchRecipesBasic(search: string): Observable<Recipe[]> {
     return this.service.recipeSearch(search);
   }

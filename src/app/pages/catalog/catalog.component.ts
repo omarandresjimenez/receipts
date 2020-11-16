@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef, Input } from '@angular/core';
 import { RecipeCatalogService } from './services/recipe-catalog.service';
 import { Observable, Subscription, combineLatest } from 'rxjs';
 import { Recipe, Preparation } from 'src/app/core/models/models';
-import { map } from 'rxjs/operators';
-import { prepareEventListenerParameters } from '@angular/compiler/src/render3/view/template';
+
 import { UserSessionService } from 'src/app/core/services/session.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -29,13 +28,20 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   private set sub(sub: Subscription) { this.subs.push(sub); }
 
+  @Input()
+  public regionId = 0;
+
   constructor(private serviceCatalog: RecipeCatalogService,
               private userSession: UserSessionService,
               private toast: ToastrService,
               private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.serviceCatalog.searchRecipes('');
+    if (this.regionId === 0) {
+      this.serviceCatalog.searchRecipes('');
+    } else {
+      this.serviceCatalog.searchRecipesByRegion(this.regionId);
+    }
     this.serviceCatalog.getRecipesImages();
     this.currentUserId = this.userSession.getCurrentUser()?.id;
     this.sub =
@@ -46,7 +52,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.recipeTotal = [];
         res.map((x: Recipe) => {
          x.imageUrl = x.imageUrl ? x.imageUrl : images[ Math.floor(Math.random() * 10) ];
-         // x.preparations.map((prep) => prep.imageUrl = prep.imageUrl ? prep.imageUrl : images[ Math.floor(Math.random() * 10) ]);
+
          this.recipeTotal.push(x);
         });
         this.currentPage = 1;
