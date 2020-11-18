@@ -22,4 +22,11 @@ export class RecoverPasswordApiService  {
     return this.http.post<boolean>(this.BASEURL + 'user/UpdatePwd', params);
   }
 
+  public recoverPassword(email: string): Observable<boolean> {
+    const params = {
+        email
+      };
+    return this.http.post<boolean>(this.BASEURL + 'user/recoverpwd', params);
+  }
+
 }

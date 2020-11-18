@@ -8,6 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserSessionService } from 'src/app/core/services/session.service';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
+import { RecoverPasswordApiService } from '../recover-password/api/recover-password.api';
+
 
 
 @Component({
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public sub: Subscription;
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private service: RecoverPasswordApiService,
               private session: UserSessionService,
               private modalService: ModalService,
               private toast: ToastrService) { }
@@ -43,7 +46,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public onSubmitRecover() {
-    this.toast.success('Gracias.. Pronto recibirá un email con instrucciones');
+    this.service.recoverPassword(this.userLogin.userEmail).subscribe(r => {
+      this.toast.success('Gracias.. Pronto recibirá un email con instrucciones');
+    });
     this.closeModal('recovercard');
   }
 
