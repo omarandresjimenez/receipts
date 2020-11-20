@@ -19,14 +19,14 @@ export class RecoverPasswordApiService  {
         password,
         hash,
       };
-    return this.http.post<boolean>(this.BASEURL + 'user/UpdatePwd', params);
+    return this.http.post<boolean>(this.BASEURL + 'user/UpdatePassword', params);
   }
 
   public recoverPassword(email: string): Observable<boolean> {
     const params = {
         email
       };
-    return this.http.post<boolean>(this.BASEURL + 'user/recoverpwd', params);
+    return this.http.put<boolean>(this.BASEURL + 'user/recoverPassword', params);
   }
 
 }
