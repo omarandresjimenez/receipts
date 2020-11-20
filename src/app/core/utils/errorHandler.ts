@@ -18,6 +18,9 @@ export abstract class AppHttpErrorHandler {
         localStorage.clear();
         this.router.navigate([ '/' ]);
         return of(null);
+      case (res.status === 404):
+          this.router.navigate([ '/' ]);
+          return of(null);
 
       case (!!res?.error?.message || !!res?.message):
         this.toast.error(res?.error?.message || res?.message);
