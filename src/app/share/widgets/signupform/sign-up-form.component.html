@@ -50,10 +50,7 @@
                 </div>
                 <input type="text" name="identification" class="form-control" [(ngModel)]="signUp.identification"
                     #identification="ngModel" placeholder="Identificacion" maxlength="10" [style.height.px]="38"
-                    required>
-                <div class="form-error" *ngIf="identification.touched && identification.errors?.required">
-                    Identificacion es requerido
-                </div>
+                    >
             </div>
 
             <div class="form-group" title="Fecha Nacimiento">
