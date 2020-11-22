@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
 
-body{
+.body{
 	background: url('/assets/imgs/bg-landing.jpg') top center no-repeat;
 	background-size: cover;
 	display: table;
@@ -254,4 +254,124 @@ footer .logo-footer{
 }
 
 
+section.slider-stories .story-container{
+	max-width: 800px;
+	height: 800px;
+	margin: auto;
+	position: relative;
+}
+
+section.slider-stories .story-container .author-pic{
+	position: absolute;
+	width: 304.22px;
+	height: 454.94px;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+}
+
+section.slider-stories .story-container .author-pic img{
+	width: 100%;
+}
+
+section.slider-stories .story-container .author-text{
+	position: absolute;
+	z-index: 3;
+	color: white;
+	bottom: 0px;
+	top: 120px;
+	right: -80px;
+}
+
+section.slider-stories .story-container .author-text .region-text{
+	position: absolute;
+	display: table;
+	top: 120px;
+	bottom: inherit;
+	right: inherit;
+	left: 40%;
+	z-index: 6;
+	background: #FFDF00;
+	border-radius: 3.70881px;
+	transform: rotate(-2.21deg);
+	padding: 15px 15px;
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: 800;
+	font-size: 26.7034px;
+	line-height: 18px;
+	/* identical to box height, or 67% */
+
+	text-align: center;
+	letter-spacing: -0.04em;
+
+	color: #2C2F47;
+}
+
+section.slider-stories .story-container .author-text h3{
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 54.7533px;
+	line-height: 72%;
+	/* or 48px */
+
+	text-align: center;
+	letter-spacing: -0.04em;
+
+	color: #FFFFFF;
+
+	text-shadow: 0px 4.40405px 52.8486px #000000;
+}
+
+section.slider-stories .story-container .author-text h3 .sp1{
+	position: relative;
+	left: -25px;
+}
+
+section.slider-stories .story-container .author-text h3 .sp2{
+	position: relative;
+	top: -5px;
+	font-family: 'Ubuntu', sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 30.7987px;
+	line-height: 57%;
+	/* identical to box height, or 27px */
+
+	text-align: center;
+	letter-spacing: -0.04em;
+}
+
+section.slider-stories .story-container .author-text h3 .sp3{
+	position: relative;
+	left: 45px;
+}
+
+section.slider-stories .story-container .author-bg{
+	position: absolute;
+	width: 375.28px;
+	height: 268.91px;
+	left: 0px;
+	top: 111.27px;
+	background: url(/assets/imgs/stories-components/bg-author.png);
+}
+
+section.slider-stories .story-container .video-bg{
+	position: absolute;
+	width: 647.25px;
+	height: 383.23px;
+	left: 0px;
+	top: 21.11px;
+	background: url(/assets/imgs/stories-components/video-bg.png);
+}
+
+section.slider-stories .story-container iframe.video-story{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	height: 252px;
+	left: 0;
+	top: 323px;
+}
 

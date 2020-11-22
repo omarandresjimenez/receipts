@@ -1,50 +1,24 @@
-import { Component, OnInit } from '@angular/core';
 
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, AfterViewInit, Inject,  ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Story } from 'src/app/core/models/models';
 import { Router } from '@angular/router';
-import { SwiperOptions } from 'swiper';
 
 import { UserSessionService } from '../../core/services/session.service';
+import { VirtualMapApiService } from '../virtual-map/api/virtual-map.api';
+import { Swiper, SwiperOptions } from 'swiper';
 
 @Component({
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
 public user: any;
+@ViewChild('stories')
+public swiperStories: Swiper;
 
-slideData = [
-  {
-    id: 382,
-    name: 'Metal bluetooth cyan',
-  }, {
-    id: 822,
-    name: 'Avon',
-  }, {
-    id: 159,
-    name: 'Infrastructures',
-  }, {
-    id: 424,
-    name: 'Users Cotton',
-  }, {
-    id: 572,
-    name: 'Haptic Oklahoma Jewelery',
-  }, {
-    id: 127,
-    name: 'Circles Integration Street',
-  }, {
-    id: 1009,
-    name: 'uniform Communications Tuna',
-  }, {
-    id: 619,
-    name: 'North Carolina',
-  }, {
-    id: 716,
-    name: 'Eyeballs Rubber',
-  }, {
-    id: 382,
-    name: 'Nevada green unleash',
-  }
-];
+public regionId = Math.floor(Math.random() * 7);
 
 config: SwiperOptions = {
   pagination: {
@@ -80,13 +54,31 @@ config: SwiperOptions = {
 
   // public sub: Subscription;
   constructor(private router: Router,
-              public session: UserSessionService) { }
+              public session: UserSessionService,
+              @Inject(DOCUMENT)
+              private document: Document,
+              private service: VirtualMapApiService) { }
 
 
  ngOnInit() {
     this.user = this.session.getCurrentUser();
  }
 
+ ngAfterViewInit(): void {
+  this.service.getRegionStories(this.regionId).subscribe((res: Story[]) => {
+    res.map((story) => {
+      const newDiv = this.document.createElement('div');
+      newDiv.className = 'swiper-slide';
+      newDiv.innerHTML = story?.content;
+      // tslint:disable-next-line:no-string-literal
+      this.swiperStories['swiper'].appendSlide(newDiv);
+    });
+    if (res.length) {
+      // tslint:disable-next-line:no-string-literal
+      this.swiperStories['swiper'].removeSlide(0);
+    }
+    });
+}
   onGo($event, url) {
     $event.stopPropagation();
     this.router.navigateByUrl(url);

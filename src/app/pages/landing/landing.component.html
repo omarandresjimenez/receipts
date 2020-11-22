@@ -1,8 +1,8 @@
 
-<head>
+<!-- <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-</head>
-<body>
+</head> -->
+<div class="body">
 	<div class="top-bar">
 		<div class="container">
 			<div class="row">
@@ -48,7 +48,7 @@
 		</div>
 	</section>
 	<div class="divider-paper-white"></div>
-	<section class="stories">
+	<section class="slider-stories stories">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
@@ -57,21 +57,14 @@
 					</h2>
 				</div>
 				<div class="col-lg-12" style="max-width: calc(100vw);">
-					<swiper [config]="config">
+					<div class="swiper-container storiesdepartment">
+					<swiper #stories [config]="config" >
 
-						<div class="swiper-wrapper">
-					  
-						  <div class="swiper-slide" *ngFor="let slide of slideData" style="color: white;">
-							<div class="contianer">
-								<div class="row">
-									<div class="col-lg-12">
-										<img src="assets/imgs/content.png" class="img-swiper" height="auto" alt="">
-										
-									</div>
-								</div>
-							</div>
-						  </div>
-					  
+            
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper" >
+							<div class="swiper-slide"></div>
+							 
 						</div>
 					  
 						<!-- Add Pagination -->
@@ -82,23 +75,11 @@
 						<div class="swiper-button-prev"></div>
 					  
 					  </swiper>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="stories-content">
-						<img src="assets/imgs/content.png" width="100%" height="auto" alt="">
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="text-center">
-						<img src="assets/imgs/nav-slider.png" width="150" height="auto" alt="">
-					</div>
-				</div>
-			</div>
-		</div> -->
+	
 	</section>
 	<div class="divider-paper-white top"></div>
 	<section class="about">
@@ -173,4 +154,4 @@
 		</div>
 	</footer>	
 
-</body>
+</div>
