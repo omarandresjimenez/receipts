@@ -3,7 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
-import { ValidaMailApiService } from './api/validamail.api';
+
+import { ValidaMailApiService } from './api/valida-mail.api';
+
 
 
 @Component({

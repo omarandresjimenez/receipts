@@ -1,21 +1,48 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit, Inject, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Story } from 'src/app/core/models/models';
 
-import { SwiperOptions } from 'swiper';
+import Swiper, { SwiperOptions } from 'swiper';
 
+import { VirtualMapApiService } from './../../api/virtual-map.api';
 
 @Component({
   templateUrl: './andina.component.html',
   styleUrls: ['../by-region.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AndeanRegionComponent implements OnInit {
+export class AndeanRegionComponent implements OnInit, AfterViewInit {
+  @ViewChild('stories')
+  public swiperStories: Swiper;
+
+  public regionId = 2;  // andean region id
+  public regionStories$: Observable<Story[]>;
   public config: SwiperOptions;
-    constructor(private router: Router,
-                private route: ActivatedRoute) { }
+    constructor(@Inject(DOCUMENT)
+                private document: Document,
+                private cdr: ChangeDetectorRef,
+                private service: VirtualMapApiService) { }
 
   public ngOnInit(): void {
     this.swiperConfig();
+  }
+
+  ngAfterViewInit(): void {
+    this.service.getRegionStories(this.regionId).subscribe((res: Story[]) => {
+      res.map((story) => {
+        const newDiv = this.document.createElement('div');
+        newDiv.className = 'swiper-slide';
+        newDiv.innerHTML = story?.content;
+        // tslint:disable-next-line:no-string-literal
+        this.swiperStories['swiper'].appendSlide(newDiv);
+      });
+      if (res.length) {
+        // tslint:disable-next-line:no-string-literal
+        this.swiperStories['swiper'].removeSlide(0);
+      }
+      this.cdr.markForCheck();
+      });
   }
 
   private swiperConfig() {

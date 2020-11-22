@@ -12,7 +12,6 @@ export class AdminPreparationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   console.log('admin prep');
   }
 
   onPreparationSelected(preparation: Preparation) {

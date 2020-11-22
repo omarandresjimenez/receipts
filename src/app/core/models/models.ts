@@ -80,3 +80,9 @@ export interface ItemChip {
   name: string;
   description?: string;
 }
+
+export interface Story {
+  name: string;
+  description: string;
+  content: string;
+}

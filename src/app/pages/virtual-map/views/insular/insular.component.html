@@ -96,110 +96,20 @@
             </div>
         </div>
     </div>
-    <!-- Slider main container -->
-    <div class="swiper-container storiesdepartment">
-        <swiper [config]="config">
+        <!-- Slider main container -->
+        <div class="swiper-container storiesdepartment">
+    
+    <swiper #stories [config]="config" >
 
             
         <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper" >
+            <div class="swiper-slide"></div>
             <!-- Slides -->
-            <div class="swiper-slide">
-                <div class="story-container">
-                    <div class="author-text">
-                        <div class="region-text">
-                            Región Andina
-                        </div>
-                        <h3><span class="sp1">Gloria</span><br><span class="sp2">Emilse</span><br><span class="sp3">Martínez</span></h3>
-                    </div>
-                    <div class="author-pic">
-                        <img src="assets/imgs/stories-components/gloria-emilse.png" alt="">
-                    </div>
-                    <div class="author-bg"></div>
-                    <iframe class="video-story" width="420" height="315" src="https://www.youtube.com/embed/oCodDewm3IU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-bg"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="story-container">
-                    <div class="author-text">
-                        <div class="region-text">
-                            Región Andina
-                        </div>
-                        <h3><span class="sp1">Gloria</span><br><span class="sp2">Emilse</span><br><span class="sp3">Martínez</span></h3>
-                    </div>
-                    <div class="author-pic">
-                        <img src="assets/imgs/stories-components/gloria-emilse.png" alt="">
-                    </div>
-                    <div class="author-bg"></div>
-                    <iframe class="video-story" width="420" height="315" src="https://www.youtube.com/embed/oCodDewm3IU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-bg"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="story-container">
-                    <div class="author-text">
-                        <div class="region-text">
-                            Región Andina
-                        </div>
-                        <h3><span class="sp1">Gloria</span><br><span class="sp2">Emilse</span><br><span class="sp3">Martínez</span></h3>
-                    </div>
-                    <div class="author-pic">
-                        <img src="assets/imgs/stories-components/gloria-emilse.png" alt="">
-                    </div>
-                    <div class="author-bg"></div>
-                    <iframe class="video-story" width="420" height="315" src="https://www.youtube.com/embed/oCodDewm3IU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-bg"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="story-container">
-                    <div class="author-text">
-                        <div class="region-text">
-                            Región Andina
-                        </div>
-                        <h3><span class="sp1">Gloria</span><br><span class="sp2">Emilse</span><br><span class="sp3">Martínez</span></h3>
-                    </div>
-                    <div class="author-pic">
-                        <img src="assets/imgs/stories-components/gloria-emilse.png" alt="">
-                    </div>
-                    <div class="author-bg"></div>
-                    <iframe class="video-story" width="420" height="315" src="https://www.youtube.com/embed/oCodDewm3IU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-bg"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="story-container">
-                    <div class="author-text">
-                        <div class="region-text">
-                            Región Andina
-                        </div>
-                        <h3><span class="sp1">Gloria</span><br><span class="sp2">Emilse</span><br><span class="sp3">Martínez</span></h3>
-                    </div>
-                    <div class="author-pic">
-                        <img src="assets/imgs/stories-components/gloria-emilse.png" alt="">
-                    </div>
-                    <div class="author-bg"></div>
-                    <iframe class="video-story" width="420" height="315" src="https://www.youtube.com/embed/oCodDewm3IU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-bg"></div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="story-container">
-                    <div class="author-text">
-                        <div class="region-text">
-                            Región Andina
-                        </div>
-                        <h3><span class="sp1">Gloria</span><br><span class="sp2">Emilse</span><br><span class="sp3">Martínez</span></h3>
-                    </div>
-                    <div class="author-pic">
-                        <img src="assets/imgs/stories-components/gloria-emilse.png" alt="">
-                    </div>
-                    <div class="author-bg"></div>
-                    <iframe class="video-story" width="420" height="315" src="https://www.youtube.com/embed/oCodDewm3IU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="video-bg"></div>
-                </div>
-            </div>
+             <!-- <div class="swiper-slide" *ngFor="let story of regionStories$ | async" [innerHTML]="story?.content">
+              
+            </div>  -->
+             
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
@@ -259,7 +169,7 @@
             </div>
         </div>
         <div class="row">
-            <app-catalog [regionId]="6"></app-catalog>
+            <app-catalog [regionId]="regionId"></app-catalog>
         </div>
     </div>
  
