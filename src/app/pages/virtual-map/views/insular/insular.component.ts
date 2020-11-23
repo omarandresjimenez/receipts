@@ -17,7 +17,7 @@ export class InsularRegionComponent implements OnInit, AfterViewInit {
   @ViewChild('stories')
   public swiperStories: Swiper;
 
-  public regionId = 6;
+  public regionId = 7;
   public regionStories$: Observable<Story[]>;
   public config: SwiperOptions;
     constructor(@Inject(DOCUMENT)

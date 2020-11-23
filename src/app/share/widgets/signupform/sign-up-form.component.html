@@ -1,5 +1,5 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)" [fieldmatches]="['password', 'confirmPassword']">
-
+<form #form="ngForm" autocomplete="nope" (submit)="onSubmit(form)" [fieldmatches]="['password', 'confirmPassword']">
+    <input type="password" style="display:none;" readonly>
     <div class="card"  *ngIf="signUp">
         <div class="card-header">
             <h3>Registro datos:</h3>
@@ -49,9 +49,14 @@
                     <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                 </div>
                 <input type="text" name="identification" class="form-control" [(ngModel)]="signUp.identification"
-                    #identification="ngModel" placeholder="Identificacion" maxlength="10" [style.height.px]="38"
+                    #identification="ngModel" pattern="[0-9]+" 
+                    placeholder="Identificacion" maxlength="10" [style.height.px]="38"
                     >
+                    <div class="form-error" *ngIf="identification.touched && identification.errors">
+                        Solo se aceptan numeros
+                    </div>
             </div>
+           
 
             <div class="form-group" title="Fecha Nacimiento">
 
@@ -144,9 +149,11 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                 </div>
-                <input type="text" name="phone" class="form-control" [(ngModel)]="signUp.phone" #phone="ngModel"
+                <input type="text" name="phone" pattern="[0-9]+" class="form-control" [(ngModel)]="signUp.phone" #phone="ngModel"
                     placeholder="Telefono (Opcional)" maxlength="10" [style.height.px]="38">
-
+                    <div class="form-error" *ngIf="phone.touched && phone.errors">
+                        Solo se aceptan numeros
+                    </div>
             </div>
             <ng-container *ngIf="!isAuthor">
                 <div class="input-group form-group">
