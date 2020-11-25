@@ -25,12 +25,14 @@ import { HeaderModule } from './share/widgets/header/header.module';
 import { JwtInterceptor } from './core/utils/jwt.interceptor';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AppModalModule } from './share/widgets/modal/modal.module';
+import { LogOutComponent } from './pages/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    LogOutComponent,
     SignUpComponent,
     LandingComponent,
 

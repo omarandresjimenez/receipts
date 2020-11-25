@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
+import { LogOutComponent } from './pages/logout/logout.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { SignUpComponent } from './pages/signup/sign-up.component';
 
@@ -24,6 +25,10 @@ const routes: Routes = [{
     {
       path: 'login',
       component: LoginComponent,
+    },
+    {
+      path: 'logout',
+      component: LogOutComponent,
     },
     {
       path: 'signUp',

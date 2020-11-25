@@ -16,7 +16,7 @@ export abstract class AppHttpErrorHandler {
       case (res.status === 401):
         sessionStorage.clear();
         localStorage.clear();
-        this.router.navigate([ '/' ]);
+        this.router.navigate([ '/logout' ]);
         return of(null);
       case (res.status === 404):
           this.router.navigate([ '/' ]);
