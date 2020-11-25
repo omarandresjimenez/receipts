@@ -32,7 +32,7 @@ export class RecoverPasswordProcessComponent implements OnInit, OnDestroy {
        const hash = params?.hash;
        this.service.ChangePaswordMail(email, this.newPwd, hash).subscribe(res => {
            if (res) {
-              this.toastr.success('Contraseña actualiozada');
+              this.toastr.success('Contraseña actualizada');
               this.router.navigateByUrl('/');
            } else {
               this.toastr.warning('Sus datos no se pudieron confirmar.  Intente de nuevo');

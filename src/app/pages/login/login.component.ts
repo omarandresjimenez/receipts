@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserLogin } from 'src/app/core/models/userLogin';
-
 import { Observable, Subscription } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { ToastrService } from 'ngx-toastr';
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserSessionService } from 'src/app/core/services/session.service';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 import { RecoverPasswordApiService } from '../recover-password/api/recover-password.api';
+
+import { UserLogin } from 'src/app/core/models/userLogin';
 
 
 
@@ -47,8 +49,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onSubmitRecover() {
     this.service.recoverPassword(this.userLogin.userEmail).subscribe(r => {
-      this.toast.success('Gracias.. Pronto recibirá un email con instrucciones');
-    });
+      if (r) {
+        this.toast.success('Gracias.. Pronto recibirá un email con instrucciones');
+      }
+    },
+    (err) => this.toast.warning(err.error?.message)
+    );
     this.closeModal('recovercard');
   }
 
