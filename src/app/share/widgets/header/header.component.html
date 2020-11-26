@@ -11,6 +11,14 @@
       >
         <ul class="navbar-nav mr-auto" style="float: right;">
           <li class="nav-item">
+            <a  href="javascript: void" (click)="goto('/container')" class="nav-link" style="padding-top: 20px;"
+            >Recetas</a>
+          </li>
+          <li class="nav-item">
+            <a  href="javascript: void" (click)="goto('/virtual-map')" class="nav-link" style="padding-top: 20px;"
+            >Descubre</a>
+          </li>
+          <li class="nav-item">
             <a  href="javascript: void" (click)="goto('/login')" class="nav-link" style="padding-top: 20px;"
             >Iniciar Sesión</a>
           </li>
@@ -21,6 +29,14 @@
       </div>    
     <div class="collapse navbar-collapse" id="navbarResponsive" *ngIf="(sessionUser$  | async)">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a  href="javascript: void" (click)="goto('/container')" class="nav-link" style="padding-top: 20px;"
+          >Recetas</a>
+        </li>
+        <li class="nav-item">
+          <a  href="javascript: void" (click)="goto('/virtual-map')" class="nav-link" style="padding-top: 20px;"
+          >Descubre</a>
+        </li>
         <li class="nav-item dropdown">
           
             <a class="nav-link" [class.dropdown-toggle]="true" data-toggle="dropdown" href="#" id="navbardrop" >
