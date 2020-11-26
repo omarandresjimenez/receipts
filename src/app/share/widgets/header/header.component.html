@@ -6,7 +6,12 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      <div class="collapse navbar-collapse" id="navbarText" style="display: table !important;"
+      <div class="hamburguer-bt">
+        <div class="hamburguer-bt__stripe hamburguer-bt__stripe__top"></div>
+        <div class="hamburguer-bt__stripe hamburguer-bt__stripe__middle"></div>
+        <div class="hamburguer-bt__stripe hamburguer-bt__stripe__bottom"></div>
+      </div>
+      <div class="collapse navbar-collapse mobile-menu" id="navbarText" style="display: table;"
         *ngIf="!(sessionUser$  | async)"
       >
         <ul class="navbar-nav mr-auto" style="float: right;">
@@ -59,6 +64,15 @@
     </div>
   </div>
 </nav>
+
+<script>
+  $(document).ready(function() {
+    $(".hamburguer-bt").click(function() {
+      $(this).toggleClass("on");
+      $('.mobile-menu').toggleClass("menu-on");
+    });
+  });
+</script>
         
 
 

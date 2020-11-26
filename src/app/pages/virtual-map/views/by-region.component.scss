@@ -3,6 +3,13 @@
 
 .card{ margin-bottom: 24px; border:none !important; position: relative; }
 
+.btn-card{
+	margin: 40px auto;
+    font-weight: 900;
+    font-size: 16px;
+    padding: 15px 30px;
+}
+
 .hover-card{
 	background-color: rgba(7, 232, 255, 1);
 	opacity: 0;
