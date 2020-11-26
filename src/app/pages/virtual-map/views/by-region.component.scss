@@ -124,6 +124,13 @@ section.intro-department{
 	color: #393D5E;
 }
 
+section.intro-department.big-pic .img-department img {
+	width: 100%;
+	height: auto;
+	position: relative;
+	top: -40px;
+}
+
 section.intro-department .btn-gastro{
 	margin: 30px auto 20px;
 	background-color: #5959D2;
