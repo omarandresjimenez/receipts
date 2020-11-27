@@ -65,20 +65,20 @@ a {
 
     .hamburguer-bt {
         cursor: pointer;
-        height: 60px;
-        position: absolute;
-        right: 50%;
-        top: 50%;
-        width: 60px;
-        margin-top:-30px;
+        height: auto;
+        position: relative;
+        right: 5px;
+        top: 10px;
+        width: 30px;
+        margin-top:0px;
         transition: all .2s ease-out;
       }
       
       .hamburguer-bt .hamburguer-bt__stripe {
         width: 100%;
-        height: 10px;
+        height: 5px;
         background: black;
-        margin: 4px auto;
+        margin: 8px auto;
         transition: all 0.3s;
         backface-visibility: hidden;
       }
