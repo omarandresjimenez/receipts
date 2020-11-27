@@ -84,7 +84,7 @@ a {
       }
       
       .hamburguer-bt.on .hamburguer-bt__stripe__top {
-        transform: rotate(45deg) translate(10px, 10px);
+        transform: rotate(45deg) translate(6px, 5px);
       }
       
       .hamburguer-bt.on .hamburguer-bt__stripe__middle {
@@ -92,7 +92,7 @@ a {
       }
       
       .hamburguer-bt.on .hamburguer-bt__stripe__bottom {
-        transform: rotate(-45deg) translate(10px, -10px);
+        transform: rotate(-45deg) translate(5px, -5px);
       }
       
 }

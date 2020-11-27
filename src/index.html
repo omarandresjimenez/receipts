@@ -16,7 +16,8 @@
 <script>
   $(document).ready(function() {
     $('.hamburguer-bt').on('click', function(e) {
-      $('.hamburguer-bt').toggleClass("on"); //you can list several class names 
+      $('.hamburguer-bt').toggleClass("on");
+      $('.mobile-menu').toggleClass("menu-on") //you can list several class names 
       e.preventDefault();
     });
   });
