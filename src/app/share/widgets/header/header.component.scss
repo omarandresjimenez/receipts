@@ -58,9 +58,19 @@ a {
         display: block !important;
     }
 
+    .body-menu-mobile-active{
+        top: 210px;
+        position: relative;
+    }
+    .menu-mobile-active{
+        top: 210px;
+    }
+
     .menu-on{
         height: auto;
         overflow: hidden;
+        position: fixed;
+        top: 0px;
     }
 
     .hamburguer-bt {
@@ -92,7 +102,7 @@ a {
       }
       
       .hamburguer-bt.on .hamburguer-bt__stripe__bottom {
-        transform: rotate(-45deg) translate(5px, -5px);
+        transform: rotate(-45deg) translate(10px, -10px);
       }
       
 }

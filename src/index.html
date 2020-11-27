@@ -17,7 +17,9 @@
   $(document).ready(function() {
     $('.hamburguer-bt').on('click', function(e) {
       $('.hamburguer-bt').toggleClass("on");
-      $('.mobile-menu').toggleClass("menu-on") //you can list several class names 
+      $('.mobile-menu').toggleClass("menu-on");
+      $('.navbar').toggleClass("menu-mobile-active");
+      $('body').toggleClass("body-menu-mobile-active"); //you can list several class names 
       e.preventDefault();
     });
   });
