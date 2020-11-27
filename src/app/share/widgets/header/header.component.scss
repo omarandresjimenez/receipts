@@ -52,8 +52,19 @@ a {
 }
 
 @media (max-width: 600px) {
+    .navbar{
+        transition: all ease-in-out .6s;
+        -moz-transition: all ease-in-out .6s;
+        -ms-transition: all ease-in-out .6s;
+        -o-transition: all ease-in-out .6s;
+    }
     .mobile-menu{
-        height: 0px;
+        height: 205px;
+        top: -300px;
+        transition: all ease-in-out .6s;
+        -moz-transition: all ease-in-out .6s;
+        -ms-transition: all ease-in-out .6s;
+        -o-transition: all ease-in-out .6s;
         overflow: hidden;
         display: block !important;
     }
@@ -67,7 +78,7 @@ a {
     }
 
     .menu-on{
-        height: auto;
+        height: 205px;
         overflow: hidden;
         position: fixed;
         top: 0px;

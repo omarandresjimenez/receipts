@@ -468,7 +468,14 @@ section.travel-iniciative .title-section h2 span{
 
 
 @media (max-width: 600px) {
-
+	body{
+		position: relative;
+		top: 0px;
+		transition: all ease-in-out .6s;
+        -moz-transition: all ease-in-out .6s;
+        -ms-transition: all ease-in-out .6s;
+        -o-transition: all ease-in-out .6s;
+	}
     .body-menu-mobile-active{
         top: 210px;
         position: relative;
