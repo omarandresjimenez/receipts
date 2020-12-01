@@ -78,6 +78,7 @@ export class AdminApiService extends AppHttpErrorHandler  {
           active: prep.isActive,
           creationDate: prep.createdDate?.substring(0, 10),
           rating: prep.ratingAvg,
+          region: prep.city?.department?.region,
         };
       })
     ));

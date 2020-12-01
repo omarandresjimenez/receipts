@@ -9,7 +9,7 @@ import { ColumnsGrid } from 'src/app/core/models/ColumnsGrid';
 import { UserSessionService } from 'src/app/core/services/session.service';
 import { ModalService } from 'src/app/share/widgets/modal/modal.service';
 import { combineLatest, forkJoin, Observable, of, Subscription } from 'rxjs';
-import { delay, merge, switchMap } from 'rxjs/operators';
+import { delay, map, merge, startWith, switchMap } from 'rxjs/operators';
 import { RecipeCatalogService } from 'src/app/pages/catalog/services/recipe-catalog.service';
 import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from '../../user/services/user.service';
@@ -44,11 +44,15 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   public authorName: string;
 
   public selectedPrep: Preparation;
-  public recipeList$: Observable<Recipe[]>;
-  public authorList$: Observable<UserModel[]>;
+  public filterRecipes$: Observable<Recipe[]>;
+  public recipeList: Recipe[];
+  public authorList: UserModel[] = [];
+  public filteredAuthors$: Observable<UserModel[]>;
   public deps$: Observable<State[]>;
   public cities$: Observable<City[]>;
   public cookingTechniques$: Observable<CookingTechnique[]>;
+
+  public state: { id: number } = { id: 0 };
 
   public listIngredients: ItemChip[] = [];
   public initialListIngredients: ItemChip[] = [];
@@ -87,7 +91,6 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
    ngAfterViewInit(): void {
     // this.recipeControl = this.form.controls?.recipe;
-  
    }
 
   ngOnDestroy(): void {
@@ -104,26 +107,26 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
                               active: true, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
                               cookingTechnique: { id: '', name: '' }, preparationType: '', tools: [], ingredients: [],
                               recipe: this.recipe, source: '',  preparationSteps: '', forSale: false, carrierCommunity: ''};
-    this.recipeList$ = this.recipeControl.valueChanges
-                              .pipe(
-                                delay(500),
-                                switchMap((res: string) => {
-                                  return this.recipeServie.searchRecipesBasic(res);
-                                })
-                              );
-    this.sub = this.authorControl.valueChanges
-                              .pipe(
-                                delay(500),
-                                switchMap((res: string) => {
-                                  return combineLatest([this.userService.getUsersByTypeActor(this.ID_TRADITIONAL_COOKER, res),
-                                                        this.userService.getUsersByTypeActor(this.ID_CHEF, res)])
 
-                                })
-                              ).subscribe(([authors1, authors2]: [UserModel[], UserModel[]]) => {
-                                this.authorList$ =  of([ ...authors1, ...authors2 ]);
+    this.sub = this.recipeServie.getRecipes().subscribe(rec => {
+                                    this.recipeList = rec;
+                                    this.filterRecipes$ = this.recipeControl.valueChanges.pipe(
+                                      // tslint:disable-next-line: deprecation
+                                      startWith(null),
+                                      map((word: string | null) => word ? this._filterRecipe(word) : this.recipeList.slice()));
+                                    this.cdr.markForCheck();
+                                  });
+
+    this.sub = combineLatest([this.userService.getUsersByTypeActor(this.ID_TRADITIONAL_COOKER, 'All'),
+                              this.userService.getUsersByTypeActor(this.ID_CHEF, 'All')])
+                              .subscribe(([authors1, authors2]: [UserModel[], UserModel[]]) => {
+                                this.authorList = [ ...authors1, ...authors2 ];
+                                this.filteredAuthors$ = this.authorControl.valueChanges.pipe(
+                                  // tslint:disable-next-line: deprecation
+                                  startWith(null),
+                                  map((word: string | null) => word ? this._filterAuthor(word) : this.authorList.slice()));
                                 this.cdr.markForCheck();
                               });
-
 
     this.sub = this.service.getIngredients().subscribe(ing => {
        this.listIngredients = ing;
@@ -154,6 +157,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
 
   public loadCities(stateId): void {
     this.cities$ = this.cityService.getCities(stateId.value);
+    this.form.controls.city.setErrors(ValidityState);
   }
 
   public onSubmit() {
@@ -228,7 +232,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
        case 'I':
          this.titleNewElement = 'Crear nuevo Ingrediente';
          break;
-       case 'U':
+       case 'T':
          this.titleNewElement = 'Crear nuevo Utensilio';
          break;
        case 'C':
@@ -275,7 +279,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
           this.toast.success('Ingrediente creado');
         }
       });
-    } else if (this.typeElement === 'U') {
+    } else if (this.typeElement === 'T') {
       this.sub = this.service.createTool(item).subscribe(res => {
         if (res) {
           this.listTools.push(res);
@@ -286,7 +290,7 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
       this.sub = this.service.createCookingTechnique(item).subscribe(res => {
         if (res) {
           this.cookingTechniques$ = this.service.getCookingTechniques();
-          this.toast.success('Utensilio creado');
+          this.toast.success('Tecnica creada');
         }
       });
     }
@@ -340,5 +344,16 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
       form.form.reset();
     }
     this.cdr.markForCheck();
+  }
+
+  private _filterAuthor(value: string): UserModel[] {
+    const filterValue = value.toLowerCase();
+    return this.authorList.filter(item => item.name.toLowerCase().indexOf(filterValue) >= 0 ||
+                                  item.lastName.toLowerCase().indexOf(filterValue) >= 0);
+  }
+
+  private _filterRecipe(value: string): Recipe[] {
+    const filterValue = value.toLowerCase();
+    return this.recipeList.filter(item => item.name.toLowerCase().indexOf(filterValue) >= 0);
   }
 }

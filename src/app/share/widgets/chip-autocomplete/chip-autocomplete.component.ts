@@ -56,7 +56,6 @@ export class ChipAutocompleteComponent implements OnChanges, OnInit {
 
     if (changes.listItems) {
       this.filteredItems = this.itemCtrl.valueChanges.pipe(
-        tap(s => console.log(s)),
         // tslint:disable-next-line: deprecation
         startWith(null),
         map((word: string | null) => word ? this._filter(word) : this.listItems.slice()));

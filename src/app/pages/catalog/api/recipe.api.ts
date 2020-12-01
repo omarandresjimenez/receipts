@@ -35,6 +35,20 @@ export class RecipeApiService  extends AppHttpErrorHandler {
              )));
   }
 
+  public getRecipes(): Observable<Recipe[]> {
+    return this.http.get<any[]>(this.BASEURL + 'recipe')
+            .pipe(map((res) => res.map((item) => {
+                 const obj: Recipe = {
+                     id:  item.id,
+                     name: item.name,
+                     imageUrl: item.imageUrl ? item.imageUrl : null,
+                     description: item.description,
+                 };
+                 return obj;
+               }
+             )));
+  }
+
   public recipeSearchByRegion(regionId: number): Observable<Recipe[]> {
     return this.http.get<any[]>(this.BASEURL + 'recipe/searchByREgion/' + regionId.toString())
             .pipe(map((res) => res.map((item) => {

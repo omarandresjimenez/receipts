@@ -94,7 +94,7 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
       { field: 'recipeName', headerName: 'Receta', width: '220' },
       { field: 'name', headerName: 'Nombre Preparacion', width: '220' },
       { field: 'description', headerName: 'Descripción', width: '350' },
-      { field: 'Usuario Registro', headerName: '',
+      { field: '', headerName: 'Usuario Registro',
           cellRenderer: (params) => {
             const span = this.document.createElement('span');
             span.innerHTML = params.data?.user?.name  + ' ' + params.data?.user?.lastName;
@@ -118,7 +118,7 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
   onSelectRow($event) {
       const selectedRows = this.gridApi?.getSelectedRows();
       this.userId = selectedRows[0]?.user?.id;
-      // console.log(selectedRows);
+      console.log(selectedRows);
   }
 
   onDeletePrep(prepId: string) {
@@ -138,7 +138,7 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
     this.cdr.markForCheck();
   }
 
-  onViewPrep($event) {
+  onViewPrep($event: Preparation) {
     this.selectedPrep = $event;
     this.openModal('viewcard');
     this.cdr.markForCheck();
@@ -162,13 +162,12 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
   }
 
   onDelete(id: string) {
-    if (confirm('Esta seguro de eliminar esta preparación?')) {
       this.service.deletePreparation(id).subscribe((res) => {
         this.toast.success('Preparación eliminada!');
         this.rowData = this.rowData.filter((rec) => rec.id !== id);
+        this.closeModal('prepcard');
         this.cdr.markForCheck();
       });
-    }
   }
 
   onSaveUser(user: UserModel) {

@@ -15,7 +15,7 @@
           <input name="recipe" class="form-control" placeholder="Seleccione la Receta" required maxlength="100"
             [matAutocomplete]="auto" [formControl]="recipeControl">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let rec of recipeList$ | async" [value]="rec.name"
+            <mat-option *ngFor="let rec of filterRecipes$ | async" [value]="rec.name"
               (onSelectionChange)="selectRecipe($event, rec.id)">
               {{rec.name}}
             </mat-option>
@@ -85,7 +85,7 @@
           <input name="author" title="Solo digite este campo si el portador es una persona" class="form-control" placeholder="Seleccione el autor"  maxlength="100"
             [matAutocomplete]="auto1" [formControl]="authorControl">
           <mat-autocomplete #auto1="matAutocomplete">
-            <mat-option *ngFor="let rec of authorList$ | async" [value]="rec.name + ' ' + rec.lastName"
+            <mat-option *ngFor="let rec of filteredAuthors$ | async" [value]="rec.name + ' ' + rec.lastName"
               (onSelectionChange)="selectAuthor($event, rec.id)">
               <img class="option-img" aria-hidden [src]="rec.imageUrl" height="25">
               <span>{{rec.name + ' ' + rec.lastName}}</span>
@@ -162,7 +162,7 @@
           </div>
           <div class="bg-white customfield">
             <select class="form-control" name="cookingTechnique" [(ngModel)]="preparationData.cookingTechnique.id"
-              style="width: 100%;" title="Seleccione la Tecnica de coccion" #cookingTechnique="ngModel" required>
+              style="width: 100%;" title="Seleccione la Tecnica de coccion" #cookingTechnique="ngModel" >
               <option value="" selected>--Seleccione una técnica de cocción--</option>
 
               <option *ngFor="let cookingTechnique of cookingTechniques$ | async" [value]="cookingTechnique.id"
@@ -202,7 +202,7 @@
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
-              <i class="fas fa-credit-card" [class.green-icon]="forSale.valid" [class.red-icon]="!forSale.touched"></i>
+              <i class="fas fa-credit-card" [class.green-icon]="true"></i>
             </div>
           </div>
           <label class="c_checkbox by-store-checkbox">
@@ -223,14 +223,13 @@
   
               <div class="input-group-text bg-white">
   
-                <i class="fas fa-map" [class.green-icon]="state.valid" [class.red-icon]="state.invalid"
+                <i class="fas fa-map" [class.green-icon]="true" [class.red-icon]="state.invalid"
                  ></i>
-  
               </div>
   
             </div>
             <div class="bg-white customfield">
-          <select class="form-control" name="state"  #state required (change)="loadCities(state)">
+          <select class="form-control" name="state"  #state required (change)="loadCities(state)" [(ngModel)]="state.id">
             <option value="">--Seleccione Departamento--</option>
 
             <option *ngFor="let state of deps$ | async" [value]="state.id">
@@ -271,7 +270,7 @@
         <input type="hidden" name="id" #id="ngModel" [(ngModel)]="preparationData.id">
         <div class="form-group" style="display: flex;">
           <button type="button" class="btn btn-success btn-lg btn-block col-md-5" (click)="resetForm(form)"><i
-              class="fas fa-plus"></i> Nueva Receta</button>
+              class="fas fa-plus"></i> Nueva preparación</button>
           <div class="col-md-2"></div>
 
           <button class="btn btn-success btn-lg btn-block col-md-5" type="submit" [disabled]="form.invalid"><i

@@ -62,6 +62,6 @@ export class PreparationService {
   }
 
   public createCookingTechnique(dataInfo: ItemChip): Observable<ItemChip> {
-    return this.service.createIngredient(dataInfo);
+    return this.service.createCookingTechnique(dataInfo);
   }
 }
