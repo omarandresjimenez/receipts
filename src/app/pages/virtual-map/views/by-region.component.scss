@@ -3,6 +3,13 @@
 
 .card{ margin-bottom: 24px; border:none !important; position: relative; }
 
+.btn-card{
+	margin: 40px auto;
+    font-weight: 900;
+    font-size: 16px;
+    padding: 15px 30px;
+}
+
 .hover-card{
 	background-color: rgba(7, 232, 255, 1);
 	opacity: 0;
@@ -115,6 +122,13 @@ section.intro-department{
 	padding: 120px 30px;
 	background-color: white;
 	color: #393D5E;
+}
+
+section.intro-department.big-pic .img-department img {
+	width: 100%;
+	height: auto;
+	position: relative;
+	top: -40px;
 }
 
 section.intro-department .btn-gastro{

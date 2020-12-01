@@ -14,6 +14,17 @@
    <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178246746-1"></script>
 <script>
+  $(document).ready(function() {
+    $('.hamburguer-bt').on('click', function(e) {
+      $('.hamburguer-bt').toggleClass("on");
+      $('.mobile-menu').toggleClass("menu-on");
+      $('.navbar').toggleClass("menu-mobile-active");
+      $('body').toggleClass("body-menu-mobile-active"); //you can list several class names 
+      e.preventDefault();
+    });
+  });
+</script>
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());

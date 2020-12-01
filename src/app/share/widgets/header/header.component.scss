@@ -50,3 +50,71 @@ a {
 	color: #191e29;
 	cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    .navbar{
+        transition: all ease-in-out .6s;
+        -moz-transition: all ease-in-out .6s;
+        -ms-transition: all ease-in-out .6s;
+        -o-transition: all ease-in-out .6s;
+    }
+    .mobile-menu{
+        height: 205px;
+        top: -300px;
+        transition: all ease-in-out .6s;
+        -moz-transition: all ease-in-out .6s;
+        -ms-transition: all ease-in-out .6s;
+        -o-transition: all ease-in-out .6s;
+        overflow: hidden;
+        position: fixed;
+        display: block !important;
+    }
+
+    .body-menu-mobile-active{
+        top: 210px;
+        position: relative;
+    }
+    .menu-mobile-active{
+        top: 210px;
+    }
+
+    .menu-on{
+        height: 205px;
+        overflow: hidden;
+        position: fixed;
+        top: 0px;
+    }
+
+    .hamburguer-bt {
+        cursor: pointer;
+        height: auto;
+        position: relative;
+        right: 5px;
+        top: 5px;
+        width: 30px;
+        margin-top:0px;
+        transition: all .2s ease-out;
+      }
+      
+      .hamburguer-bt .hamburguer-bt__stripe {
+        width: 100%;
+        height: 5px;
+        background: black;
+        margin: 0px auto 6px;
+        transition: all 0.3s;
+        backface-visibility: hidden;
+      }
+      
+      .hamburguer-bt.on .hamburguer-bt__stripe__top {
+        transform: rotate(45deg) translate(6px, 5px);
+      }
+      
+      .hamburguer-bt.on .hamburguer-bt__stripe__middle {
+        opacity: 0;
+      }
+      
+      .hamburguer-bt.on .hamburguer-bt__stripe__bottom {
+        transform: rotate(-45deg) translate(10px, -10px);
+      }
+      
+}
