@@ -24,14 +24,14 @@ export class AdminApiService extends AppHttpErrorHandler  {
    }
 
 
-  public createRecipe(recipeModel: Recipe): Observable<boolean> {
+  public createRecipe(recipeModel: Recipe): Observable<Recipe> {
     const params = {
       name: recipeModel.name,
       image: recipeModel.imageUrl ? recipeModel.imageUrl : null,
       description: recipeModel.description,
       preparations: [],
     };
-    return this.http.post<boolean>(this.BASEURL + 'recipe', params).pipe(
+    return this.http.post<Recipe>(this.BASEURL + 'recipe', params).pipe(
       catchError((err) => this.handleError(err))
     );
   }

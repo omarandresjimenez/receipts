@@ -8,7 +8,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
               <i class="fas fa-utensils" [class.green-icon]="recipeControl.valid"
-                [class.red-icon]="recipeControl.invalid && recipeControl.touched"></i>
+                [class.red-icon]="recipeControl.invalid"></i>
             </div>
           </div>
 
@@ -28,7 +28,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
               <i class="fas fa-utensils" [class.green-icon]="name.valid"
-                [class.red-icon]="name.invalid && name.touched"></i>
+                [class.red-icon]="name.invalid"></i>
             </div>
           </div>
           <input name="name" #name="ngModel" [(ngModel)]="preparationData.name" class="form-control"
@@ -40,7 +40,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
               <i class="fas fa-font" [class.green-icon]="true"
-                [class.red-icon]="summary.invalid && summary.touched"></i>
+                [class.red-icon]="summary.invalid"></i>
             </div>
           </div>
           <textarea name="summary" #summary="ngModel" [(ngModel)]="preparationData.description" class="form-control"
@@ -52,7 +52,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text bg-white">
               <i class="fas fa-font" [class.green-icon]="steps.valid"
-                [class.red-icon]="steps.invalid && steps.touched"></i>
+                [class.red-icon]="steps.invalid"></i>
             </div>
           </div>
           <textarea name="steps" #steps="ngModel" [(ngModel)]="preparationData.preparationSteps" class="form-control"

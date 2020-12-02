@@ -25,7 +25,7 @@ export class AdminService {
     this.newRecipeAdded.next(rec);
   }
 
-  public createRecipe(recipeInfo: Recipe): Observable<boolean> {
+  public createRecipe(recipeInfo: Recipe): Observable<Recipe> {
     return this.service.createRecipe(recipeInfo);
   }
 

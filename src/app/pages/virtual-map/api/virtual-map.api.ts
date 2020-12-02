@@ -23,7 +23,7 @@ export class VirtualMapApiService  extends AppHttpErrorHandler {
   public getRegionStories(idRegion: number): Observable<Story[]> {
     return this.http.get<any>(this.BASEURL + 'region/' + idRegion).pipe(
       catchError((err) => this.handleError(err)),
-      map(res => res.stories),
+      map(res => res ?  res.stories : []),
       );
   }
 

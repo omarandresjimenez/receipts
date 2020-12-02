@@ -135,7 +135,7 @@
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
                     <input type="email" name="email" class="form-control" [(ngModel)]="signUp.email" #email="ngModel"
-                        placeholder="Email.  Este será su usuario" required email [disabled]="editionMode">
+                        placeholder="Email.  Este será su usuario" required email [disabled]="editionMode" maxlength="100">
                     <div class="form-error" *ngIf="email.touched && email.errors?.email">
                         Formato de email no valido
                     </div>

@@ -147,9 +147,9 @@ export class AdminRecipeFormComponent implements OnInit, OnChanges {
 
   public onSubmit() {
     if (this.newRecipe) {
-      this.service.createRecipe(this.recipeData).subscribe((res: boolean) => {
+      this.service.createRecipe(this.recipeData).subscribe((res: Recipe) => {
         this.toast.success('Receta creada exitosamente');
-        this.service.notifyNewRecipe(this.recipeData);
+        this.service.notifyNewRecipe( { ...this.recipeData, id: res.id });
         this.resetForm();
       });
     } else {

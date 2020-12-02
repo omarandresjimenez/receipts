@@ -93,7 +93,7 @@ export class PreparationListAdminActivationComponent implements OnInit, OnDestro
       { field: 'id', hide: true },
       { field: 'recipeName', headerName: 'Receta', width: '220' },
       { field: 'name', headerName: 'Nombre Preparacion', width: '220' },
-      { field: 'description', headerName: 'Descripción', width: '350' },
+      { field: 'description', headerName: 'Descripción', width: '450' },
       { field: '', headerName: 'Usuario Registro',
           cellRenderer: (params) => {
             const span = this.document.createElement('span');
