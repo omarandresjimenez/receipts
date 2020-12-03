@@ -33,7 +33,7 @@ export class UserService {
     return this.service.getActorTypes();
   }
 
-  public createUser(userInfo: UserModel): Observable<boolean> {
+  public createUser(userInfo: UserModel): Observable<UserModel> {
     return this.service.createUser(userInfo);
   }
 

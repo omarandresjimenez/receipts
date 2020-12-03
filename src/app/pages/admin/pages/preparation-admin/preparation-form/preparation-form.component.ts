@@ -251,6 +251,8 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   public onSaveAuthor($event): void {
     this.userService.createUser($event).subscribe((res) => {
       if (res) {
+        this.authorList.push(res);
+        this.authorControl.updateValueAndValidity();
         this.toast.success('Autor creado');
       }
       this.modal.close('newAuthorModal');

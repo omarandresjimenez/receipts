@@ -41,7 +41,7 @@ export class ApiService extends AppHttpErrorHandler  {
       );
   }
 
-  public createUser(userModel: UserModel): Observable<boolean> {
+  public createUser(userModel: UserModel): Observable<UserModel> {
     const params = {
       name: userModel.name,
       lastName: userModel.lastName,
@@ -60,7 +60,7 @@ export class ApiService extends AppHttpErrorHandler  {
       establishment: userModel.establishment,
 
     };
-    return this.http.post<boolean>(this.BASEURL + 'user', params).pipe(
+    return this.http.post<UserModel>(this.BASEURL + 'user', params).pipe(
         catchError((err) => this.handleError(err))
       );
   }
