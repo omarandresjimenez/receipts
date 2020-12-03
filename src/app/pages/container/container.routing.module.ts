@@ -19,8 +19,8 @@ const routes: Routes = [{
     {
       path: 'admin-preparation',
       loadChildren: () => import('../admin/pages/preparation-admin/admin-preparation.module').then((m) => m.AdminPreparationModule),
-      // canLoad: [ LoggedInGuard ],
-      // canActivate: [ LoggedInGuard ],
+      canLoad: [ LoggedInGuard ],
+      canActivate: [ LoggedInGuard ],
     },
     {
       path: 'admin-user',
