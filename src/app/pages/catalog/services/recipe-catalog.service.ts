@@ -48,7 +48,7 @@ export class RecipeCatalogService {
     this.service.getRandomImages().pipe(
         ).
         subscribe((res: any[]) => {
-          res = res.map((x: any) => x.meals[0].strMealThumb);
+          // res = res.map((x: any) => x.meals[0].strMealThumb);
           this.recipeImages.next(res);
       });
   }

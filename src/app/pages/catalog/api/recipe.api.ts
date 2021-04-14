@@ -91,12 +91,15 @@ export class RecipeApiService  extends AppHttpErrorHandler {
 
   public  getRandomImages(): Observable<any[]> {
     const imgObser = [];
-    for (let i = 0; i < 10; i++) {
-      imgObser.push(this.http.get<any>('https://www.themealdb.com/api/json/v1/1/random.php'));
-      // .pipe((res: any) => res.meals[0].strMealThumb));
-    }
-    return forkJoin(imgObser);
-            //      .pipe((res: any) => res.meals[0].strMealThumb);
+    // for (let i = 0; i < 10; i++) {
+    //   imgObser.push(this.http.get<any>('https://www.themealdb.com/api/json/v1/1/random.php'));
+    //   // .pipe((res: any) => res.meals[0].strMealThumb));
+    // }
+    imgObser.push('/assets/imgs/img-01.jpg');
+    imgObser.push('/assets/imgs/img-02.jpg');
+    imgObser.push('/assets/imgs/img-03.jpg');
+    return of(imgObser);
+    // return forkJoin(imgObser);
   }
 
 

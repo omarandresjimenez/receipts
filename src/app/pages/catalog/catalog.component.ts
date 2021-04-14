@@ -51,7 +51,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.recipeCatalog$ = [];
         this.recipeTotal = [];
         res.map((x: Recipe) => {
-         x.imageUrl = x.imageUrl ? x.imageUrl : images[ Math.floor(Math.random() * 10) ];
+         x.imageUrl = x.imageUrl ? x.imageUrl : images[ Math.floor(Math.random() * 3) ];
 
          this.recipeTotal.push(x);
         });
@@ -78,7 +78,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
               subscribe(([ res, images ]: [ Preparation[], string[]]) => {
                 this.cardInfo.preparations = res.map((prep: Preparation) => {
                                               return { ...prep, imageUrl : prep.imageUrl ?
-                                                       prep.imageUrl : images[ Math.floor(Math.random() * 10) ] };
+                                                       prep.imageUrl : images[ Math.floor(Math.random() * 3) ] };
                                               });
                 this.catalogView = false;
                 this.cdr.markForCheck();
