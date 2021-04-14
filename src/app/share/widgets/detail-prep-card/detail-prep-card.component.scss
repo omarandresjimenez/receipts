@@ -36,6 +36,10 @@ a.btn-gh-secondary {
     color: #fff;
 }
 
+.wrapper {
+  max-height: 800px;
+  overflow: auto;
+}
 .section-container{
   background: url('/assets/bg-catalog.jpg') top center repeat-y;
   background-size: 100% auto;
@@ -96,6 +100,7 @@ a.btn-gh-secondary {
 .mainimg {
   height: 100%;
   width: 100%;
+  max-width: calc(100vw - 30%);
 }
 
 app-avatar {
@@ -571,3 +576,7 @@ h4.preparation-type{
 }
 
 .info-preparation-aditional *{ color: white; }
+
+.description {
+  padding-bottom: 0px;
+}

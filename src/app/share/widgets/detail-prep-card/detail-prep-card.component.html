@@ -43,6 +43,13 @@
             <div class="card">
                 <div class="container-fliud">
                     <div class="wrapper row">
+                        <div class="details col-md-12 description">
+                            <div class="container" *ngIf="modInfo.modDescription">
+                                <p class="p-content-preparation">
+                                    {{ modInfo.modDescription }}
+                                </p>
+                            </div>
+                        </div>
                         <div class="details col-md-6">
                             <div class="container" *ngIf="modInfo.modIngredients">
                                 <div class="row">
@@ -64,7 +71,7 @@
                             <div class="container" *ngIf="modInfo.modTools">
                                 <div class="row">
                                     <div class="col-12 ">
-                                        <h3 class="title-content-preparation tools text-left">Herramientas</h3>
+                                        <h3 class="title-content-preparation tools text-left">Utensilios</h3>
                                         <hr class="mx-auto">
                                         <ol class="list-items-preparations">
                                             <li *ngFor="let tool of modInfo.modTools">
@@ -103,7 +110,7 @@
                         </p>
                     </div>
                   
-                <div class="col-lg-4">
+                <div class="col-lg-4" style="max-width: 400px;">
                     <h4 class="title-content-preparation white-text">Fuente de Información</h4>
                     <p class="p-content-preparation">
                         {{ modInfo.modSource }}
