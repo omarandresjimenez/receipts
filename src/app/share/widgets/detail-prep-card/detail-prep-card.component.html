@@ -50,6 +50,7 @@
                                 </p>
                             </div>
                         </div>
+ 
                         <div class="details col-md-6">
                             <div class="container" *ngIf="modInfo.modIngredients">
                                 <div class="row">
@@ -94,6 +95,13 @@
                                 {{ step }}
                                 
                             </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="preparation-type"><b>Uso:</b> {{ modInfo.modUse }}</h4>
+                        </div>
+                        <div class="col-md-6">   
+                            <h4 class="preparation-type"><b>Forma Transmisión:</b> {{ modInfo.modTransmissionWay }}</h4>
+                           
                         </div>
                     </div>
                 </div>

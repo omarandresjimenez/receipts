@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, AfterViewInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Story } from 'src/app/core/models/models';
+import { Iniciative, Story } from 'src/app/core/models/models';
 
 
 import Swiper, { SwiperOptions } from 'swiper';
@@ -19,6 +19,7 @@ export class CaribeanRegionComponent implements OnInit, AfterViewInit {
 
   public regionId = 3;
   public regionStories$: Observable<Story[]>;
+  public regionIniciatives$: Observable<Iniciative[]>;
   public config: SwiperOptions;
     constructor(@Inject(DOCUMENT)
                 private document: Document,
@@ -27,6 +28,7 @@ export class CaribeanRegionComponent implements OnInit, AfterViewInit {
 
   public ngOnInit(): void {
     this.swiperConfig();
+    this.regionIniciatives$ = this.service.getRegionIniciatives(this.regionId);
   }
 
   ngAfterViewInit(): void {

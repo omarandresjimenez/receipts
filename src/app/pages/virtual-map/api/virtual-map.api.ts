@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AppHttpErrorHandler } from 'src/app/core/utils/errorHandler';
-import { Story } from 'src/app/core/models/models';
+import { Story, Iniciative } from 'src/app/core/models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +27,9 @@ export class VirtualMapApiService  extends AppHttpErrorHandler {
       );
   }
 
+  public getRegionIniciatives(idRegion: number): Observable<Iniciative[]> {
+    return this.http.get<any>(this.BASEURL + 'iniciative/regionToSearch/' + idRegion).pipe(
+      catchError((err) => this.handleError(err)),
+      );
+  }
 }

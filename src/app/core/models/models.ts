@@ -33,6 +33,8 @@ export interface Preparation {
   preparationSteps?: string;
   region?: Region;
   creationDate?: string;
+  transmissionWay?: string;
+  use?: string;
 
 }
 
@@ -85,4 +87,10 @@ export interface Story {
   name: string;
   description: string;
   content: string;
+}
+
+export interface Iniciative {
+  summary: string;
+  description: string;
+  contact: string;
 }

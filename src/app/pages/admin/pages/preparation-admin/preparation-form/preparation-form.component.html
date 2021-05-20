@@ -198,6 +198,30 @@
             placeholder="Fuente información" maxlength="100">
         </div>
       </div>
+      <div class="form-group"  title="Uso">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-font" [class.green-icon]="use.valid"
+                [class.red-icon]="use.invalid && use.touched"></i>
+            </div>
+          </div>
+          <input type="text" name="use" #use="ngModel" [(ngModel)]="preparationData.use" class="form-control"
+            placeholder="Uso" maxlength="100">
+        </div>
+      </div>
+      <div class="form-group"  title="Transmision">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text bg-white">
+              <i class="fas fa-font" [class.green-icon]="transmission.valid"
+                [class.red-icon]="transmission.invalid && transmission.touched"></i>
+            </div>
+          </div>
+          <input type="text" name="transmission" #transmission="ngModel" [(ngModel)]="preparationData.transmissionWay" class="form-control"
+            placeholder="Forma de Transmisión" maxlength="100">
+        </div>
+      </div>
       <div class="form-group bg-white"  title="Esta a la venta?">
         <div class="input-group">
           <div class="input-group-prepend">

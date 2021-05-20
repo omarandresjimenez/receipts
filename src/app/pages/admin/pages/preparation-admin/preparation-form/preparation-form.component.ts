@@ -106,7 +106,8 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
     this.preparationData  = { id: '', name: '', description: '', imageUrl: '', city: { id: '', name: '', idState: ''},
                               active: true, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
                               cookingTechnique: { id: '', name: '' }, preparationType: '', tools: [], ingredients: [],
-                              recipe: this.recipe, source: '',  preparationSteps: '', forSale: false, carrierCommunity: ''};
+                              recipe: this.recipe, source: '',  preparationSteps: '', forSale: false,
+                              carrierCommunity: '', use: '', transmissionWay: ''};
 
     this.sub = this.recipeServie.getRecipes().subscribe(rec => {
                                     this.recipeList = rec;
@@ -341,7 +342,8 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
     this.preparationData = {  id: '', name: '', description: '', imageUrl: '', city: { id: '', name: '', idState: ''},
                               active: false, author: { id: '', name: '', lastName: '' }, user: this.sessionService.getCurrentUser(),
                               cookingTechnique: { id: '', name: '' }, preparationType: '', tools: [], ingredients: [],
-                              recipe: this.recipe, source: '',  preparationSteps: '', forSale: false, carrierCommunity: '' };
+                              recipe: this.recipe, source: '',  preparationSteps: '', forSale: false, carrierCommunity: '',
+                              use: '', transmissionWay: '' };
     if (form != null) {
       form.form.reset();
     }

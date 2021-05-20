@@ -117,7 +117,7 @@
     
 </section>
 
-<!-- <section class="travel-iniciative">
+ <section class="travel-iniciative">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -128,29 +128,24 @@
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="row">
+        <div class="row"  *ngFor="let iniciative of regionIniciatives$ | async">
+            <hr style="width: 100%;">
             <div class="col-lg-3">
                 <div class="title-iniciative">
-                    <h4>Comiendo a pie</h4>
-                    <h5>Recorrido Cultural</h5>
+                   <div  [innerHTML]="iniciative?.summary"></div>
                 </div>
             </div>
             <div class="col-lg-5">
-                <p>
-                    Descubre Envigado a través de empanadas y morcillas. Vive una experiencia recorriendo las calles de Envigado combinando comida y cultura. En esta experiencia se conecta la importancia de la empanada y morcilla en el territorio, al mismo tiempo que se vive la historia de sus espacios culturales y personajes más representativos del municipio.
+                <p [innerHTML]="iniciative?.description">
                 </p>
             </div>
             <div class="col-lg-4">
-                <p>
-                    304 5892903
-                    publicidad@elsabordemitierracolombia.com
-                    <b>Envigado</b>
+                <p [innerHTML]="iniciative?.contact">
                 </p>
             </div>
         </div>
     </div>
-</section> -->
+</section> 
 
 <section class="recepies-department bg">
     <div class="container">

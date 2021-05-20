@@ -66,6 +66,8 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       carrierCommunity: preparationModel.carrierCommunity,
       forSale: preparationModel.forSale,
       preparationSteps: preparationModel.preparationSteps,
+      use: preparationModel.use,
+      transmissionWay: preparationModel.transmissionWay,
       isActive: false,
     };
     return this.http.post<string>(this.BASEURL + 'preparation', params).pipe(
@@ -92,6 +94,8 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       carrierCommunity: preparationModel.carrierCommunity,
       forSale: preparationModel.forSale,
       preparationSteps: preparationModel.preparationSteps,
+      use: preparationModel.use,
+      transmissionWay: preparationModel.transmissionWay,
       isActive: false,
     };
     return this.http.put<boolean>(this.BASEURL + 'preparation/' + preparationModel.id, params).pipe(

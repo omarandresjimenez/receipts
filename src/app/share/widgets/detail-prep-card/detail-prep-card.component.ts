@@ -30,6 +30,8 @@ export class DetailPreparationComponent implements OnInit, OnChanges {
                     modType: string;
                     modSource: string;
                     modDescription: string;
+                    modUse: string;
+                    modTransmissionWay: string;
                    };
 
     public rating: {
@@ -75,6 +77,8 @@ export class DetailPreparationComponent implements OnInit, OnChanges {
       modIngredients:  this.prep.ingredients.map(i => i.name),
       modTools: this.prep.tools.map(t => t.name),
       modDescription: this.prep.description,
+      modUse: this.prep.use,
+      modTransmissionWay: this.prep.transmissionWay,
       };
     this.rating = { rating: 0, comments: ''};
     this.cdr.markForCheck();
