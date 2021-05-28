@@ -15,6 +15,7 @@ import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from '../../user/services/user.service';
 import { CitiesService } from 'src/app/core/api/cities.service';
 import { APP_CONFIG } from 'src/app/core/app-config';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 
 
@@ -146,18 +147,21 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
     if (this.preparationToEdit) {
       this.newpreparation = false;
       this.preparationData = { ...this.preparationToEdit };
+      this.state = { id: +this.preparationData.city.idState };
+      this.loadCities(this.state.id);
       this.initialListIngredients = this.preparationData.ingredients;
       this.initialListTools = this.preparationData.tools;
       this.recipeControl.setValue(this.recipe?.name);
       this.authorControl.setValue(this.preparationToEdit.author?.name + ' ' + this.preparationToEdit.author?.lastName);
       this.renderAvatar(this.preparationData.imageUrl);
+      this.cdr.markForCheck();
     }
   }
 
 
 
   public loadCities(stateId): void {
-    this.cities$ = this.cityService.getCities(stateId.value);
+    this.cities$ = this.cityService.getCities(stateId.value || stateId);
     this.form.controls.city.setErrors(ValidityState);
   }
 

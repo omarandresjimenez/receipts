@@ -247,14 +247,14 @@
   
               <div class="input-group-text bg-white">
   
-                <i class="fas fa-map" [class.green-icon]="true" [class.red-icon]="state.invalid"
+                <i class="fas fa-map" [class.green-icon]="true" [class.red-icon]="state2.invalid"
                  ></i>
               </div>
   
             </div>
             <div class="bg-white customfield">
-          <select class="form-control" name="state"  #state required (change)="loadCities(state)" [(ngModel)]="state.id">
-            <option value="">--Seleccione Departamento--</option>
+          <select class="form-control" name="state2"  #state2 required (change)="loadCities(state2)" [(ngModel)]="state.id">
+            <option value="0">--Seleccione Departamento--</option>
 
             <option *ngFor="let state of deps$ | async" [value]="state.id">
               {{ state.name }}
@@ -279,8 +279,8 @@
           <select class="form-control" name="city" [(ngModel)]="preparationData.city.id" #city="ngModel" required
             >
             <option value="">--Seleccione ciudad--</option>
-            <option *ngFor="let city of cities$ | async" [value]="city.id">
-              {{ city.name }}
+            <option *ngFor="let cityObj of cities$ | async" [value]="cityObj.id">
+              {{ cityObj.name }}
             </option>
           </select>
         </div>

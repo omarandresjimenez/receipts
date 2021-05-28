@@ -10,8 +10,6 @@ import { CookingTechnique, Ingredient, ItemChip, Preparation, Region, Tool } fro
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +27,7 @@ export class PreparationApiService extends AppHttpErrorHandler  {
       map((preps: any[]) => preps.map((prep: any) => {
         return  { ...prep,
           active: prep.isActive,
+          city: { ...prep.city, idState: prep.city.department?.id},
           creationDate: prep.createdDate?.substring(0, 10),
           rating: prep.ratingAvg,
         };

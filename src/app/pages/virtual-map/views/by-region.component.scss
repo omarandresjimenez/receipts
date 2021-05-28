@@ -100,6 +100,11 @@ footer .logo-footer{
 /* - - - - - - - - - - - - - - - - - - - INTERNA REGION - - - - - - - - - - - - - */ 
 
 
+.travel-iniciative .container {
+	max-height: 400px;
+    overflow: auto;
+}
+
 .swiper-button-next, .swiper-button-prev {
     color: white !important;
 }
@@ -311,6 +316,7 @@ section.about-department p{
 	font-weight: bold;
 	font-size: 16px;
 	line-height: 31px;
+	text-align: justify;
 	/* or 195% */
 
 
@@ -612,6 +618,7 @@ section.travel-iniciative .title-section h2 span{
 		left: 0;
 		top: 323px;
 	}
+
 }
 
 
