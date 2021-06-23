@@ -44,7 +44,7 @@
             </div>
           </div>
           <textarea name="summary" #summary="ngModel" [(ngModel)]="preparationData.description" class="form-control"
-            placeholder="Descripcion"  maxlength="500" rows="3"></textarea>
+            placeholder="Descripcion"  maxlength="1500" rows="3"></textarea>
         </div>
       </div>
       <div class="form-group"  title="Pasos Preparacion">
@@ -56,7 +56,7 @@
             </div>
           </div>
           <textarea name="steps" #steps="ngModel" [(ngModel)]="preparationData.preparationSteps" class="form-control"
-            placeholder="Paso a paso preparación" maxlength="1500" rows="5"></textarea>
+            placeholder="Paso a paso preparación" maxlength="8000" rows="5"></textarea>
         </div>
       </div>
       <div class="form-group"  title="Comunidqad Portadora">
@@ -68,7 +68,7 @@
             </div>
           </div>
           <input type="text"  title="Ingrese si el Portador es una comunidad y no una persona" name="community" #community="ngModel" [(ngModel)]="preparationData.carrierCommunity" class="form-control"
-            placeholder="Comunidad Portadora" minlength="5"  maxlength="100">
+            placeholder="Comunidad Portadora" minlength="5"  maxlength="200">
         </div>
       </div>
       <div class="form-group"  title="Portador (si no es una comunidad">
@@ -195,7 +195,7 @@
             </div>
           </div>
           <input type="text" name="source" #source="ngModel" [(ngModel)]="preparationData.source" class="form-control"
-            placeholder="Fuente información" maxlength="100">
+            placeholder="Fuente información" maxlength="800">
         </div>
       </div>
       <div class="form-group"  title="Uso">

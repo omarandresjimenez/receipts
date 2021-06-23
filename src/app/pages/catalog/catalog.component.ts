@@ -38,7 +38,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.regionId === 0) {
-      this.serviceCatalog.searchRecipes('');
+      this.serviceCatalog.searchRecipesByRegion(Math.floor(Math.random() * 6));  // 6 regions
     } else {
       this.serviceCatalog.searchRecipesByRegion(this.regionId);
     }

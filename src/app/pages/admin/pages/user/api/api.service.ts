@@ -94,8 +94,8 @@ export class ApiService extends AppHttpErrorHandler  {
 
     const params = {
       id,
-      active,
-      role,
+      userIsActive: active,
+      userRole: role,
     };
     return this.http.put<boolean>(this.BASEURL + 'user/UpdateUserByAdmin/' + id, params).pipe(
       catchError((err) => this.handleError(err))
