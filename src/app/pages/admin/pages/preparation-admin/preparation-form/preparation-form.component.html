@@ -16,7 +16,7 @@
             [matAutocomplete]="auto" [formControl]="recipeControl">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let rec of filterRecipes$ | async" [value]="rec.name"
-              (onSelectionChange)="selectRecipe($event, rec.id)">
+              (onSelectionChange)="selectRecipe($event, rec.id, rec.name)">
               {{rec.name}}
             </mat-option>
           </mat-autocomplete>
@@ -154,7 +154,7 @@
 
             <div class="input-group-text bg-white">
 
-              <i class="fas fa-plus" [class.green-icon]="preparationData.cookingTechnique" [style.cursor]="'pointer'"
+              <i class="fas fa-plus" [class.green-icon]="preparationData.cookingTechnique?.id" [style.cursor]="'pointer'"
                 (click)="onAddNewElement('C')" title="Agregar un nuevo elemento si no aparece en la lista"></i>
 
             </div>

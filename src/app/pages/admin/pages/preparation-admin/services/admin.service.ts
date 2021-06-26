@@ -29,7 +29,7 @@ export class PreparationService {
     this.newpreparationAdded.next(rec);
   }
 
-  public createPreparation(preparationInfo: Preparation): Observable<string> {
+  public createPreparation(preparationInfo: Preparation): Observable<Preparation> {
     return this.service.createPreparation(preparationInfo);
   }
 

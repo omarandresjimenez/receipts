@@ -72,7 +72,7 @@ export class DetailPreparationComponent implements OnInit, OnChanges {
       modCooking: this.prep.cookingTechnique?.name,
       modSale: this.prep.forSale,
       modType: this.prep.preparationType,
-      modSource: this.prep.source.trim(),
+      modSource: this.prep.source?.trim(),
       modRating: this.prep.rating?.toString(),
       modIngredients:  this.prep.ingredients.map(i => i.name),
       modTools: this.prep.tools.map(t => t.name),

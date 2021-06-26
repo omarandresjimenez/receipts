@@ -42,9 +42,10 @@ export class PreparationListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.service.newpreparationAdded$.subscribe((rec: Preparation) => {
-      this.rowData = this.rowData.filter((reci) => reci.id !== rec.id);
-      this.rowData.push(rec);
-      this.cdr.markForCheck();
+      // this.rowData = this.rowData.filter((reci) => reci.id !== rec.id);
+      // this.rowData.push(rec);
+      // this.cdr.markForCheck();
+      this.getPreparations();
    });
   }
 
@@ -118,15 +119,19 @@ export class PreparationListComponent implements OnInit, OnDestroy {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.initGridOptions();
+    this.getPreparations();
+  }
+
+  private getPreparations(): void {
     this.subs = this.service.getPreparations(this.sessionService.getCurrentUser()?.id)
-                   .subscribe((preparations) => {
-                      this.columnDefs = this.prepareGridColumns();
-                      this.rowData = preparations.map((prep) => {
-                        return { ...prep, userName: prep.author.name + ' ' + prep.author.lastName,
-                                 recipeName: prep.recipe.name };
-                      });
-                      this.cdr.markForCheck();
-                    });
+    .subscribe((preparations) => {
+       this.columnDefs = this.prepareGridColumns();
+       this.rowData = preparations.map((prep) => {
+         return { ...prep, userName: prep.author.name + ' ' + prep.author.lastName,
+                  recipeName: prep.recipe.name };
+       });
+       this.cdr.markForCheck();
+     });
   }
 
 }

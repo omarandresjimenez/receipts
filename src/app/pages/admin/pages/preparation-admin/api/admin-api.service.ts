@@ -48,7 +48,7 @@ export class PreparationApiService extends AppHttpErrorHandler  {
     ));
   }
 
-  public createPreparation(preparationModel: Preparation): Observable<string> {
+  public createPreparation(preparationModel: Preparation): Observable<Preparation> {
     const params = {
       recipeId: +preparationModel.recipe.id,
       name: preparationModel.name,

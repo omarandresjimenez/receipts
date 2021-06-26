@@ -15,9 +15,6 @@ import { UserModel } from 'src/app/core/models/UserModel';
 import { UserService } from '../../user/services/user.service';
 import { CitiesService } from 'src/app/core/api/cities.service';
 import { APP_CONFIG } from 'src/app/core/app-config';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-
-
 
 @Component({
   selector: 'app-admin-preparation-form',
@@ -185,10 +182,10 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
         this.preparationData.author.id = this.ID_CARRIER_AUTHOR;
       }
 
-      this.service.createPreparation(this.preparationData).subscribe((res: string) => {
+      this.service.createPreparation(this.preparationData).subscribe((res: Preparation) => {
         this.toast.success('Preparación creada exitosamente');
         this.modal.open('messageModal');
-        this.service.notifyNewpreparation({ ...this.preparationData, id: res });
+        this.service.notifyNewpreparation({ ...this.preparationData, id: res.id, recipe: this.recipe });
         this.resetForm();
       });
     } else {
@@ -202,9 +199,9 @@ export class PreparationFormComponent implements OnInit, OnChanges, AfterViewIni
   }
 
 
-  public selectRecipe($event, recipe) {
+  public selectRecipe($event, recipe, name) {
     if ($event.isUserInput) {
-      this.recipe = { id: recipe, name: this.recipeControl.value };
+      this.recipe = { id: recipe, name };
       this.preparationData.recipe = this.recipe;
     }
   }
